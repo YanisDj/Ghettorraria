@@ -16,8 +16,12 @@ public class Joueur extends Acteur{
 	@Override
 	public void deplacementdroite() {
 		this.xProperty().setValue(this.xProperty().getValue()+getVitesse());
-		System.out.println(xProperty().getValue());
-		
+		System.out.println(xProperty().getValue());	
+	}
+
+	public void deplacementbas(){
+		this.yProperty().setValue(this.yProperty().getValue()+getVitesse());
+		System.out.println(yProperty().getValue());	
 	}
 
 }

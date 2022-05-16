@@ -1,7 +1,5 @@
 package Sprint1.modele;
 
-import java.util.Random;
-
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -12,10 +10,10 @@ public abstract class  Acteur {
     private int pv;
     
     public Acteur(int pv,int vitesse) {
-        this.pv=pv;
-        this.x=new SimpleIntegerProperty();
+        this.pv = pv;
+        this.x = new SimpleIntegerProperty();
 		this.y = new SimpleIntegerProperty();
-		this.vitesse=vitesse;
+		this.vitesse = vitesse;
     }
     public final int getX() {
 		return x.getValue();
@@ -55,4 +53,5 @@ public abstract class  Acteur {
 	
 	public abstract void deplacementgauche();
 	public abstract void deplacementdroite();
+	public abstract void deplacementbas();
 }

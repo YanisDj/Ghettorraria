@@ -16,12 +16,12 @@ public class TerrainVue {
 		this.paneTerrain = paneTerrain;
 	}
 	
-	public void dessinerTerrain() {
+    public void dessinerTerrain() {
         int[][] codesTuiles = terrain.getCodesTuiles();
-       Image terre = new Image("ressources/rooted_dirt.png");
+        Image terre = new Image("ressources/rooted_dirt.png");
         Image terreHerbe = new Image("ressources/grass_block_side.png");
         Image ciel = new Image("ressources/ciel.png");
-        for (int[] i : codesTuiles)
+        for (int[] i : codesTuiles){
             for (int j : i) {
             	System.out.println(j);
                 switch (j) {
@@ -33,10 +33,10 @@ public class TerrainVue {
                     break;
                     case 3 : paneTerrain.getChildren().add(new ImageView(ciel));
                     break;
-                    
                 }
   
             }
+        }
 	}
 	
 	

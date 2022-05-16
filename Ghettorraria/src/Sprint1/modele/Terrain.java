@@ -16,7 +16,6 @@ public class Terrain {
 
     // private static int[][]terrain;
 
-
     public Terrain() {
         // terrain = chargerTerrain("codesDuTerrain.csv");
     }
