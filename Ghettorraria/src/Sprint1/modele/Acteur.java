@@ -7,39 +7,37 @@ import javafx.beans.property.SimpleIntegerProperty;
 
 public abstract class  Acteur {
 
-	private IntegerProperty xProperty,yProperty;
-    private int x,y ;
+	private IntegerProperty x,y;
     private int vitesse;
     private int pv;
     
     public Acteur(int pv,int vitesse) {
         this.pv=pv;
-        this.xProperty=new SimpleIntegerProperty(x);
-		this.yProperty = new SimpleIntegerProperty(y);
-        this.x=0;
-        this.y=120;
+        this.x=new SimpleIntegerProperty();
+		this.y = new SimpleIntegerProperty();
+		this.vitesse=vitesse;
     }
     public final int getX() {
-		return xProperty.getValue();
+		return x.getValue();
 	}
 
 	public final void setX(int n){
-		xProperty.set(n);
+		x.set(n);
 	}
 	
 	public final IntegerProperty xProperty() {
-		return xProperty;
+		return x;
 	}
 
 	public  final int getY() {
-		return yProperty.getValue();
+		return y.getValue();
 	}
 	public final  void setY(int n){
-		yProperty.setValue(n);;
+		y.setValue(n);;
 	}
 	
 	public final IntegerProperty yProperty() {
-		return yProperty;
+		return y;
 	}
 	public int getVitesse() {
 		return vitesse;
