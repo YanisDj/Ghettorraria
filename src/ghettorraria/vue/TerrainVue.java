@@ -20,7 +20,6 @@ public class TerrainVue {
         int[] codesTuiles = terrain.getCodesTuiles();
         Image terre = new Image("ressources/rooted_dirt.png");
         Image terreHerbe = new Image("ressources/grass_block_side.png");
-        Image ciel = new Image("ressources/ciel.png");
         for (int i : codesTuiles) {
             System.out.println(i);
             switch (i) {
