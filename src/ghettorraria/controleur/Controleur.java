@@ -23,21 +23,23 @@ public class Controleur implements Initializable {
 
         terrain = new Terrain();
 
-        int[][] codesTuiles = terrain.getCodesTuiles();
+        int[] codesTuiles = terrain.getCodesTuiles();
         Image terre;
         terre = new Image("terre.png");
-        Image terreHerbe = new Image("terre-herbe.png");
-        for (int[] i : codesTuiles)
-            for (int j : i) {
-                switch (j) {
-                    case 0 : paneTerrain.getChildren().add(new ImageView());
+        Image terreHerbe = new Image("herbe.png");
+        for (int i : codesTuiles) {
+            switch (i) {
+                case 0:
+                    paneTerrain.getChildren().add(new ImageView());
                     break;
-                    case 1 : paneTerrain.getChildren().add(new ImageView(terre));
+                case 1:
+                    paneTerrain.getChildren().add(new ImageView(terre));
                     break;
-                    case 2 : paneTerrain.getChildren().add(new ImageView(terreHerbe));
+                case 2:
+                    paneTerrain.getChildren().add(new ImageView(terreHerbe));
                     break;
-                }
             }
+        }
 
     }
 }
