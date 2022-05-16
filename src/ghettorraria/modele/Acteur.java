@@ -1,54 +1,56 @@
 package ghettorraria.modele;
 
-public abstract class Acteur {
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
-    private int x,y;
-    //private int dx,dy ;// direction
-    private String id;
-    public static int compteur=0;
+public abstract class  Acteur {
+
+	private IntegerProperty x,y;
+    private int vitesse;
     private int pv;
-    public Acteur(int x, int y,int pv) {
+    
+    public Acteur(int pv,int vitesse) {
         this.pv=pv;
-        this.x=x;
-        this.y = y;
-        this.id="A"+compteur;
-        compteur++;
+        this.x=new SimpleIntegerProperty();
+		this.y = new SimpleIntegerProperty();
+		this.vitesse=vitesse;
+    }
+    public final int getX() {
+		return x.getValue();
+	}
 
-    }
+	public final void setX(int n){
+		x.set(n);
+	}
+	
+	public final IntegerProperty xProperty() {
+		return x;
+	}
 
+	public  final int getY() {
+		return y.getValue();
+	}
+	public final  void setY(int n){
+		y.setValue(n);;
+	}
+	
+	public final IntegerProperty yProperty() {
+		return y;
+	}
+	public int getVitesse() {
+		return vitesse;
+	}
+	public int getPv() {
+		return pv;
+	}
+	public void decrementerPv(int n) {
+		this.pv-=n;	
+	}
 
-    public  int getX() {
-        return x;
-    }
-    public  void setX(int n){
-        x=n;
-    }
-    public  int getY() {
-        return y;
-    }
-    public  void setY(int n){
-        y=n;
-    }
-    public String getId() {
-        return id;
-    }
-    public void decrementerPv(int n) {
-        this.pv-=n;
-    }
-    public void incrementerPv(int n) {
-        this.pv+=n;
-    }
-    public boolean estVivant() {
-        return this.pv>0;
-    }
-
-    public void meurt(){
-        this.pv=0;
-    }
-    public abstract void agit();
-
-    @Override
-    public String toString() {
-        return "x=" + x + ", y=" + y + ", id=" + id ;
-    }
+	public void incrementerPv(int n) {
+		this.pv+=n;	
+	}
+	
+	public abstract void deplacementgauche();
+	public abstract void deplacementdroite();
 }

@@ -18,8 +18,8 @@ public class TerrainVue {
 
     public void dessinerTerrain() {
         int[] codesTuiles = terrain.getCodesTuiles();
-        Image terre = new Image("ressources/terre.png");
-        Image terreHerbe = new Image("ressources/herbe.png");
+        Image terre = new Image("ressources/rooted_dirt.png");
+        Image terreHerbe = new Image("ressources/grass_block_side.png");
         Image ciel = new Image("ressources/ciel.png");
         for (int i : codesTuiles) {
             System.out.println(i);
@@ -31,14 +31,15 @@ public class TerrainVue {
                     paneTerrain.getChildren().add(new ImageView(terre));
                     break;
                 case 2:
-                    paneTerrain.getChildren().add(new ImageView(terreHerbe));
+                    paneTerrain.getChildren().add(new ImageView());
                     break;
                 case 3:
-                    paneTerrain.getChildren().add(new ImageView(ciel));
+                    paneTerrain.getChildren().add(new ImageView(terreHerbe));
                     break;
 
             }
-
         }
+
     }
+
 }
