@@ -2,7 +2,6 @@ package ghettorraria.modele;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Terrain {
 
@@ -10,15 +9,22 @@ public class Terrain {
 
     public Terrain() {
 
-        File fichierCSV = new File("ressources/terrain.csv");
+        String line = "";
+        final String delimiter = ",";
         try {
-            Scanner sc = new Scanner(fichierCSV);
-            sc.useDelimiter(",");
-            while (sc.hasNext()) {
-                codesTuiles.add(sc.nextInt());
+            String filePath = "src/ressources/terrain.csv";
+            FileReader fileReader = new FileReader(filePath);
+
+            BufferedReader reader = new BufferedReader(fileReader);
+            while ((line = reader.readLine()) != null) // loops through every line until null found
+            {
+                String[] token = line.split(delimiter); // separate every token by comma
+                for (String tuile : token) {
+                    codesTuiles.add(Integer.parseInt(tuile));
+                }
             }
-            sc.close();
-        } catch (Exception e) {
+            reader.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -28,11 +34,9 @@ public class Terrain {
         return codesTuiles;
     }
 
-    /*
-     * public int tuileA(int positionX, int positionY) {
-     * return this.terrain
-     * }
-     */
+    public int tuileA(int positionX, int positionY) {
+        return codesTuiles.get(positionX/32+(positionY/32));
+    }
 
     public int getLargeur() {
         return 60;

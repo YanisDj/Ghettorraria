@@ -5,8 +5,6 @@ import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -18,6 +16,7 @@ import java.util.ResourceBundle;
 
 import ghettorraria.modele.Joueur;
 import ghettorraria.modele.Terrain;
+import ghettorraria.vue.JoueurVue;
 import ghettorraria.vue.TerrainVue;
 
 
@@ -46,12 +45,8 @@ public class Controleur implements Initializable {
         terrainVue.dessinerTerrain();
         
         joueur = new Joueur(10, 20, terrain);
-        Image imagejoueur = new Image("ressources/joueurtest.png");
-        ImageView joueurmap = new ImageView(imagejoueur);
-        
-        joueurmap.translateXProperty().bind(joueur.xProperty());
-        joueurmap.translateYProperty().bind(joueur.yProperty());
-        Border1.getChildren().add(joueurmap);
+        JoueurVue joueurVue = new JoueurVue(Border1, joueur);
+        joueurVue.placerJoueur();
 
         Border1.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
 

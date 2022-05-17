@@ -21,7 +21,7 @@ public class TerrainVue {
         ArrayList<Integer> codesTuiles = terrain.getCodesTuiles();
         for (int i : codesTuiles) {
             switch (i) {
-                case 0:
+                case -1:
                     paneTerrain.getChildren().add(new ImageView());
                     break;
                 default:

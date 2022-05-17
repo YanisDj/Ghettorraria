@@ -15,20 +15,12 @@ public class Joueur extends Acteur{
 	public void deplacementgaucheOui() {
 		this.gauche = true;
 		this.droite = false;
-		/*
-		this.xProperty().setValue(this.xProperty().getValue()-getVitesse());
-		System.out.println(xProperty().getValue());
-		*/
 	}
 
 	@Override
 	public void deplacementdroiteOui() {
 		this.droite = true;
 		this.gauche = false;
-		/*
-		this.xProperty().setValue(this.xProperty().getValue()+getVitesse());
-		System.out.println(xProperty().getValue());	
-		*/
 	}
 
 	public void deplacer(){
@@ -55,5 +47,15 @@ public class Joueur extends Acteur{
 		this.gauche = false;
 	}
 
+	public void chute() {
+		int yDest;
+		int xDest;
+		xDest = this.xProperty().getValue();
+		yDest = this.yProperty().getValue()+32;
+		while (this.getTerrain().tuileA(yDest, xDest) == -1) {
+			this.yProperty().setValue(this.yProperty().getValue()+10);
+			yDest = this.yProperty().getValue()+32;
+		}
+	}
 
 }
