@@ -18,7 +18,6 @@ public class TerrainVue {
     public void dessinerTerrain() {
         int[] codesTuiles = terrain.getCodesTuiles();
         for (int i : codesTuiles) {
-            System.out.println(i);
             switch (i) {
                 case 0:
                     paneTerrain.getChildren().add(new ImageView());
