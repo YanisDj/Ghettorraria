@@ -35,4 +35,8 @@ public class Terrain {
     public int[] getCodesTuiles() {
         return codesTuiles;
     }
+
+    public int getLargeur(){
+        return 30;
+    }
 }

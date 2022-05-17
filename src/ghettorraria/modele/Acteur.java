@@ -8,12 +8,14 @@ public abstract class  Acteur {
 	private IntegerProperty x,y;
     private int vitesse;
     private int pv;
+	private Terrain terrain;
     
-    public Acteur(int pv,int vitesse) {
-        this.pv=pv;
-        this.x=new SimpleIntegerProperty();
+    public Acteur(int pv,int vitesse, Terrain terrain) {
+        this.pv = pv;
+        this.x = new SimpleIntegerProperty();
 		this.y = new SimpleIntegerProperty();
-		this.vitesse=vitesse;
+		this.vitesse = vitesse;
+		this.terrain = terrain;
     }
     public final int getX() {
 		return x.getValue();
@@ -50,7 +52,11 @@ public abstract class  Acteur {
 	public void incrementerPv(int n) {
 		this.pv+=n;	
 	}
+
+	public Terrain getTerrain(){
+		return this.terrain;
+	}
 	
-	public abstract void deplacementgauche();
-	public abstract void deplacementdroite();
+	public abstract void deplacementgaucheOui();
+	public abstract void deplacementdroiteOui();
 }
