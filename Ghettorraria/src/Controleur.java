@@ -1,8 +1,6 @@
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -39,7 +37,8 @@ public class Controleur implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        
+        initAnimation();
         gameLoop.play();
 
         terrain = new Terrain();
@@ -54,11 +53,28 @@ public class Controleur implements Initializable {
         joueurmap.translateYProperty().bind(joueur.yProperty());
         Border1.getChildren().add(joueurmap);
 
+        Border1.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent key) {
+
+                if(key.getCode()==KeyCode.D) {
+                    joueur.deplacementdroite();
+                }
+                if(key.getCode()==KeyCode.Q) {
+                    joueur.deplacementgauche();
+                }
+                if(key.getCode()==KeyCode.S) {
+                    joueur.deplacementbas();
+                }
+            }
+        });
+
     }
 
     private void initAnimation() {
 		gameLoop = new Timeline();
-		temps=0;
+		temps = 0;
 		gameLoop.setCycleCount(Timeline.INDEFINITE);
 
 		KeyFrame kf = new KeyFrame(
@@ -67,22 +83,7 @@ public class Controleur implements Initializable {
 				// on définit ce qui se passe à chaque frame 
 				// c'est un eventHandler d'ou le lambda
 				(ev ->{
-					Border1.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-
-                        @Override
-                        public void handle(KeyEvent key) {
-            
-                            if(key.getCode()==KeyCode.D) {
-                                joueur.deplacementdroite();
-                            }
-                            if(key.getCode()==KeyCode.Q) {
-                                joueur.deplacementgauche();
-                            }
-                            if(key.getCode()==KeyCode.S) {
-                                joueur.deplacementbas();
-                            }
-                        }
-                    });
+					
 					temps++;
 				})
 			);
