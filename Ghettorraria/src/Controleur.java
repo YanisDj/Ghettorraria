@@ -45,7 +45,7 @@ public class Controleur implements Initializable {
         TerrainVue terrainVue = new TerrainVue(terrain, paneTerrain);
         terrainVue.dessinerTerrain();
         
-        joueur=new Joueur(10, 20);
+        joueur = new Joueur(10, 20, terrain);
         Image imagejoueur = new Image("ressources/joueurtest.png");
         ImageView joueurmap = new ImageView(imagejoueur);
         
@@ -58,14 +58,25 @@ public class Controleur implements Initializable {
             @Override
             public void handle(KeyEvent key) {
 
-                if(key.getCode()==KeyCode.D) {
-                    joueur.deplacementdroite();
+                if(key.getCode() == KeyCode.D) {
+                    joueur.deplacementdroiteOui();
                 }
-                if(key.getCode()==KeyCode.Q) {
-                    joueur.deplacementgauche();
+                if(key.getCode() == KeyCode.Q) {
+                    joueur.deplacementgaucheOui();
                 }
-                if(key.getCode()==KeyCode.S) {
-                    joueur.deplacementbas();
+            }
+        });
+
+        Border1.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent key) {
+
+                if(key.getCode() == KeyCode.D) {
+                    joueur.deplacementdroiteNon();
+                }
+                if(key.getCode() == KeyCode.Q) {
+                    joueur.deplacementgaucheNon();
                 }
             }
         });
@@ -83,7 +94,7 @@ public class Controleur implements Initializable {
 				// on définit ce qui se passe à chaque frame 
 				// c'est un eventHandler d'ou le lambda
 				(ev ->{
-					
+					joueur.deplacer();
 					temps++;
 				})
 			);

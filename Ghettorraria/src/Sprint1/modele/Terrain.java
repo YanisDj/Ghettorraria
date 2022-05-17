@@ -23,5 +23,9 @@ public class Terrain {
     public static int[][] getCodesTuiles() {
         return codesTuiles;
     }
+
+    public int getLargeur(){
+        return 10;
+    }
 }
 
