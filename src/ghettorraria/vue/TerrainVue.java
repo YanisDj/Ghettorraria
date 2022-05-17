@@ -1,5 +1,7 @@
 package ghettorraria.vue;
 
+import java.util.ArrayList;
+
 import ghettorraria.modele.Terrain;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
@@ -16,7 +18,7 @@ public class TerrainVue {
     }
 
     public void dessinerTerrain() {
-        int[] codesTuiles = terrain.getCodesTuiles();
+        ArrayList<Integer> codesTuiles = terrain.getCodesTuiles();
         for (int i : codesTuiles) {
             switch (i) {
                 case 0:
