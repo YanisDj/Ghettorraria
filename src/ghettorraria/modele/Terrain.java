@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Terrain {
 
-    private static ArrayList<int[]> codesTuiles = new ArrayList<int[]>();
+    private static ArrayList<Bloc[]> codesTuiles = new ArrayList<Bloc[]>();
 
     public Terrain() {
 
@@ -16,14 +16,16 @@ public class Terrain {
             FileReader fileReader = new FileReader(filePath);
 
             BufferedReader reader = new BufferedReader(fileReader);
+            int y = 0;
             while ((line = reader.readLine()) != null) // loops through every line until null found
             {
                 String[] token = line.split(delimiter); // separate every token by comma
-                int[] ligne = new int[token.length];
-                for (int i = 0; i < ligne.length; i++) {
-                    ligne[i] = Integer.parseInt(token[i]);
+                Bloc[] ligne = new Bloc[token.length];
+                for (int x = 0; x < ligne.length; x++) {
+                    ligne[x] = new Bloc(Integer.parseInt(token[x]), x, y);
                 }
                 codesTuiles.add(ligne);
+                y++;
             }
             reader.close();
         } catch (IOException e) {
@@ -32,12 +34,12 @@ public class Terrain {
 
     }
 
-    public ArrayList<int[]> getCodesTuiles() {
+    public ArrayList<Bloc[]> getCodesTuiles() {
         return codesTuiles;
     }
 
-    public int tuileA(int positionX, int positionY) {
-        System.out.println(codesTuiles.get(positionY/32)[positionX/32]);
+    public Bloc tuileA(int positionX, int positionY) {
+        System.out.println(codesTuiles.get(positionY/32)[positionX/32].getId());
         return codesTuiles.get(positionY/32)[positionX/32];
     }
 

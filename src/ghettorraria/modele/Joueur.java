@@ -12,7 +12,7 @@ public class Joueur extends Acteur {
 		droite = false;
 		gauche = false;
 		monte = false;
-		tombe = true;
+		tombe = false;
 	}
 
 	@Override
@@ -31,14 +31,13 @@ public class Joueur extends Acteur {
 		int xDest, yDest;
 		if (this.gauche) {
 			xDest = this.getX() - getVitesse();
-			if (xDest >= 0) {
+			if (!blocGaucheSolide()) {
 				this.setX(xDest);
 			}
 		}
 		if (this.droite) {
-			xDest = this.getX() + getVitesse();
-			if (xDest <= this.getTerrain().getLargeur() * 32 - 32) {
-				this.setX(xDest);
+			if (!blocDroiteSolide()) {
+				this.setX(this.getX()+this.getVitesse());
 			}
 		}
 		if (this.monte) {
@@ -51,9 +50,8 @@ public class Joueur extends Acteur {
 		}
 		if (this.tombe) {
 			yDest = this.getY() + getVitesse() + 42;
-			if (this.getTerrain().tuileA(this.getX(), yDest) == -1) {
+			if (this.getTerrain().tuileA(this.getX(), yDest).getId() == -1) {
 				this.setY(yDest);
-				yDest = this.getY() + getVitesse() + 42;
 			}
 		}
 		this.getTerrain().tuileA(this.getX(), this.getY());
@@ -67,13 +65,12 @@ public class Joueur extends Acteur {
 		this.gauche = false;
 	}
 
-	/* public void gravite() {
-		int yDest = this.getY() + getVitesse() + 42;
-		while (this.getTerrain().tuileA(this.getX(), yDest) == -1) {
-			this.setY(yDest);
-			yDest = this.getY() + getVitesse() + 42;
-		}
-	} */
+	public boolean blocDroiteSolide() {
+		return this.getTerrain().tuileA(this.getX()+32, this.getY()).estSolide();
+	}
+	public boolean blocGaucheSolide() {
+		return this.getTerrain().tuileA(this.getX(), this.getY()).estSolide();
+	}
 
 	public void saut() {
 		this.monte = true;
