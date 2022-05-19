@@ -47,6 +47,7 @@ public class Controleur implements Initializable {
         joueur = new Joueur(10, 20, terrain);
         JoueurVue joueurVue = new JoueurVue(Border1, joueur);
         joueurVue.placerJoueur();
+        /* joueur.gravite(); */
 
         Border1.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
 
@@ -58,6 +59,9 @@ public class Controleur implements Initializable {
                 }
                 if(key.getCode() == KeyCode.Q) {
                     joueur.deplacementgaucheOui();
+                }
+                if(key.getCode() == KeyCode.Z) {
+                    joueur.saut();
                 }
             }
         });
@@ -72,6 +76,10 @@ public class Controleur implements Initializable {
                 }
                 if(key.getCode() == KeyCode.Q) {
                     joueur.deplacementgaucheNon();
+                }
+                if(key.getCode() == KeyCode.Z) {
+                    joueur.finsaut();
+                    /* joueur.gravite(); */
                 }
             }
         });

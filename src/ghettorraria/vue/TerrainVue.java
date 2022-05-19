@@ -18,16 +18,19 @@ public class TerrainVue {
     }
 
     public void dessinerTerrain() {
-        ArrayList<Integer> codesTuiles = terrain.getCodesTuiles();
-        for (int i : codesTuiles) {
-            switch (i) {
-                case -1:
-                    paneTerrain.getChildren().add(new ImageView());
-                    break;
-                default:
-                    paneTerrain.getChildren().add(new ImageView("ressources/"+i+".png"));
-                    break;
+        ArrayList<int[]> codesTuiles = terrain.getCodesTuiles();
+        for (int[] i : codesTuiles) {
+            for (int tuile : i) {
+                switch (tuile) {
+                    case -1:
+                        paneTerrain.getChildren().add(new ImageView());
+                        break;
+                    default:
+                        paneTerrain.getChildren().add(new ImageView("ressources/" + tuile + ".png"));
+                        break;
+                }
             }
+
         }
 
     }

@@ -19,14 +19,10 @@ public class JoueurVue {
     public void placerJoueur() {
         Image imagejoueur = new Image("ressources/joueurtest.png");
         ImageView joueurmap = new ImageView(imagejoueur);
-        
-        joueur.xProperty().setValue(320);
-        joueur.chute();
-
         joueurmap.translateXProperty().bind(joueur.xProperty());
         joueurmap.translateYProperty().bind(joueur.yProperty());
+        joueur.xProperty().setValue(320);
         border.getChildren().add(joueurmap);
-
     }
 
 }

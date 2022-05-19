@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Terrain {
 
-    private static ArrayList<Integer> codesTuiles = new ArrayList<Integer>();
+    private static ArrayList<int[]> codesTuiles = new ArrayList<int[]>();
 
     public Terrain() {
 
@@ -19,9 +19,11 @@ public class Terrain {
             while ((line = reader.readLine()) != null) // loops through every line until null found
             {
                 String[] token = line.split(delimiter); // separate every token by comma
-                for (String tuile : token) {
-                    codesTuiles.add(Integer.parseInt(tuile));
+                int[] ligne = new int[token.length];
+                for (int i = 0; i < ligne.length; i++) {
+                    ligne[i] = Integer.parseInt(token[i]);
                 }
+                codesTuiles.add(ligne);
             }
             reader.close();
         } catch (IOException e) {
@@ -30,15 +32,20 @@ public class Terrain {
 
     }
 
-    public ArrayList<Integer> getCodesTuiles() {
+    public ArrayList<int[]> getCodesTuiles() {
         return codesTuiles;
     }
 
     public int tuileA(int positionX, int positionY) {
-        return codesTuiles.get(positionX/32+(positionY/32));
+        System.out.println(codesTuiles.get(positionY/32)[positionX/32]);
+        return codesTuiles.get(positionY/32)[positionX/32];
     }
 
     public int getLargeur() {
         return 60;
+    }
+
+    public int getHauteur() {
+        return 33;
     }
 }
