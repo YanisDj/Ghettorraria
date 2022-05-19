@@ -15,10 +15,6 @@ public class Joueur extends Acteur{
 	public void deplacementgaucheOui() {
 		this.gauche = true;
 		this.droite = false;
-		/*
-		this.xProperty().setValue(this.xProperty().getValue()-getVitesse());
-		System.out.println(xProperty().getValue());
-		*/
 	}
 
 	@Override
