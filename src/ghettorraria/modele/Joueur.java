@@ -6,9 +6,14 @@ public class Joueur extends Acteur {
 	private boolean droite;
 	private boolean monte;
 	private boolean tombe;
+	private BoxPlayer box;
+
+	public final int LARGEUR_PERSO = 32;
+	public final int HAUTEUR_PERSO = 42;
 
 	public Joueur(int pv, int vitesse, Terrain terrain) {
 		super(10, 2, terrain);
+		this.box = new BoxPlayer(this.getX(), this.getY(), this);
 		droite = false;
 		gauche = false;
 		monte = false;
@@ -37,7 +42,7 @@ public class Joueur extends Acteur {
 		}
 		if (this.droite) {
 			if (!blocDroiteSolide()) {
-				this.setX(this.getX()+this.getVitesse());
+				this.setX(this.getX() + this.getVitesse());
 			}
 		}
 		if (this.monte) {
@@ -66,9 +71,18 @@ public class Joueur extends Acteur {
 	}
 
 	public boolean blocDroiteSolide() {
-		return this.getTerrain().tuileA(this.getX()+32, this.getY()).estSolide();
+		return this.getTerrain().tuileA(this.getX() + 32, this.getY()).estSolide();
 	}
+
 	public boolean blocGaucheSolide() {
+		return this.getTerrain().tuileA(this.getX(), this.getY()).estSolide();
+	}
+
+	public boolean blocBasSolide() {
+		return this.getTerrain().tuileA(this.getX(), this.getY() + 42).estSolide();
+	}
+
+	public boolean blocHautSolide() {
 		return this.getTerrain().tuileA(this.getX(), this.getY()).estSolide();
 	}
 

@@ -1,11 +1,13 @@
 package ghettorraria.modele;
 
 import java.io.*;
-import java.util.ArrayList;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Terrain {
 
-    private static ArrayList<Bloc[]> codesTuiles = new ArrayList<Bloc[]>();
+    private ObservableList<Bloc[]> codesTuiles = FXCollections.observableArrayList();
 
     public Terrain() {
 
@@ -34,13 +36,13 @@ public class Terrain {
 
     }
 
-    public ArrayList<Bloc[]> getCodesTuiles() {
+    public ObservableList<Bloc[]> getCodesTuiles() {
         return codesTuiles;
     }
 
     public Bloc tuileA(int positionX, int positionY) {
-        System.out.println(codesTuiles.get(positionY/32)[positionX/32].getId());
-        return codesTuiles.get(positionY/32)[positionX/32];
+        System.out.println(codesTuiles.get(positionY / 32)[positionX / 32].getId());
+        return codesTuiles.get(positionY / 32)[positionX / 32];
     }
 
     public int getLargeur() {
@@ -49,5 +51,24 @@ public class Terrain {
 
     public int getHauteur() {
         return 33;
+    }
+
+    /*
+     * public void gravite() {
+     * try {
+     * if(!perso.surDuSol())
+     * this.perso.tombe(gravite);
+     * }catch (LimiteMapException e) {
+     * System.out.println("fin limite map");
+     * }catch (CollisionException e) {
+     * System.out.println("Boite de collision touche un bloc");
+     * }catch (Exception e) {
+     * e.printStackTrace();
+     * };
+     * }
+     */
+
+    public Bloc getBloc(int ligne, int colonne) {
+        return this.codesTuiles.get(ligne)[colonne];
     }
 }

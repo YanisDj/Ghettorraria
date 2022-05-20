@@ -1,9 +1,8 @@
 package ghettorraria.vue;
 
-import java.util.ArrayList;
-
 import ghettorraria.modele.Bloc;
 import ghettorraria.modele.Terrain;
+import javafx.collections.ObservableList;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 
@@ -19,7 +18,7 @@ public class TerrainVue {
     }
 
     public void dessinerTerrain() {
-        ArrayList<Bloc[]> codesTuiles = terrain.getCodesTuiles();
+        ObservableList<Bloc[]> codesTuiles = terrain.getCodesTuiles();
         for (Bloc[] ligne : codesTuiles) {
             for (Bloc tuile : ligne) {
                 if (tuile.getId()>=0) {
