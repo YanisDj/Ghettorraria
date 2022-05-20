@@ -8,14 +8,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import ghettorraria.modele.Inventaire;
 import ghettorraria.modele.Joueur;
 import ghettorraria.modele.Terrain;
+import ghettorraria.vue.InventaireVue;
 import ghettorraria.vue.JoueurVue;
 import ghettorraria.vue.TerrainVue;
 
@@ -27,12 +30,16 @@ public class Controleur implements Initializable {
 
     private Terrain terrain;
     private Joueur joueur;
+    private Inventaire inventaire;
 
     @FXML
     private TilePane paneTerrain;
     
     @FXML
     private BorderPane Border1;
+
+    @FXML
+    private HBox inventairescene;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -44,9 +51,15 @@ public class Controleur implements Initializable {
         TerrainVue terrainVue = new TerrainVue(terrain, paneTerrain);
         terrainVue.dessinerTerrain();
         
-        joueur = new Joueur(10, 20, terrain);
+        joueur = new Joueur(10, 20, terrain, inventaire);
         JoueurVue joueurVue = new JoueurVue(Border1, joueur);
         joueurVue.placerJoueur();
+
+        inventaire = new Inventaire();
+        InventaireVue inventaireVue = new InventaireVue(inventaire, Border1);
+        inventaireVue.placerInventaire();
+
+
         /* joueur.gravite(); */
 
         Border1.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {

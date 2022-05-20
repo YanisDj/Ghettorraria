@@ -7,8 +7,8 @@ public class Joueur extends Acteur {
 	private boolean monte;
 	private boolean tombe;
 
-	public Joueur(int pv, int vitesse, Terrain terrain) {
-		super(10, 2, terrain);
+	public Joueur(int pv, int vitesse, Terrain terrain, Inventaire inventaire) {
+		super(10, 2, terrain, inventaire);
 		droite = false;
 		gauche = false;
 		monte = false;

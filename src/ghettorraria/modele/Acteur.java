@@ -9,13 +9,15 @@ public abstract class  Acteur {
     private int vitesse;
     private int pv;
 	private Terrain terrain;
+	private Inventaire inventaire;
     
-    public Acteur(int pv,int vitesse, Terrain terrain) {
+    public Acteur(int pv,int vitesse, Terrain terrain, Inventaire inventaire) {
         this.pv = pv;
         this.x = new SimpleIntegerProperty();
 		this.y = new SimpleIntegerProperty();
 		this.vitesse = vitesse;
 		this.terrain = terrain;
+		this.inventaire = inventaire;
     }
     public final int getX() {
 		return x.getValue();
@@ -55,6 +57,10 @@ public abstract class  Acteur {
 
 	public Terrain getTerrain(){
 		return this.terrain;
+	}
+
+	public Inventaire getInv(){
+		return this.inventaire;
 	}
 	
 	public abstract void deplacementgaucheOui();
