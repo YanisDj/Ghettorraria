@@ -18,17 +18,13 @@ public class TerrainVue {
     }
 
     public void dessinerTerrain() {
-        ObservableList<Bloc[]> codesTuiles = terrain.getCodesTuiles();
-        for (Bloc[] ligne : codesTuiles) {
-            for (Bloc tuile : ligne) {
-                if (tuile.getId()>=0) {
-                    paneTerrain.getChildren().add(new ImageView("ressources/" + tuile.getId() + ".png"));
-                }
-                else {
-                    paneTerrain.getChildren().add(new ImageView());
-                }
+        ObservableList<Bloc> codesTuiles = terrain.getCodesTuiles();
+        for (Bloc tuile : codesTuiles) {
+            if (tuile.getId() >= 0) {
+                paneTerrain.getChildren().add(new ImageView("ressources/" + tuile.getId() + ".png"));
+            } else {
+                paneTerrain.getChildren().add(new ImageView());
             }
-
         }
 
     }

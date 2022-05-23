@@ -46,20 +46,19 @@ public class Joueur extends Acteur {
 			}
 		}
 		if (this.monte) {
-			for (int i = 0; i < 5; i++) {
-				yDest = this.getY() - getVitesse();
-				if (yDest >= 0) {
-					this.setY(yDest);
-				}
+			yDest = this.getY() - getVitesse();
+			if (yDest >= 0) {
+				this.setY(this.getY() - getVitesse()*3);
 			}
 		}
 		if (this.tombe) {
 			yDest = this.getY() + getVitesse() + 42;
-			if (this.getTerrain().tuileA(this.getX(), yDest).getId() == -1) {
+			if (this.getTerrain().getBloc(this.getX(), yDest).getId() == -1) {
 				this.setY(yDest);
 			}
+			tombe = false;
 		}
-		this.getTerrain().tuileA(this.getX(), this.getY());
+		this.getTerrain().getBloc(this.getX(), this.getY());
 	}
 
 	public void deplacementdroiteNon() {
@@ -71,19 +70,19 @@ public class Joueur extends Acteur {
 	}
 
 	public boolean blocDroiteSolide() {
-		return this.getTerrain().tuileA(this.getX() + 32, this.getY()).estSolide();
+		return this.getTerrain().getBloc(this.getX() + 32, this.getY()).estSolide();
 	}
 
 	public boolean blocGaucheSolide() {
-		return this.getTerrain().tuileA(this.getX(), this.getY()).estSolide();
+		return this.getTerrain().getBloc(this.getX(), this.getY()).estSolide();
 	}
 
 	public boolean blocBasSolide() {
-		return this.getTerrain().tuileA(this.getX(), this.getY() + 42).estSolide();
+		return this.getTerrain().getBloc(this.getX(), this.getY() + 42).estSolide();
 	}
 
 	public boolean blocHautSolide() {
-		return this.getTerrain().tuileA(this.getX(), this.getY()).estSolide();
+		return this.getTerrain().getBloc(this.getX(), this.getY()).estSolide();
 	}
 
 	public void saut() {

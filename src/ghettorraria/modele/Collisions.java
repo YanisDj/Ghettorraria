@@ -33,7 +33,7 @@ public class Collisions {
 
         for (int ligne = 0; ligne < this.terrain.getHauteur(); ligne++) {
             for (int colonne = 0; colonne < this.terrain.getLargeur(); colonne++) {
-                if (this.terrain.getCodesTuiles().get(ligne)[colonne].getId() != -1) {
+                if (this.terrain.getCodesTuiles().get(ligne / 32 + (colonne / 32 * this.terrain.getLargeur())).getId() != -1) {
                     rectangles.add(new Rectangle(colonne * 32, ligne * 32, 32, 32));
                 }
             }
