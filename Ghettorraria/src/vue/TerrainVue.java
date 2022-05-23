@@ -1,8 +1,6 @@
-package ghettorraria.vue;
+package src.vue;
 
-import java.util.ArrayList;
-
-import ghettorraria.modele.Terrain;
+import src.modele.Terrain;
 import javafx.collections.ObservableList;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;

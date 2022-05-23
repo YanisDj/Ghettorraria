@@ -1,4 +1,4 @@
-package ghettorraria.modele;
+package src.modele;
 
 
 import javafx.collections.ListChangeListener;

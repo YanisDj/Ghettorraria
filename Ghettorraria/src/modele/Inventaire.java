@@ -1,4 +1,4 @@
-package ghettorraria.modele;
+package src.modele;
 
 import java.util.Arrays;
 import java.util.List;

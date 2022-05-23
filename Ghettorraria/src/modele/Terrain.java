@@ -1,7 +1,6 @@
-package ghettorraria.modele;
+package src.modele;
 
 import java.io.*;
-import java.util.ArrayList;
 
 
 import javafx.collections.FXCollections;

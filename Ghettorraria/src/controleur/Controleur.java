@@ -1,14 +1,11 @@
-package ghettorraria.controleur;
+package src.controleur;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -20,13 +17,12 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import ghettorraria.modele.Inventaire;
-import ghettorraria.modele.Joueur;
-import ghettorraria.modele.Observateur;
-import ghettorraria.modele.Terrain;
-import ghettorraria.vue.InventaireVue;
-import ghettorraria.vue.JoueurVue;
-import ghettorraria.vue.TerrainVue;
+import src.modele.Joueur;
+import src.modele.Inventaire;
+import src.modele.Terrain;
+import src.vue.InventaireVue;
+import src.vue.JoueurVue;
+import src.vue.TerrainVue;
 
 
 public class Controleur implements Initializable {

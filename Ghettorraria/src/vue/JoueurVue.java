@@ -1,9 +1,8 @@
-package ghettorraria.vue;
+package src.vue;
 
-import ghettorraria.modele.Joueur;
+import src.modele.Joueur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 public class JoueurVue {

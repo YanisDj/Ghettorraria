@@ -1,4 +1,4 @@
-package ghettorraria.modele;
+package src.modele;
 
 public class Couteau extends Arme{
 

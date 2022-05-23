@@ -1,10 +1,9 @@
-package ghettorraria.vue;
+package src.vue;
 
 import javafx.scene.image.ImageView;
 
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import ghettorraria.modele.Inventaire;
+import src.modele.Inventaire;
 
 public class InventaireVue {
     
