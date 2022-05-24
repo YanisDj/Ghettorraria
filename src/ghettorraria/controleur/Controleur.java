@@ -19,9 +19,11 @@ import java.util.ResourceBundle;
 
 import ghettorraria.modele.Bloc;
 import ghettorraria.modele.Joueur;
+import ghettorraria.modele.Mob;
 import ghettorraria.modele.Observateur;
 import ghettorraria.modele.Terrain;
 import ghettorraria.vue.JoueurVue;
+import ghettorraria.vue.MobVue;
 import ghettorraria.vue.TerrainVue;
 
 public class Controleur implements Initializable {
@@ -31,6 +33,7 @@ public class Controleur implements Initializable {
     private Terrain terrain;
     private Joueur joueur;
     private TerrainVue terrainVue;
+    private Mob singe;
 
     @FXML
     private TilePane paneTerrain;
@@ -54,6 +57,11 @@ public class Controleur implements Initializable {
         joueur = new Joueur(10, 20, terrain);
         JoueurVue joueurVue = new JoueurVue(Border1, joueur);
         joueurVue.placerJoueur();
+
+        singe = new Mob(5, 19, terrain, joueur);
+        MobVue singeVue = new MobVue(Border1, singe);
+        singeVue.placerMob();
+
 
         this.terrain.getCodesTuiles().addListener(new Observateur(terrainVue, Border1));/*hcisefdosihi*/
 
@@ -116,7 +124,7 @@ public class Controleur implements Initializable {
                 // c'est un eventHandler d'ou le lambda
                 (ev -> {
                     joueur.deplacer();
-
+                    singe.deplacer();
                 }));
         gameLoop.getKeyFrames().add(kf);
     }

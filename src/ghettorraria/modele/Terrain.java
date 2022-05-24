@@ -60,8 +60,14 @@ public class Terrain {
         System.out.println(codesTuiles.get(x / 32 + (y / 32 * getLargeur())).getId());
         if (getBloc(x, y).getId() != -1) {
             codesTuiles.set(x / 32 + (y / 32 * getLargeur()), new Bloc(-1, x, y));
-
         }
+    }
 
+    public int getIndiceHauteur(int x){
+        return x / 32;
+    }
+
+    public int getIndiceLargeur(int y){
+        return y / 32;
     }
 }

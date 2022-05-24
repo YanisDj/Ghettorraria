@@ -62,8 +62,4 @@ public abstract class Acteur {
 	public Terrain getTerrain() {
 		return this.terrain;
 	}
-
-	public abstract void deplacementgaucheOui();
-
-	public abstract void deplacementdroiteOui();
 }

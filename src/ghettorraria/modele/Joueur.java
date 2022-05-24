@@ -19,14 +19,11 @@ public class Joueur extends Acteur {
 		monte = false;
 		tombe = false;
 	}
-
-	@Override
 	public void deplacementgaucheOui() {
 		this.gauche = true;
 		this.droite = false;
 	}
 
-	@Override
 	public void deplacementdroiteOui() {
 		this.droite = true;
 		this.gauche = false;
