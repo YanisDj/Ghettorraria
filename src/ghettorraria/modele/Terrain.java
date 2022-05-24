@@ -24,7 +24,7 @@ public class Terrain {
                 String[] token = line.split(delimiter); // separate every token by comma
                 Bloc[] ligne = new Bloc[token.length];
                 for (int x = 0; x < ligne.length; x++) {
-                    codesTuiles.add(new Bloc(Integer.parseInt(token[x]), x, y));
+                    codesTuiles.add(new Bloc(Integer.parseInt(token[x]), x*32, y*32));
                 }
                 y++;
             }

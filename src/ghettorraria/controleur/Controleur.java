@@ -2,7 +2,6 @@ package ghettorraria.controleur;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.collections.ListChangeListener;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,7 +16,6 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import ghettorraria.modele.Bloc;
 import ghettorraria.modele.Joueur;
 import ghettorraria.modele.Observateur;
 import ghettorraria.modele.Terrain;
@@ -55,7 +53,7 @@ public class Controleur implements Initializable {
         JoueurVue joueurVue = new JoueurVue(Border1, joueur);
         joueurVue.placerJoueur();
 
-        this.terrain.getCodesTuiles().addListener(new Observateur(terrainVue, Border1));/*hcisefdosihi*/
+        this.terrain.getCodesTuiles().addListener(new Observateur(Border1));
 
         Border1.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
 

@@ -1,17 +1,14 @@
 package ghettorraria.modele;
 
-import ghettorraria.vue.TerrainVue;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.BorderPane;
 
 public class Observateur implements ListChangeListener<Bloc> {
 
-    private TerrainVue vue;
     private BorderPane border;
 
-    public Observateur(TerrainVue terrainVue, BorderPane p) {
+    public Observateur(BorderPane p) {
         super();
-        this.vue = terrainVue;
         this.border = p;
     }
 

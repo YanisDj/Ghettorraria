@@ -9,8 +9,7 @@ public class Collisions {
     private Bloc bloc;
     private Terrain terrain;
 
-    public Collisions(Bloc bloc, Terrain terrain) {
-        this.bloc = bloc;
+    public Collisions(Terrain terrain) {
         this.terrain = terrain;
     }
 
@@ -31,11 +30,9 @@ public class Collisions {
     public ArrayList<Rectangle> getRectangles() {
         ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
 
-        for (int ligne = 0; ligne < this.terrain.getHauteur(); ligne++) {
-            for (int colonne = 0; colonne < this.terrain.getLargeur(); colonne++) {
-                if (this.terrain.getCodesTuiles().get(ligne / 32 + (colonne / 32 * this.terrain.getLargeur())).getId() != -1) {
-                    rectangles.add(new Rectangle(colonne * 32, ligne * 32, 32, 32));
-                }
+        for (Bloc bloc : this.terrain.getCodesTuiles()) {
+            if (bloc.getId() != -1) {
+                rectangles.add(new Rectangle(bloc.getX(), bloc.getY(), 32, 32));
             }
         }
 
