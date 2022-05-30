@@ -3,16 +3,15 @@ package ghettorraria.modele;
 public class Joueur extends Acteur {
 
 	private boolean gauche, droite, monte, tombe;
-	private BoxPlayer box;
-	private Collisions collisions;
-
+	private int hauteurSaut, vitesseChute, vitesseSaut;
 	public final int LARGEUR_PERSO = 32;
 	public final int HAUTEUR_PERSO = 42;
 
-	public Joueur(int pv, int vitesse, Terrain terrain) {
+	public Joueur(Terrain terrain) {
 		super(10, 2, terrain);
-		this.box = new BoxPlayer(this);
-		this.collisions = new Collisions(terrain);
+		vitesseChute = this.getVitesse() * 3;
+		vitesseSaut = this.getVitesse() * 3;
+		hauteurSaut = 128;
 		droite = false;
 		gauche = false;
 		monte = false;
@@ -43,15 +42,16 @@ public class Joueur extends Acteur {
 			}
 		}
 		if (this.monte) {
-			if (!blocHautSolide()) {
-				this.setY(this.getY() - this.getVitesse() * 3);
+			if (!blocHautSolide() && this.getTerrain().getBloc(this.getX(), this.getY() + hauteurSaut).estSolide()) {
+				this.setY(this.getY() - vitesseSaut);
+			} else {
+				finsaut();
 			}
 		}
 		if (this.tombe) {
 			if (!blocBasSolide()) {
-				this.setY(this.getY() + this.getVitesse());
-			} else
-				tombe = false;
+				this.setY(this.getY() + vitesseChute);
+			}
 		}
 	}
 
@@ -94,11 +94,12 @@ public class Joueur extends Acteur {
 
 	public boolean blocBasSolide() {
 		boolean solide;
-		if (this.getTerrain().getBloc(this.getX() + 1, this.getY() + HAUTEUR_PERSO).estSolide()) {
+		if (this.getTerrain().getBloc(this.getX() + 1, this.getY() + HAUTEUR_PERSO + vitesseChute).estSolide()) {
 			solide = true;
 		} else if (this.getY() == this.getTerrain().getHauteur() * 32) {
 			solide = true;
-		} else if (this.getTerrain().getBloc(this.getX() + LARGEUR_PERSO - 1, this.getY() + HAUTEUR_PERSO)
+		} else if (this.getTerrain()
+				.getBloc(this.getX() + LARGEUR_PERSO - 1, this.getY() + HAUTEUR_PERSO + vitesseChute)
 				.estSolide()) {
 			solide = true;
 		} else {
@@ -109,11 +110,11 @@ public class Joueur extends Acteur {
 
 	public boolean blocHautSolide() {
 		boolean solide;
-		if (this.getTerrain().getBloc(this.getX() + 1, this.getY()).estSolide()) {
+		if (this.getTerrain().getBloc(this.getX() + 1, this.getY() - vitesseSaut).estSolide()) {
 			solide = true;
 		} else if (this.getY() == 0) {
 			solide = true;
-		} else if (this.getTerrain().getBloc(this.getX() + LARGEUR_PERSO - 1, this.getY()).estSolide()) {
+		} else if (this.getTerrain().getBloc(this.getX() + LARGEUR_PERSO - 1, this.getY() - vitesseSaut).estSolide()) {
 			solide = true;
 		} else {
 			solide = false;

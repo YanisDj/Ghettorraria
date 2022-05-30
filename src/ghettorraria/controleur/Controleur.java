@@ -49,7 +49,7 @@ public class Controleur implements Initializable {
         terrainVue = new TerrainVue(terrain, paneTerrain);
         terrainVue.dessinerTerrain();
 
-        joueur = new Joueur(10, 20, terrain);
+        joueur = new Joueur(terrain);
         JoueurVue joueurVue = new JoueurVue(Border1, joueur);
         joueurVue.placerJoueur();
 
