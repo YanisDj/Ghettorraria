@@ -12,7 +12,7 @@ public class Joueur extends Acteur {
 	public final int HAUTEUR_PERSO = 42;
 
 	public Joueur(int pv, int vitesse, Terrain terrain) {
-		super(10, 2, terrain);
+		super(10, 4, terrain);
 		this.box = new BoxPlayer(this.getX(), this.getY(), this);
 		droite = false;
 		gauche = false;

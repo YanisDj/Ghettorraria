@@ -9,21 +9,24 @@ public class BFS {
 	private ArrayList<Coord> file;
 	private int[][] tabBfs;
 	private final int sautMax;
-	private final static int VIDE = -1;
-	private final static int IMPOSSIBLE = 0;
-	private final static int PHISIQUE = 1;
+	private final static int VIDE = -2;
+	private final static int IMPOSSIBLE = -9;
+	private final static int PHISIQUE = -5;
+	private Acteur acteur;
 
 	public BFS(Acteur a, Terrain terrain, int sautMax){
-		this.depart = new Coord(a.getX() / 32, (a.getY() / 32) * terrain.getLargeur());
 		this.terrain = terrain;
 		this.file = new ArrayList<Coord>();
 		this.tabBfs = new int[terrain.getHauteur()][terrain.getLargeur()];
 		this.sautMax = sautMax;
+		this.acteur = a;
+
 	}
 
 	public void algoBfs(){
 		innitBfs();
 		file.add(depart);
+		tabBfs[depart.getCoordY()][depart.getCoordX()] = 0;
 		while (!file.isEmpty()){
 			for (Coord c : adjacent(file.get(0))){
 				if (estValable(c)){
@@ -84,13 +87,14 @@ public class BFS {
 		for (int i = 0; i < terrain.getHauteur(); i++){
 			for (int j = 0; j < terrain.getLargeur(); j++){
 				if (terrain.getBloc(i,j).estSolide()){
-					tabBfs[i][j] = VIDE;
+					tabBfs[i][j] = PHISIQUE;
 				}
 				else{
-					tabBfs[i][j] = PHISIQUE;
+					tabBfs[i][j] = VIDE;
 				}
 			}
 		}
+		depart = new Coord(acteur.getX() / 32, (acteur.getY() / 32) * terrain.getLargeur());
 		innitSaut();
 		file.clear();
 	}
@@ -117,7 +121,7 @@ public class BFS {
 
 	public boolean droite(int x, int y){
 		if (x < terrain.getLargeur() - 1){
-			return tabBfs[y][x] - 1 == tabBfs[y /*- 1*/][x];
+			return tabBfs[y][x] - 1 == tabBfs[y][x + 1];
 		}
 		return false;
 	}
@@ -131,16 +135,29 @@ public class BFS {
 
 	public boolean saute(int x, int y){
 		if(y < terrain.getHauteur() - 1){
-			return tabBfs[y][x] - 1 == tabBfs[y - 1][x];
+			return tabBfs[y][x] - 1 == tabBfs[y][x];
 		}
 		return false;
 	}
 
 	public boolean estProche (Acteur a, int val){
-		return tabBfs[terrain.getIndiceHauteur(a.getX())][terrain.getIndiceLargeur(a.getY())] <= val;
+		return tabBfs[terrain.getIndiceHauteur(a.getY())][terrain.getIndiceLargeur(a.getX())] <= val;
 	}
 
 	public int[][] getBFS() {
 		return tabBfs;
+	}
+
+	public void afficherBFS(){
+		for (int[] t : tabBfs){
+			for (int x : t){
+				for (int i = String.valueOf(x).length() ; i < 2; i++){
+					System.out.print(" ");
+				}
+				System.out.print(x + " ");
+			}
+			System.out.println();
+		}
+		System.out.println();
 	}
 }
