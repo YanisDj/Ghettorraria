@@ -4,15 +4,16 @@ import ghettorraria.modele.Joueur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 
 public class JoueurVue {
 
-    private BorderPane border;
+    private Pane pane;
     private Joueur joueur;
 
-    public JoueurVue(BorderPane border, Joueur joueur) {
+    public JoueurVue(Pane border, Joueur joueur) {
         super();
-        this.border = border;
+        this.pane = border;
         this.joueur = joueur;
     }
 
@@ -22,7 +23,7 @@ public class JoueurVue {
         joueurmap.translateXProperty().bind(joueur.xProperty());
         joueurmap.translateYProperty().bind(joueur.yProperty());
         joueur.xProperty().setValue(320);
-        border.getChildren().add(joueurmap);
+        pane.getChildren().add(joueurmap);
     }
 
 }

@@ -1,5 +1,6 @@
 package ghettorraria.modele;
 
+import ghettorraria.vue.TerrainVue;
 import javafx.collections.ListChangeListener;
 import javafx.scene.layout.BorderPane;
 

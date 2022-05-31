@@ -2,16 +2,23 @@ package ghettorraria.modele;
 
 public class Joueur extends Acteur {
 
-	private boolean gauche, droite, monte, tombe;
+	private boolean gauche;
+	private boolean droite;
+	private boolean monte;
+	private boolean tombe;
 	private int hauteurSaut, vitesseChute, vitesseSaut;
+	private Inventaire inventaire;
+	private BoxPlayer box;
+
 	public final int LARGEUR_PERSO = 32;
 	public final int HAUTEUR_PERSO = 42;
 
-	public Joueur(Terrain terrain) {
-		super(10, 2, terrain);
+	public Joueur(int pv, int vitesse, Terrain terrain,Inventaire inventaire) {
+		super(100, 2, terrain,inventaire);
+		this.box = new BoxPlayer(this.getX(), this.getY(), this);
 		vitesseChute = this.getVitesse() * 3;
 		vitesseSaut = this.getVitesse() * 3;
-		hauteurSaut = 128;
+		hauteurSaut = 250;
 		droite = false;
 		gauche = false;
 		monte = false;

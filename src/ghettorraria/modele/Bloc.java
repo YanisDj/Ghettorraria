@@ -1,19 +1,19 @@
 package ghettorraria.modele;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
 
 public class Bloc {
 
     private int id;
-    private IntegerProperty xProperty;
-    private IntegerProperty yProperty;
+    private DoubleProperty xProperty;
+    private DoubleProperty yProperty;
     private Collisions collisions;
 
-    public Bloc(int idBloc, int x, int y) {
+    public Bloc(int idBloc, int x, int y) { // bloc mobile
         this.id = idBloc;
-        this.xProperty = new SimpleIntegerProperty(x);
-        this.yProperty = new SimpleIntegerProperty(y);
+        this.xProperty = new SimpleDoubleProperty(x);
+        this.yProperty = new SimpleDoubleProperty(y);
         this.collisions = new Collisions(this);
     }
 
@@ -21,27 +21,27 @@ public class Bloc {
         return this.id;
     }
 
-    public final int getX() {
+    public final double getX() {
         return xProperty.getValue();
     }
 
-    public final void setX(int n) {
+    public final void setX(double n) {
         xProperty.setValue(n);
     }
 
-    public final IntegerProperty xProperty() {
+    public final DoubleProperty xProperty() {
         return this.xProperty;
     }
 
-    public final int getY() {
+    public final double getY() {
         return yProperty.getValue();
     }
 
-    public final void setY(int n) {
+    public final void setY(double n) {
         yProperty.setValue(n);
     }
 
-    public final IntegerProperty yProperty() {
+    public final DoubleProperty yProperty() {
         return this.yProperty;
     }
 
