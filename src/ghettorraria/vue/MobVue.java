@@ -23,6 +23,7 @@ public class MobVue {
         mobMap.translateXProperty().bind(mob.xProperty());
         mobMap.translateYProperty().bind(mob.yProperty());
         mob.xProperty().setValue(320);
+        
         border.getChildren().add(mobMap);
     }
 }

@@ -1,5 +1,6 @@
 package ghettorraria.modele;
 
+import ghettorraria.vue.InventaireVue;
 import ghettorraria.vue.TerrainVue;
 import javafx.collections.ListChangeListener;
 import javafx.scene.image.Image;
@@ -10,12 +11,13 @@ import javafx.scene.layout.TilePane;
 public class Observateur implements ListChangeListener<Bloc> {
 
     private TilePane terrain;
-    private TerrainVue vue;
+    private TerrainVue Terrainvue;
 
-    public Observateur(TilePane p,TerrainVue vue) {
+    public Observateur(TilePane p,TerrainVue vue,InventaireVue inventairevue) {
         super();
         this.terrain = p;
-        this.vue=vue;
+        this.Terrainvue=vue;
+       
     }
 
     @Override
@@ -23,8 +25,9 @@ public class Observateur implements ListChangeListener<Bloc> {
         
         while (bloc.next()) {
             int indice =  bloc.getFrom();
-            vue.modifierTerrain(indice);
-
+            Terrainvue.modifierTerrain(indice);
+            
+            
             }
 
         }
@@ -47,8 +50,4 @@ public class Observateur implements ListChangeListener<Bloc> {
 
     }
 
-    public void removeBloc(int x, int y) {
-        this.terrain.getChildren().set(x / 32 + (y / 32 * 60), new ImageView());
-        
-    }
 }

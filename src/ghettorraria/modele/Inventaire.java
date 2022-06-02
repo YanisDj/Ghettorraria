@@ -8,17 +8,19 @@ import ghettorraria.modele.item.Objet;
 
 public class Inventaire {
     
-    private List<CaseInventaire> petitInventaire;
+    private List<CaseInventaire> Inventaire;
+
 
     public Inventaire (){
-        this.petitInventaire = Arrays.asList(new CaseInventaire[5]);
+        this.Inventaire = Arrays.asList(new CaseInventaire[25]);
+      
     }
 
     public Objet getObjet(String id){
         Objet objRet = null;
-        for (int i = 0; i < this.petitInventaire.size(); i++){
-            if (petitInventaire.get(i).getObjet().getId() == id){
-                objRet = petitInventaire.get(i).getObjet();
+        for (int i = 0; i < this.Inventaire.size(); i++){
+            if (Inventaire.get(i).getObjet().getId() == id){
+                objRet = Inventaire.get(i).getObjet();
             }
         }
         return objRet;
@@ -27,7 +29,10 @@ public class Inventaire {
   
 
     public List<CaseInventaire> getInv(){
-        return this.petitInventaire;
+        return this.Inventaire;
     }
+
+   
+    
 
 }
