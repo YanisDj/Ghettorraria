@@ -16,7 +16,7 @@ public class Mob extends Acteur{
     public void deplacer(){
         int xDest, yDest;
         bfs.algoBfs();
-        bfs.afficherBFS();
+        //bfs.afficherBFS();
         if (bfs.estProche(joueur, 8)){
             if (bfs.droite(convert(this.getX()), convert(this.getY()))){
                 System.out.println("droite");

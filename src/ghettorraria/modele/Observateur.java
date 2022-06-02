@@ -2,38 +2,33 @@ package ghettorraria.modele;
 
 import ghettorraria.vue.TerrainVue;
 import javafx.collections.ListChangeListener;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.TilePane;
 
 public class Observateur implements ListChangeListener<Bloc> {
 
-    private BorderPane border;
+    private TilePane terrain;
+    private TerrainVue vue;
 
-    public Observateur(BorderPane p) {
+    public Observateur(TilePane p,TerrainVue vue) {
         super();
-        this.border = p;
+        this.terrain = p;
+        this.vue=vue;
     }
 
     @Override
-    public void onChanged(javafx.collections.ListChangeListener.Change<? extends Bloc> bloc) {
-
+    public void onChanged(Change<? extends Bloc> bloc) {
+        
         while (bloc.next()) {
-            if (bloc.wasAdded()) {
-                System.out.println("bloc ajouté : " + bloc.getAddedSubList());
-                for (Bloc b : bloc.getAddedSubList()) {
-                    addBloc(b);
-                }
-            }
-
-            if (bloc.wasReplaced()) {
-                System.out.println("bloc supprimé : " + bloc.getRemoved());
-                for (Bloc b : bloc.getRemoved()) {
-                    removeBloc(b);
-                }
+            int indice =  bloc.getFrom();
+            vue.modifierTerrain(indice);
 
             }
 
         }
-    }
+    
 
     public void addBloc(Bloc b) {
         /*
@@ -52,7 +47,8 @@ public class Observateur implements ListChangeListener<Bloc> {
 
     }
 
-    public void removeBloc(Bloc b) {
-        this.border.getChildren().removeAll(this.border.lookup("#" + b.getId()));
+    public void removeBloc(int x, int y) {
+        this.terrain.getChildren().set(x / 32 + (y / 32 * 60), new ImageView());
+        
     }
 }

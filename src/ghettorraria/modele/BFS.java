@@ -147,7 +147,7 @@ public class BFS {
 	public int[][] getBFS() {
 		return tabBfs;
 	}
-
+	
 	public void afficherBFS(){
 		for (int[] t : tabBfs){
 			for (int x : t){

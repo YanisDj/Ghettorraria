@@ -74,8 +74,12 @@ public class Controleur implements Initializable {
         singe = new Mob(5, 19, terrain, joueur, inventaire);
         MobVue singeVue = new MobVue(paneprincipal, singe);
         singeVue.placerMob();
+
+        this.terrain.getCodesTuiles().addListener(new Observateur(paneTerrain,terrainVue));
+
         
-        this.terrain.getCodesTuiles().addListener(new Observateur(Border1));
+        
+        
         /* joueur.gravite(); */
 
         Border1.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
@@ -114,16 +118,32 @@ public class Controleur implements Initializable {
         });
         
         Border1.addEventFilter(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+           
         	
 			@Override
 			public void handle(MouseEvent event) {
 				int x,y;
-				
+				x=(int) event.getX();
 				y=(int)event.getY();
-				System.out.println(y);
+                terrain.supprimerTuiles(x, y);
+                
+				
 				
 			}
 		});
+
+        Border1.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+
+            @Override
+            public void handle(KeyEvent key) {
+                if(key.getCode() == KeyCode.E) {
+                    inventaireVue.voirInventaire();
+                }
+                
+            }
+        });
+
+        
         
         
         

@@ -3,6 +3,7 @@ package ghettorraria.vue;
 import ghettorraria.modele.Bloc;
 import ghettorraria.modele.Terrain;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 
@@ -26,7 +27,10 @@ public class TerrainVue {
                 paneTerrain.getChildren().add(new ImageView());
             }
         }
+    }
 
+    public void modifierTerrain(int indice){
+        paneTerrain.getChildren().set(indice,new ImageView());
     }
 
 }

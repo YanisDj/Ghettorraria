@@ -57,10 +57,10 @@ public class Terrain {
     }
 
     public void supprimerTuiles(int x, int y) {
-        System.out.println(codesTuiles.get(x / 32 + (y / 32 * getLargeur())).getId());
-        if (getBloc(x, y).getId() != -1) {
+        if (getBloc(x, y).getId() != -1 ) {
             codesTuiles.set(x / 32 + (y / 32 * getLargeur()), new Bloc(-1, x, y));
         }
+        
     }
 
     public int getIndiceHauteur(int x){

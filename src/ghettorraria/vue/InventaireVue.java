@@ -24,4 +24,18 @@ public class InventaireVue {
             paneCase.getChildren().add(inventaire);
         }
     }
+
+    public void voirInventaire(){
+        
+        
+        for (int y = 0; y < 6; y++){
+            for (int i = 0; i < inventaire.getInv().size(); i++){
+                ImageView inventaire = new ImageView("ressources/inventaireoue.png");
+                inventaire.setLayoutX(i*32);
+                paneCase.getChildren().add(inventaire);
+                inventaire.setLayoutY(y*32);
+            }
+            
+        }
+    }
 }
