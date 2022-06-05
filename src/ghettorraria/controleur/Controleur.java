@@ -2,13 +2,9 @@ package ghettorraria.controleur;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.ListChangeListener;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -22,12 +18,11 @@ import java.util.ResourceBundle;
 
 import ghettorraria.modele.Inventaire;
 import ghettorraria.modele.Joueur;
-import ghettorraria.modele.Mob;
+/* import ghettorraria.modele.Mob; */
 import ghettorraria.modele.Observateur;
 import ghettorraria.modele.Terrain;
 import ghettorraria.vue.InventaireVue;
 import ghettorraria.vue.JoueurVue;
-import ghettorraria.vue.MobVue;
 import ghettorraria.vue.TerrainVue;
 
 public class Controleur implements Initializable {
@@ -38,7 +33,7 @@ public class Controleur implements Initializable {
     private Joueur joueur;
     private TerrainVue terrainVue;
     private Inventaire inventaire;
-    private Mob singe;
+    /* private Mob singe; */
 
     @FXML
     private TilePane paneTerrain;
@@ -65,7 +60,7 @@ public class Controleur implements Initializable {
 
         inventaire = new Inventaire();
         InventaireVue inventaireVue = new InventaireVue(inventaire, paneprincipal);
-        inventaireVue.placerInventaire();
+        inventaireVue.placerInventaire(1);
 
         /*
          * singe = new Mob(5, 19, terrain, joueur, inventaire);
@@ -92,10 +87,10 @@ public class Controleur implements Initializable {
                     joueur.saut();
                 }
                 if (key.getCode() == KeyCode.E) {
-                    if (!inventaireVue.getInvAffiche()) {
-                        inventaireVue.ouvrirInventaire();
+                    if (inventaireVue.getInvAffiche() == 1) {
+                        inventaireVue.placerInventaire(2);
                     } else {
-                        inventaireVue.fermerInventaire();
+                        inventaireVue.placerInventaire(1);;
                     }
                 }
 

@@ -4,17 +4,15 @@ public class Mob extends Acteur{
 
     private Joueur joueur;
     private BFS bfs;
-    private boolean attaque;
 
     public Mob(int pv, int vitesse, Terrain terrain, Joueur joueur,Inventaire inventaire) {
         super(pv, vitesse, terrain, inventaire);
         this.joueur = joueur;
         this.bfs = new BFS(joueur, terrain, 10);
-        this.attaque = false;
     }
 
     public void deplacer(){
-        int xDest, yDest;
+        int xDest;
         bfs.algoBfs();
         //bfs.afficherBFS();
         if (bfs.estProche(joueur, 8)){

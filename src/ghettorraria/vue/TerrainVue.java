@@ -3,7 +3,6 @@ package ghettorraria.vue;
 import ghettorraria.modele.Bloc;
 import ghettorraria.modele.Terrain;
 import javafx.collections.ObservableList;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 
@@ -13,7 +12,6 @@ public class TerrainVue {
     private TilePane paneTerrain;
 
     public TerrainVue(Terrain terrain, TilePane paneTerrain) {
-        super();
         this.terrain = terrain;
         this.paneTerrain = paneTerrain;
     }

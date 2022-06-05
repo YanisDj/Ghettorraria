@@ -3,7 +3,6 @@ package ghettorraria.vue;
 import ghettorraria.modele.Mob;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 public class MobVue {
@@ -12,7 +11,6 @@ public class MobVue {
     private Mob mob;
 
     public MobVue(Pane border, Mob mob){
-        super();
         this.border = border;
         this.mob = mob;
     }
