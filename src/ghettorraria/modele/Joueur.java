@@ -11,8 +11,8 @@ public class Joueur extends Acteur {
 	public final int LARGEUR_PERSO = 32;
 	public final int HAUTEUR_PERSO = 42;
 
-	public Joueur(int pv, int vitesse, Terrain terrain,Inventaire inventaire) {
-		super(100, 2, terrain,inventaire);
+	public Joueur(int pv, int vitesse, Terrain terrain, Inventaire inventaire) {
+		super(100, 2, terrain, inventaire);
 		vitesseChute = this.getVitesse() * 3;
 		vitesseSaut = this.getVitesse() * 3;
 		hauteurSaut = 250;
@@ -47,10 +47,12 @@ public class Joueur extends Acteur {
 		}
 		if (this.monte) {
 			if (!blocHautSolide()) {
-				if (this.getY() + hauteurSaut>= this.getTerrain().getHauteur()*32) {
+				if (this.getY() + hauteurSaut >= this.getTerrain().getHauteur() * 32) {
 					this.setY(this.getY() - vitesseSaut);
-				} else if (this.getTerrain().getBloc(this.getX(), this.getY() + hauteurSaut).estSolide()) {
+				} else if (peutSauter()) {
 					this.setY(this.getY() - vitesseSaut);
+				} else {
+					finsaut();
 				}
 			} else {
 				finsaut();
@@ -131,8 +133,10 @@ public class Joueur extends Acteur {
 	}
 
 	public void saut() {
-		this.monte = true;
-		this.tombe = false;
+		if (blocBasSolide()) {
+			this.monte = true;
+			this.tombe = false;
+		}
 	}
 
 	public void finsaut() {
@@ -140,4 +144,14 @@ public class Joueur extends Acteur {
 		this.tombe = true;
 	}
 
+	public boolean peutSauter() {
+		Bloc plusProcheBasGauche, plusProcheBasDroite;
+		int distanceSol = 0;
+		do {
+			plusProcheBasGauche = this.getTerrain().getBloc(this.getX() + 1, this.getY() + distanceSol);
+			plusProcheBasDroite = this.getTerrain().getBloc(this.getX() + LARGEUR_PERSO - 1, this.getY() + distanceSol);
+			distanceSol++;
+		} while (distanceSol <= hauteurSaut && (!plusProcheBasGauche.estSolide() && !plusProcheBasDroite.estSolide()));
+		return distanceSol < hauteurSaut ? true : false;
+	}
 }
