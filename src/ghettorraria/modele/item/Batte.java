@@ -4,7 +4,6 @@ public class Batte extends Arme implements Construire{
 
 	public Batte(String nom,int attaque, int porter) {
 		super("Batte", 10, 2);
-		// TODO Auto-generated constructor stub
 	}
 	
 	

@@ -18,11 +18,12 @@ import java.util.ResourceBundle;
 
 import ghettorraria.modele.Inventaire;
 import ghettorraria.modele.Joueur;
-/* import ghettorraria.modele.Mob; */
+import ghettorraria.modele.Mob;
 import ghettorraria.modele.Observateur;
 import ghettorraria.modele.Terrain;
 import ghettorraria.vue.InventaireVue;
 import ghettorraria.vue.JoueurVue;
+import ghettorraria.vue.MobVue;
 import ghettorraria.vue.TerrainVue;
 
 public class Controleur implements Initializable {
@@ -33,7 +34,7 @@ public class Controleur implements Initializable {
     private Joueur joueur;
     private TerrainVue terrainVue;
     private Inventaire inventaire;
-    /* private Mob singe; */
+    // private Mob singe;
 
     @FXML
     private TilePane paneTerrain;
@@ -61,12 +62,11 @@ public class Controleur implements Initializable {
         inventaire = new Inventaire();
         InventaireVue inventaireVue = new InventaireVue(inventaire, paneprincipal);
         inventaireVue.placerInventaire(1);
+        
 
-        /*
-         * singe = new Mob(5, 19, terrain, joueur, inventaire);
-         * MobVue singeVue = new MobVue(paneprincipal, singe);
-         * singeVue.placerMob();
-         */
+        // singe = new Mob(5, 19, terrain, joueur, inventaire);
+        // MobVue singeVue = new MobVue(paneprincipal, singe);
+        // singeVue.placerMob();
 
         this.terrain.getCodesTuiles().addListener(new Observateur(paneTerrain, terrainVue, inventaireVue));
 
