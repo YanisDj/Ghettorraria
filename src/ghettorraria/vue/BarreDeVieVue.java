@@ -24,25 +24,25 @@ public class BarreDeVieVue {
     }
 
     public void rafraichirBarreDeVie(){
-        if (joueur.getPv() > 80){
+        if (joueur.getPv() <= 10){
             barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre2.png"));
-        } else if (joueur.getPv() > 70){
+        } else if (joueur.getPv()  <= 20){
             barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre3.png"));
-        } else if (joueur.getPv() > 60){
+        } else if (joueur.getPv()  <= 30){
             barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre4.png"));
-        } else if (joueur.getPv() > 50){
+        } else if (joueur.getPv()  <= 40){
             barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre5.png"));
-        } else if (joueur.getPv() > 40){
+        } else if (joueur.getPv()  <= 50){
             barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre6.png"));
-        } else if (joueur.getPv() > 30){
+        } else if (joueur.getPv()  <= 60){
             barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre7.png"));
-        } else if (joueur.getPv() > 20){
+        } else if (joueur.getPv()  <= 70){
             barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre8.png"));
-        } else if (joueur.getPv() > 10){
+        } else if (joueur.getPv()  <= 80){
             barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre9.png"));
-        } else if (joueur.getPv() > 0){
+        } else if (joueur.getPv()  <= 90){
             barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre10.png"));
-        } else {
+        } else if (joueur.getPv() == 0){
             barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barreMort.png"));
         }
     }
