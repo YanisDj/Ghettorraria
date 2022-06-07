@@ -2,6 +2,7 @@ package ghettorraria.vue;
 
 import ghettorraria.modele.Joueur;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 
@@ -9,6 +10,7 @@ public class BarreDeVieVue {
 
     private Pane paneCase;
     private Joueur joueur;
+    private ImageView barreVie;
 
     public BarreDeVieVue(Pane paneCase, Joueur joueur){
         this.paneCase = paneCase;
@@ -16,26 +18,32 @@ public class BarreDeVieVue {
     }
 
     public void placerBarreDeVie(){
-        if (joueur.getPv() > 90){
-            //todo
-        } else if (joueur.getPv() > 80){
-            //todo
+        barreVie = new ImageView("ressources/barre-de-vie-sprites/barre1.png");
+        barreVie.setLayoutX(200);
+        paneCase.getChildren().add(barreVie);
+    }
+
+    public void rafraichirBarreDeVie(){
+        if (joueur.getPv() > 80){
+            barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre2.png"));
         } else if (joueur.getPv() > 70){
-            //todo
+            barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre3.png"));
         } else if (joueur.getPv() > 60){
-            //todo
+            barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre4.png"));
         } else if (joueur.getPv() > 50){
-            //todo
+            barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre5.png"));
         } else if (joueur.getPv() > 40){
-            //todo
+            barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre6.png"));
         } else if (joueur.getPv() > 30){
-            //todo
+            barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre7.png"));
         } else if (joueur.getPv() > 20){
-            //todo
+            barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre8.png"));
         } else if (joueur.getPv() > 10){
-            //todo
+            barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre9.png"));
+        } else if (joueur.getPv() > 0){
+            barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre10.png"));
         } else {
-            //todo
+            barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barreMort.png"));
         }
     }
 }
