@@ -124,6 +124,7 @@ public class Controleur implements Initializable {
                 int x, y;
                 x = (int) event.getX();
                 y = (int) event.getY();
+                if(Math.abs((joueur.getX()-x)/32)+Math.abs((joueur.getY()-y)/32)<2)
                 terrain.supprimerTuiles(x, y);
 
             }
