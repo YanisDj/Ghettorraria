@@ -11,6 +11,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
 import java.net.URL;
@@ -122,10 +124,32 @@ public class Controleur implements Initializable {
                 int x, y;
                 x = (int) event.getX();
                 y = (int) event.getY();
+                
+                if((Math.abs(joueur.getX()/32-x))<2 || (Math.abs(joueur.getY()/32-y))<2)
                 terrain.supprimerTuiles(x, y);
 
             }
+        }); 
+
+        Rectangle rectangle = new Rectangle(32,32);
+        rectangle.setFill(Color.TRANSPARENT);
+        rectangle.setStroke(Color.BLUEVIOLET);
+        paneprincipal.getChildren().add(rectangle);
+        Border1.addEventFilter(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
+            int x, y;
+
+            @Override
+            public void handle(MouseEvent event) {
+                x = (int) (event.getX()/32) *32;
+                y = (int) (event.getY()/32) *32;
+                rectangle.setX(x);
+                rectangle.setY(y);
+                
+            }
+           
         });
+        
+
 
     }
 
