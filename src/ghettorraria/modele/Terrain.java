@@ -58,7 +58,9 @@ public class Terrain {
 
     public void supprimerTuiles(int x, int y) {
         if (getBloc(x, y).getId() != -1 ) {
-            codesTuiles.set(x / 32 + (y / 32 * getLargeur()), new Bloc(-1, x, y));
+            if (getBloc(x, y).getPv() <= 0){
+                codesTuiles.set(x / 32 + (y / 32 * getLargeur()), new Bloc(-1, x, y));
+            }
         }
         
     }

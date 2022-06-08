@@ -1,5 +1,8 @@
 package ghettorraria.modele;
 
+import ghettorraria.modele.item.Arme;
+import ghettorraria.modele.item.Pioche;
+
 public class Joueur extends Acteur {
 
 	private boolean gauche;
@@ -7,12 +10,13 @@ public class Joueur extends Acteur {
 	private boolean monte;
 	private boolean tombe;
 	private int hauteurSaut, vitesseChute, vitesseSaut;
+	private Arme arme;
 
 	public final int LARGEUR_PERSO = 32;
 	public final int HAUTEUR_PERSO = 42;
 
-	public Joueur(int pv, int vitesse, Terrain terrain, Inventaire inventaire) {
-		super(100, 2, terrain, inventaire);
+	public Joueur(int pv, int vitesse, Terrain terrain, Inventaire inventaire, int degatsAttaque) {
+		super(100, 2, terrain, inventaire, degatsAttaque);
 		vitesseChute = this.getVitesse() * 3;
 		vitesseSaut = this.getVitesse() * 3;
 		hauteurSaut = 250;
@@ -20,6 +24,7 @@ public class Joueur extends Acteur {
 		gauche = false;
 		monte = false;
 		tombe = false;
+		arme = new Pioche();
 	}
 
 	@Override
@@ -153,5 +158,21 @@ public class Joueur extends Acteur {
 			distanceSol++;
 		} while (distanceSol <= hauteurSaut && (!plusProcheBasGauche.estSolide() && !plusProcheBasDroite.estSolide()));
 		return distanceSol < hauteurSaut ? true : false;
+	}
+
+	public void frappeBloc(Bloc bloc){
+		if (arme == null){
+			bloc.pertPV(this.getDegatsAttaque());
+		} else {
+			bloc.pertPV(arme.getAttaque());
+		}
+	}
+
+	public void frappeActeur(Acteur a){
+		a.decrementerPv(this.getDegatsAttaque());
+	}
+
+	public Arme getArme(){
+		return this.arme;
 	}
 }

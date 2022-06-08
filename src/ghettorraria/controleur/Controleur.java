@@ -5,6 +5,8 @@ import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -23,6 +25,7 @@ import ghettorraria.modele.Joueur;
 /* import ghettorraria.modele.Mob; */
 import ghettorraria.modele.Observateur;
 import ghettorraria.modele.Terrain;
+import ghettorraria.modele.item.Pioche;
 import ghettorraria.vue.InventaireVue;
 import ghettorraria.vue.JoueurVue;
 import ghettorraria.vue.TerrainVue;
@@ -56,7 +59,7 @@ public class Controleur implements Initializable {
         terrainVue = new TerrainVue(terrain, paneTerrain);
         terrainVue.dessinerTerrain();
 
-        joueur = new Joueur(10, 20, terrain, inventaire);
+        joueur = new Joueur(10, 20, terrain, inventaire, 3);
         JoueurVue joueurVue = new JoueurVue(paneprincipal, joueur);
         joueurVue.placerJoueur();
 
@@ -124,11 +127,16 @@ public class Controleur implements Initializable {
                 int x, y;
                 x = (int) event.getX();
                 y = (int) event.getY();
-                if(Math.abs((joueur.getX()-x)/32)+Math.abs((joueur.getY()-y)/32)<2)
-                terrain.supprimerTuiles(x, y);
+                if(Math.abs((joueur.getX()-x)/32)+Math.abs((joueur.getY()-y)/32)<2){
+                    joueur.frappeBloc(terrain.getBloc(x, y));
+                    terrain.supprimerTuiles(x, y);
+                }
 
             }
         }); 
+
+        ImageView pioche = new ImageView("ressources/pioche.png");
+        paneprincipal.getChildren().add(pioche);
 
         Rectangle rectangle = new Rectangle(32,32);
         rectangle.setFill(Color.TRANSPARENT);
@@ -143,7 +151,10 @@ public class Controleur implements Initializable {
                 y = (int) (event.getY()/32) *32;
                 rectangle.setX(x);
                 rectangle.setY(y);
-                
+                if (joueur.getArme() != null){
+                    pioche.setX(x);
+                    pioche.setY(y);
+                }
             }
            
         });

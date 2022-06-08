@@ -2,7 +2,7 @@ package ghettorraria.modele.item;
 
 public class Pioche extends Arme implements Construire{
 
-	public Pioche(String nom, int attaque, int porter) {
+	public Pioche() {
 		super("Pioche", 5, 1);
 		// TODO Auto-generated constructor stub
 	}

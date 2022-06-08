@@ -9,12 +9,14 @@ public class Bloc {
     private IntegerProperty xProperty;
     private IntegerProperty yProperty;
     private Collisions collisions;
+    private int pv;
 
     public Bloc(int idBloc, int x, int y) { // bloc mobile
         this.id = idBloc;
         this.xProperty = new SimpleIntegerProperty(x);
         this.yProperty = new SimpleIntegerProperty(y);
         this.collisions = new Collisions(this);
+        this.pv = 10;
     }
 
     public int getId() {
@@ -47,5 +49,13 @@ public class Bloc {
 
     public boolean estSolide() {
         return this.collisions.solide();
+    }
+
+    public int getPv(){
+        return this.pv;
+    }
+
+    public void pertPV(int val){
+        this.pv -= val;
     }
 }

@@ -10,15 +10,18 @@ public abstract class  Acteur {
     private int pv;
 	private Terrain terrain;
 	private Inventaire inventaire;
+	private int degatsAttaque;
     
-    public Acteur(int pv,int vitesse, Terrain terrain, Inventaire inventaire) {
+    public Acteur(int pv,int vitesse, Terrain terrain, Inventaire inventaire, int degatsAttaque) {
         this.pv = pv;
         this.x = new SimpleIntegerProperty();
 		this.y = new SimpleIntegerProperty();
 		this.vitesse = vitesse;
 		this.terrain = terrain;
 		this.inventaire = inventaire;
+		this.degatsAttaque = degatsAttaque;
     }
+
     public final int getX() {
 		return x.getValue();
 	}
@@ -61,6 +64,10 @@ public abstract class  Acteur {
 
 	public Inventaire getInv(){
 		return this.inventaire;
+	}
+
+	public int getDegatsAttaque(){
+		return this.degatsAttaque;
 	}
 	
 	public abstract void deplacementgaucheOui();
