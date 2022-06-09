@@ -60,7 +60,12 @@ public class Terrain {
         if (getBloc(x, y).getId() != -1 ) {
             codesTuiles.set(x / 32 + (y / 32 * getLargeur()), new Bloc(-1, x, y));
         }
-        
+    }
+
+    public void ajouterTuiles(int x, int y){
+        if (getBloc(x, y).getId() == -1 ) {
+            codesTuiles.set(x / 32 + (y / 32 * getLargeur()), new Bloc(1, x, y));
+        }
     }
 
     public int getIndiceHauteur(int x){

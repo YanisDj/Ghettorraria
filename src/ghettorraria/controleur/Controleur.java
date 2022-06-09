@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -35,6 +36,7 @@ public class Controleur implements Initializable {
     private Joueur joueur;
     private TerrainVue terrainVue;
     private Inventaire inventaire;
+    
     /* private Mob singe; */
 
     @FXML
@@ -124,9 +126,16 @@ public class Controleur implements Initializable {
                 int x, y;
                 x = (int) event.getX();
                 y = (int) event.getY();
-                if(Math.abs((joueur.getX()-x)/32)+Math.abs((joueur.getY()-y)/32)<2)
-                terrain.supprimerTuiles(x, y);
-
+                if (event.getButton() == MouseButton.PRIMARY){
+                    if(Math.abs((joueur.getX()-x)/32)+Math.abs((joueur.getY()-y)/32)<2){
+                        terrain.supprimerTuiles(x, y);
+                    }
+                }
+                if (event.getButton() == MouseButton.SECONDARY){
+                    if(Math.abs((joueur.getX()-x)/32)+Math.abs((joueur.getY()-y)/32)<2){
+                        terrain.ajouterTuiles(x, y);
+                    }
+                }
             }
         }); 
 
