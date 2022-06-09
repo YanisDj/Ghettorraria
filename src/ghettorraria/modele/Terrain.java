@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 
 public class Terrain {
 
+    private boolean atteignable;
     private ObservableList<Bloc> codesTuiles = FXCollections.observableArrayList();
 
     public Terrain() {
@@ -33,6 +34,7 @@ public class Terrain {
             e.printStackTrace();
         }
 
+        atteignable = false;
     }
 
     public ObservableList<Bloc> getCodesTuiles() {

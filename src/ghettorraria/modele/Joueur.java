@@ -11,6 +11,7 @@ public class Joueur extends Acteur {
 	private boolean tombe;
 	private int hauteurSaut, vitesseChute, vitesseSaut;
 	private Arme arme;
+	private boolean changeArme;
 
 	public final int LARGEUR_PERSO = 32;
 	public final int HAUTEUR_PERSO = 42;
@@ -25,6 +26,7 @@ public class Joueur extends Acteur {
 		monte = false;
 		tombe = false;
 		arme = new Pioche();
+		changeArme = false;
 	}
 
 	@Override
@@ -164,15 +166,27 @@ public class Joueur extends Acteur {
 		if (arme == null){
 			bloc.pertPV(this.getDegatsAttaque());
 		} else {
-			bloc.pertPV(arme.getAttaque());
+			bloc.pertPV(arme.getAttaqueBloc());
 		}
 	}
 
 	public void frappeActeur(Acteur a){
-		a.decrementerPv(this.getDegatsAttaque());
+		if (arme == null){
+			a.decrementerPv(this.getDegatsAttaque());
+		} else {
+			a.decrementerPv(arme.getAttaqueBloc());
+		}
 	}
 
 	public Arme getArme(){
 		return this.arme;
+	}
+
+	public void changeArmeOui(){
+		changeArme = true;
+	}
+
+	public void changeArmeNon(){
+		changeArme = false;
 	}
 }

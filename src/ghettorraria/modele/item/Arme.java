@@ -2,18 +2,24 @@ package ghettorraria.modele.item;
 
 public class Arme extends Objet{
 
-	private int attaque;
+	private int attaqueBloc;
 	private int porter;
+	private int attaqueActeur;
 
-	public Arme(String nom,int attaque,int porter) {
+	public Arme(String nom,int attaqueActeur,int attaqueBloc, int porter) {
 		super("Arme");
-		this.attaque = attaque;
+		this.attaqueBloc = attaqueBloc;
+		this.attaqueActeur = attaqueActeur;
 		this.porter = porter;
 	}
 
 
-	public int getAttaque() {
-		return attaque;
+	public int getAttaqueActeur() {
+		return attaqueActeur;
+	}
+
+	public int getAttaqueBloc(){
+		return attaqueBloc;
 	}
 
 	public int getPorter() {

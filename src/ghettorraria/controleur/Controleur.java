@@ -5,8 +5,6 @@ import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -25,9 +23,9 @@ import ghettorraria.modele.Joueur;
 /* import ghettorraria.modele.Mob; */
 import ghettorraria.modele.Observateur;
 import ghettorraria.modele.Terrain;
-import ghettorraria.modele.item.Pioche;
 import ghettorraria.vue.InventaireVue;
 import ghettorraria.vue.JoueurVue;
+import ghettorraria.vue.ObjetEnMainVue;
 import ghettorraria.vue.TerrainVue;
 
 public class Controleur implements Initializable {
@@ -66,6 +64,9 @@ public class Controleur implements Initializable {
         inventaire = new Inventaire();
         InventaireVue inventaireVue = new InventaireVue(inventaire, paneprincipal);
         inventaireVue.placerInventaire(1);
+
+        ObjetEnMainVue objetEnMainVue = new ObjetEnMainVue(paneprincipal, joueur);
+        
 
         /*
          * singe = new Mob(5, 19, terrain, joueur, inventaire);
@@ -127,7 +128,7 @@ public class Controleur implements Initializable {
                 int x, y;
                 x = (int) event.getX();
                 y = (int) event.getY();
-                if(Math.abs((joueur.getX()-x)/32)+Math.abs((joueur.getY()-y)/32)<2){
+                if(Math.abs((joueur.getX()-x)/32)+Math.abs((joueur.getY()-y)/32)<=2){
                     joueur.frappeBloc(terrain.getBloc(x, y));
                     terrain.supprimerTuiles(x, y);
                 }
@@ -135,12 +136,12 @@ public class Controleur implements Initializable {
             }
         }); 
 
-        ImageView pioche = new ImageView("ressources/pioche.png");
-        paneprincipal.getChildren().add(pioche);
+        // ImageView pioche = new ImageView("ressources/pioche.png");
+        // paneprincipal.getChildren().add(pioche);
 
-        Rectangle rectangle = new Rectangle(32,32);
+        
+        Rectangle rectangle = new Rectangle(32, 32);
         rectangle.setFill(Color.TRANSPARENT);
-        rectangle.setStroke(Color.BLUEVIOLET);
         paneprincipal.getChildren().add(rectangle);
         Border1.addEventFilter(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
             int x, y;
@@ -151,10 +152,16 @@ public class Controleur implements Initializable {
                 y = (int) (event.getY()/32) *32;
                 rectangle.setX(x);
                 rectangle.setY(y);
-                if (joueur.getArme() != null){
-                    pioche.setX(x);
-                    pioche.setY(y);
+                if(Math.abs((joueur.getX()-x)/32)+Math.abs((joueur.getY()-y)/32)<=2){
+                    rectangle.setStroke(Color.BLUEVIOLET);
+                } else {
+                    rectangle.setStroke(Color.RED);
                 }
+                // objetEnMainVue.placerObjetEnMain(x,y);
+                // if (joueur.getArme() != null){
+                //     pioche.setX(x);
+                //     pioche.setY(y);
+                // }
             }
            
         });
@@ -168,13 +175,9 @@ public class Controleur implements Initializable {
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
-                // on définit le FPS (nbre de frame par seconde)
                 Duration.seconds(0.017),
-                // on définit ce qui se passe à chaque frame
-                // c'est un eventHandler d'ou le lambda
                 (ev -> {
                     joueur.deplacer();
-                    /* singe.deplacer(); */
                 }));
         gameLoop.getKeyFrames().add(kf);
     }
