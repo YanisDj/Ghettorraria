@@ -4,7 +4,6 @@ import ghettorraria.modele.Joueur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Rectangle;
 
 public class BarreDeVieVue {
 

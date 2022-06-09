@@ -1,8 +1,8 @@
 package ghettorraria.modele.item;
 
-public class Avancée extends Objet{
+public class Avancee extends Objet{
 
-	public Avancée(String nom) {
+	public Avancee(String nom) {
 		super("Objet à construire ");
 	}
 

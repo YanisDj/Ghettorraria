@@ -1,6 +1,6 @@
 package ghettorraria.modele.item;
 
-public class Etablis extends Avancée implements Construire{
+public class Etablis extends Avancee implements Construire{
 
 	public Etablis(String nom) {
 		super("Etablis");

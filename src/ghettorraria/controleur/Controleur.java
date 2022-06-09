@@ -20,13 +20,13 @@ import java.util.ResourceBundle;
 
 import ghettorraria.modele.Inventaire;
 import ghettorraria.modele.Joueur;
-import ghettorraria.modele.Mob;
+
 import ghettorraria.modele.Observateur;
 import ghettorraria.modele.Terrain;
 import ghettorraria.vue.BarreDeVieVue;
 import ghettorraria.vue.InventaireVue;
 import ghettorraria.vue.JoueurVue;
-import ghettorraria.vue.MobVue;
+
 import ghettorraria.vue.TerrainVue;
 
 public class Controleur implements Initializable {
@@ -129,9 +129,9 @@ public class Controleur implements Initializable {
                 int x, y;
                 x = (int) event.getX();
                 y = (int) event.getY();
-                if(Math.abs((joueur.getX()-x)/32)+Math.abs((joueur.getY()-y)/32)<2)
-                terrain.supprimerTuiles(x, y);
-
+                if(Math.abs((joueur.getX()/32)-x/32)<2 && Math.abs((joueur.getY()/32)-y/32)<2) {
+                    terrain.supprimerTuiles(x, y);
+                }
             }
         }); 
 
