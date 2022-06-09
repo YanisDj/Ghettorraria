@@ -154,4 +154,5 @@ public class Joueur extends Acteur {
 		} while (distanceSol <= hauteurSaut && (!plusProcheBasGauche.estSolide() && !plusProcheBasDroite.estSolide()));
 		return distanceSol < hauteurSaut ? true : false;
 	}
+
 }

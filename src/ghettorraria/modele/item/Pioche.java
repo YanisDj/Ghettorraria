@@ -4,7 +4,6 @@ public class Pioche extends Arme implements Construire{
 
 	public Pioche(String nom, int attaque, int porter) {
 		super("Pioche", 5, 1);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

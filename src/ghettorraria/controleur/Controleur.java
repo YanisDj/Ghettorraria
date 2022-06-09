@@ -20,11 +20,13 @@ import java.util.ResourceBundle;
 
 import ghettorraria.modele.Inventaire;
 import ghettorraria.modele.Joueur;
-/* import ghettorraria.modele.Mob; */
+import ghettorraria.modele.Mob;
 import ghettorraria.modele.Observateur;
 import ghettorraria.modele.Terrain;
+import ghettorraria.vue.BarreDeVieVue;
 import ghettorraria.vue.InventaireVue;
 import ghettorraria.vue.JoueurVue;
+import ghettorraria.vue.MobVue;
 import ghettorraria.vue.TerrainVue;
 
 public class Controleur implements Initializable {
@@ -35,7 +37,8 @@ public class Controleur implements Initializable {
     private Joueur joueur;
     private TerrainVue terrainVue;
     private Inventaire inventaire;
-    /* private Mob singe; */
+    private BarreDeVieVue barreVieVue;
+    // private Mob singe;
 
     @FXML
     private TilePane paneTerrain;
@@ -64,11 +67,13 @@ public class Controleur implements Initializable {
         InventaireVue inventaireVue = new InventaireVue(inventaire, paneprincipal);
         inventaireVue.placerInventaire(1);
 
-        /*
-         * singe = new Mob(5, 19, terrain, joueur, inventaire);
-         * MobVue singeVue = new MobVue(paneprincipal, singe);
-         * singeVue.placerMob();
-         */
+        barreVieVue = new BarreDeVieVue(paneprincipal, joueur);
+        barreVieVue.placerBarreDeVie();
+
+
+        // singe = new Mob(5, 19, terrain, joueur, inventaire);
+        // MobVue singeVue = new MobVue(paneprincipal, singe);
+        // singeVue.placerMob();
 
         this.terrain.getCodesTuiles().addListener(new Observateur(paneTerrain, terrainVue, inventaireVue));
 
@@ -155,7 +160,7 @@ public class Controleur implements Initializable {
     private void initAnimation() {
         gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
-
+        
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
                 Duration.seconds(0.017),
@@ -163,6 +168,7 @@ public class Controleur implements Initializable {
                 // c'est un eventHandler d'ou le lambda
                 (ev -> {
                     joueur.deplacer();
+                    barreVieVue.rafraichirBarreDeVie();
                     /* singe.deplacer(); */
                 }));
         gameLoop.getKeyFrames().add(kf);

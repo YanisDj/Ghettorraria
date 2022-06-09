@@ -4,7 +4,6 @@ public class Mur extends Avancée implements Construire{
 
 	public Mur(String nom) {
 		super("Mur");
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
