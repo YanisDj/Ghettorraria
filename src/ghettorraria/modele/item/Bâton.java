@@ -3,7 +3,7 @@ package ghettorraria.modele.item;
 public class Bâton extends Avancée implements Construire{
 
 	public Bâton(String nom) {
-		super("Bâton");
+		super("baton");
 	}
 
 	@Override

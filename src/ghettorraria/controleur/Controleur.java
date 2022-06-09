@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
@@ -25,7 +26,14 @@ import ghettorraria.modele.Joueur;
 /* import ghettorraria.modele.Mob; */
 import ghettorraria.modele.Observateur;
 import ghettorraria.modele.Terrain;
+import ghettorraria.modele.item.Acier;
+import ghettorraria.modele.item.Capri_sun;
+import ghettorraria.modele.item.Couteau;
+import ghettorraria.modele.item.Etablis;
+import ghettorraria.modele.item.Kebab;
+import ghettorraria.modele.item.Pierre;
 import ghettorraria.modele.item.Pioche;
+import ghettorraria.modele.item.Terre;
 import ghettorraria.vue.InventaireVue;
 import ghettorraria.vue.JoueurVue;
 import ghettorraria.vue.TerrainVue;
@@ -63,9 +71,17 @@ public class Controleur implements Initializable {
         JoueurVue joueurVue = new JoueurVue(paneprincipal, joueur);
         joueurVue.placerJoueur();
 
-        inventaire = new Inventaire();
+        inventaire = new Inventaire(joueur);
         InventaireVue inventaireVue = new InventaireVue(inventaire, paneprincipal);
         inventaireVue.placerInventaire(1);
+        inventaire.ajoutercaseInventaire(new Pioche());
+        inventaire.ajoutercaseInventaire(new Pierre());
+        inventaire.ajoutercaseInventaire(new Terre());
+        inventaire.ajoutercaseInventaire(new Etablis());
+        inventaire.ajoutercaseInventaire(new Capri_sun());
+
+        inventaireVue.remplirpetitinvenatairevue();
+        
 
         /*
          * singe = new Mob(5, 19, terrain, joueur, inventaire);
@@ -94,8 +110,10 @@ public class Controleur implements Initializable {
                 if (key.getCode() == KeyCode.E) {
                     if (inventaireVue.getInvAffiche() == 1) {
                         inventaireVue.placerInventaire(2);
+                        
                     } else {
-                        inventaireVue.placerInventaire(1);;
+                        inventaireVue.placerInventaire(1);
+                        inventaireVue.remplirpetitinvenatairevue();
                     }
                 }
 
@@ -134,6 +152,30 @@ public class Controleur implements Initializable {
 
             }
         }); 
+
+        Rectangle rectangleinv = new Rectangle(32,32);
+        rectangleinv.setFill(Color.TRANSPARENT);
+        rectangleinv.setStroke(Color.RED);
+        rectangleinv.setStrokeWidth(5);
+        paneprincipal.getChildren().add(rectangleinv);
+        rectangleinv.setLayoutX(32*inventaire.sourisProperty().get()+16);
+
+        Border1.addEventFilter(ScrollEvent.SCROLL,new EventHandler<ScrollEvent>() {
+
+            @Override
+            public void handle(ScrollEvent event) {
+                if (event.getDeltaY() > 0)
+                    inventaire.setSouris(inventaire.sourisProperty().get() + 1);
+                if (event.getDeltaY() < 0)
+                    inventaire.setSouris(inventaire.sourisProperty().get() - 1);
+                
+                rectangleinv.setLayoutX(32*inventaire.sourisProperty().get()+16);
+                System.out.println(inventaire.sourisProperty().get());
+            }
+            
+        }); 
+
+    
 
         ImageView pioche = new ImageView("ressources/pioche.png");
         paneprincipal.getChildren().add(pioche);

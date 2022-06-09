@@ -1,7 +1,10 @@
 package ghettorraria.modele;
 
 import ghettorraria.modele.item.Arme;
+import ghettorraria.modele.item.Objet;
 import ghettorraria.modele.item.Pioche;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 
 public class Joueur extends Acteur {
 
@@ -11,6 +14,10 @@ public class Joueur extends Acteur {
 	private boolean tombe;
 	private int hauteurSaut, vitesseChute, vitesseSaut;
 	private Arme arme;
+	private Inventaire inventaire;
+	private ObjectProperty objetmain;
+
+	
 
 	public final int LARGEUR_PERSO = 32;
 	public final int HAUTEUR_PERSO = 42;
@@ -24,6 +31,12 @@ public class Joueur extends Acteur {
 		gauche = false;
 		monte = false;
 		tombe = false;
+		
+		this.objetmain = new SimpleObjectProperty(null);
+		
+		this.objetmain.addListener((obs,oldO,newO)-> {
+		});
+		
 		arme = new Pioche();
 	}
 
@@ -175,4 +188,14 @@ public class Joueur extends Acteur {
 	public Arme getArme(){
 		return this.arme;
 	}
+
+	public ObjectProperty objetmainPObjectProperty() {
+		return this.objetmain;
+	}
+
+	public void setObjetmain(Object objetmain) {
+		this.objetmain.set(objetmain);
+	}
+
+
 }
