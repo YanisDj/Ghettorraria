@@ -27,10 +27,10 @@ public class Inventaire {
         this.joueur = joueur;
         this.souris = new SimpleIntegerProperty(0);
         this.souris.addListener((obs,oldV,newV)->{
-            if (newV.intValue() > 4)
+            if (newV.intValue() > 12)
                 this.souris.set(0);
             else if (newV.intValue() < 0)
-                this.souris.set(4);
+                this.souris.set(12);
             joueur.setObjetmain(this.getInv().get(this.souris.get()));
         });
       
@@ -52,9 +52,13 @@ public class Inventaire {
     }
 
 
-    public IntegerProperty sourisProperty() { return this.souris; }
+    public IntegerProperty sourisProperty() { 
+        return this.souris; 
+    }
 
-    public void setSouris(int souris) { this.souris.set(souris); }
+    public void setSouris(int souris) { 
+        this.souris.set(souris); 
+    }
     
 
 }

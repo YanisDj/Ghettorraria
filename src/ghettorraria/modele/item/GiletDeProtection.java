@@ -2,7 +2,7 @@ package ghettorraria.modele.item;
 
 public class GiletDeProtection extends Avancée implements Construire{
 
-	public GiletDeProtection(String nom) {
+	public GiletDeProtection() {
 		super("gilet-de-protection");
 		// TODO Auto-generated constructor stub
 	}

@@ -27,12 +27,18 @@ import ghettorraria.modele.Joueur;
 import ghettorraria.modele.Observateur;
 import ghettorraria.modele.Terrain;
 import ghettorraria.modele.item.Acier;
+import ghettorraria.modele.item.Batte;
+import ghettorraria.modele.item.Bois;
+import ghettorraria.modele.item.Bâton;
 import ghettorraria.modele.item.Capri_sun;
 import ghettorraria.modele.item.Couteau;
 import ghettorraria.modele.item.Etablis;
+import ghettorraria.modele.item.GiletDeProtection;
 import ghettorraria.modele.item.Kebab;
+import ghettorraria.modele.item.Lit;
 import ghettorraria.modele.item.Pierre;
 import ghettorraria.modele.item.Pioche;
+import ghettorraria.modele.item.Pistolet;
 import ghettorraria.modele.item.Terre;
 import ghettorraria.vue.InventaireVue;
 import ghettorraria.vue.JoueurVue;
@@ -72,14 +78,22 @@ public class Controleur implements Initializable {
         joueurVue.placerJoueur();
 
         inventaire = new Inventaire(joueur);
-        InventaireVue inventaireVue = new InventaireVue(inventaire, paneprincipal);
+        InventaireVue inventaireVue = new InventaireVue(inventaire, paneprincipal,joueur);
         inventaireVue.placerInventaire(1);
         inventaire.ajoutercaseInventaire(new Pioche());
+        inventaire.ajoutercaseInventaire(new Batte());
+        inventaire.ajoutercaseInventaire(new Couteau());
+        inventaire.ajoutercaseInventaire(new Pistolet());
         inventaire.ajoutercaseInventaire(new Pierre());
         inventaire.ajoutercaseInventaire(new Terre());
+        inventaire.ajoutercaseInventaire(new Bois());
+        inventaire.ajoutercaseInventaire(new Acier());
+        inventaire.ajoutercaseInventaire(new Bâton());
         inventaire.ajoutercaseInventaire(new Etablis());
+        inventaire.ajoutercaseInventaire(new GiletDeProtection());
+        inventaire.ajoutercaseInventaire(new Kebab());
         inventaire.ajoutercaseInventaire(new Capri_sun());
-
+        inventaire.ajoutercaseInventaire(new Lit());
         inventaireVue.remplirpetitinvenatairevue();
         
 
@@ -156,7 +170,7 @@ public class Controleur implements Initializable {
         Rectangle rectangleinv = new Rectangle(32,32);
         rectangleinv.setFill(Color.TRANSPARENT);
         rectangleinv.setStroke(Color.RED);
-        rectangleinv.setStrokeWidth(5);
+        rectangleinv.setStrokeWidth(3);
         paneprincipal.getChildren().add(rectangleinv);
         rectangleinv.setLayoutX(32*inventaire.sourisProperty().get()+16);
 
@@ -170,15 +184,12 @@ public class Controleur implements Initializable {
                     inventaire.setSouris(inventaire.sourisProperty().get() - 1);
                 
                 rectangleinv.setLayoutX(32*inventaire.sourisProperty().get()+16);
-                System.out.println(inventaire.sourisProperty().get());
+               
             }
             
         }); 
 
     
-
-        ImageView pioche = new ImageView("ressources/pioche.png");
-        paneprincipal.getChildren().add(pioche);
 
         Rectangle rectangle = new Rectangle(32,32);
         rectangle.setFill(Color.TRANSPARENT);
@@ -193,10 +204,8 @@ public class Controleur implements Initializable {
                 y = (int) (event.getY()/32) *32;
                 rectangle.setX(x);
                 rectangle.setY(y);
-                if (joueur.getArme() != null){
-                    pioche.setX(x);
-                    pioche.setY(y);
-                }
+                inventaireVue.getobjetmain().setX(x);
+                inventaireVue.getobjetmain().setY(y);
             }
            
         });

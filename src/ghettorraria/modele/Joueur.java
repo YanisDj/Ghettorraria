@@ -33,8 +33,8 @@ public class Joueur extends Acteur {
 		tombe = false;
 		
 		this.objetmain = new SimpleObjectProperty(null);
-		
 		this.objetmain.addListener((obs,oldO,newO)-> {
+			System.out.println(newO);
 		});
 		
 		arme = new Pioche();
@@ -189,12 +189,13 @@ public class Joueur extends Acteur {
 		return this.arme;
 	}
 
-	public ObjectProperty objetmainPObjectProperty() {
+	public ObjectProperty objetmainObjectProperty() {
 		return this.objetmain;
 	}
 
 	public void setObjetmain(Object objetmain) {
 		this.objetmain.set(objetmain);
+		
 	}
 
 
