@@ -3,7 +3,6 @@ package ghettorraria.modele.item;
 public class Sol extends Avancée implements Construire{
 
 	public Sol(String nom) {
-		super("Sol");
 		// TODO Auto-generated constructor stub
 	}
 

@@ -4,8 +4,7 @@ public class Nourriture extends Objet{
 	
 	private int restaurepv;
 
-	public Nourriture(String nom, int restaure) {
-		super(nom);
+	public Nourriture(int restaure) {
 		this.restaurepv = restaure;
 	}
 

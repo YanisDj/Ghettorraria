@@ -3,7 +3,7 @@ package ghettorraria.modele.item;
 public class Couteau extends Arme implements Construire{
 
 	public Couteau() {
-		super("couteau",15, 1);
+		super(15, 1);
 		// TODO Auto-generated constructor stub
 	}
 

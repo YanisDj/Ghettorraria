@@ -3,7 +3,7 @@ package ghettorraria.modele.item;
 public class Bâton extends Avancée implements Construire{
 
 	public Bâton() {
-		super("baton");
+		super();
 	}
 
 	@Override

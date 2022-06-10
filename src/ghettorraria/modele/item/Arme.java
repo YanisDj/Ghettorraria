@@ -5,8 +5,8 @@ public class Arme extends Objet{
 	private int attaque;
 	private int porter;
 
-	public Arme(String nom,int attaque,int porter) {
-		super("Arme");
+	public Arme(int attaque,int porter) {
+		super();
 		this.attaque = attaque;
 		this.porter = porter;
 	}

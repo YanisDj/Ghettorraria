@@ -8,8 +8,7 @@ public class Objet {
     private String id;
   
 
-    public Objet(String nom){
-        this.nom = nom;
+    public Objet(){
         this.id = this.setId();
     }
 

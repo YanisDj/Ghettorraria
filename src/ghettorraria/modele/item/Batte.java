@@ -3,7 +3,7 @@ package ghettorraria.modele.item;
 public class Batte extends Arme implements Construire{
 
 	public Batte() {
-		super("batte-de-baseball", 10, 2);
+		super(10, 2);
 		// TODO Auto-generated constructor stub
 	}
 	
