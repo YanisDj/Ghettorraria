@@ -27,8 +27,11 @@ public class TerrainVue {
         }
     }
 
-    public void modifierTerrain(int indice){
-        paneTerrain.getChildren().set(indice,new ImageView());
+    public void modifierTuileTerrain(int indice, int id){
+        if (id == -1)
+            paneTerrain.getChildren().set(indice,new ImageView());
+        else 
+            paneTerrain.getChildren().set(indice,new ImageView("ressources/" + id + ".png"));
     }
 
 
