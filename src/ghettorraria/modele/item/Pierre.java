@@ -1,10 +1,9 @@
 package ghettorraria.modele.item;
 
-public class Pierre extends Matériaux{
+public class Pierre extends Materiaux{
 
 	public Pierre(String nom) {
 		super("Pierre");
-		// TODO Auto-generated constructor stub
 	}
 
 }
