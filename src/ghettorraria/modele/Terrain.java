@@ -24,7 +24,7 @@ public class Terrain {
                 String[] token = line.split(delimiter); // separate every token by comma
                 Bloc[] ligne = new Bloc[token.length];
                 for (int x = 0; x < ligne.length; x++) {
-                    codesTuiles.add(new Bloc(Integer.parseInt(token[x]), x, y));
+                    codesTuiles.add(new Bloc(Integer.parseInt(token[x]), x*32, y*32));
                 }
                 y++;
             }
@@ -60,12 +60,7 @@ public class Terrain {
         if (getBloc(x, y).getId() != -1 ) {
             codesTuiles.set(x / 32 + (y / 32 * getLargeur()), new Bloc(-1, x, y));
         }
-    }
-
-    public void ajouterTuiles(int x, int y){
-        if (getBloc(x, y).getId() == -1 ) {
-            codesTuiles.set(x / 32 + (y / 32 * getLargeur()), new Bloc(1, x, y));
-        }
+        
     }
 
     public int getIndiceHauteur(int x){

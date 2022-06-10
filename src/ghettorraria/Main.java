@@ -27,4 +27,3 @@ public class Main extends Application {
 		launch(args);
 	}
 }
-//probleme image à charger

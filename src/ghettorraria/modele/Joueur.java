@@ -7,15 +7,16 @@ public class Joueur extends Acteur {
 	private boolean monte;
 	private boolean tombe;
 	private int hauteurSaut, vitesseChute, vitesseSaut;
+	private Bloc blocQuitte;
 
 	public final int LARGEUR_PERSO = 32;
 	public final int HAUTEUR_PERSO = 42;
 
-	public Joueur(int pv, int vitesse, Terrain terrain, Inventaire inventaire) {
+	public Joueur(Terrain terrain, Inventaire inventaire) {
 		super(100, 2, terrain, inventaire);
 		vitesseChute = this.getVitesse() * 3;
 		vitesseSaut = this.getVitesse() * 3;
-		hauteurSaut = 250;
+		hauteurSaut = 96+HAUTEUR_PERSO;
 		droite = false;
 		gauche = false;
 		monte = false;
@@ -47,9 +48,7 @@ public class Joueur extends Acteur {
 		}
 		if (this.monte) {
 			if (!blocHautSolide()) {
-				if (this.getY() + hauteurSaut >= this.getTerrain().getHauteur() * 32) {
-					this.setY(this.getY() - vitesseSaut);
-				} else if (peutSauter()) {
+				if (this.blocQuitte.getY()-this.getY() <= this.hauteurSaut) {
 					this.setY(this.getY() - vitesseSaut);
 				} else {
 					finsaut();
@@ -134,6 +133,9 @@ public class Joueur extends Acteur {
 
 	public void saut() {
 		if (blocBasSolide()) {
+			Bloc bloc1 = this.getTerrain().getBloc(this.getX(), this.getY() + HAUTEUR_PERSO + 5);
+			Bloc bloc2 = this.getTerrain().getBloc(this.getX() + LARGEUR_PERSO, this.getY() + HAUTEUR_PERSO + 5);
+			this.blocQuitte = bloc1.estSolide() ? bloc1 : bloc2;
 			this.monte = true;
 			this.tombe = false;
 		}

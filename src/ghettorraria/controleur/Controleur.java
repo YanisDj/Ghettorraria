@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -38,7 +37,6 @@ public class Controleur implements Initializable {
     private Joueur joueur;
     private TerrainVue terrainVue;
     private Inventaire inventaire;
-
     private BarreDeVieVue barreVieVue;
     // private Mob singe;
 
@@ -61,7 +59,7 @@ public class Controleur implements Initializable {
         terrainVue = new TerrainVue(terrain, paneTerrain);
         terrainVue.dessinerTerrain();
 
-        joueur = new Joueur(10, 20, terrain, inventaire);
+        joueur = new Joueur(terrain, inventaire);
         JoueurVue joueurVue = new JoueurVue(paneprincipal, joueur);
         joueurVue.placerJoueur();
 
@@ -131,12 +129,14 @@ public class Controleur implements Initializable {
                 int x, y;
                 x = (int) event.getX();
                 y = (int) event.getY();
-                if(Math.abs((joueur.getX()-x)/32)+Math.abs((joueur.getY()-y)/32)<2){
-                    if (event.getButton() == MouseButton.PRIMARY){
+
+                if (joueur.getX()>x) {
+                    if (joueur.getX()-x<=64 && (Math.abs(joueur.getY()-y)<=64 || Math.abs(y-joueur.getY()-joueur.HAUTEUR_PERSO)<=64)) {
                         terrain.supprimerTuiles(x, y);
                     }
-                    if (event.getButton() == MouseButton.SECONDARY){
-                        terrain.ajouterTuiles(x, y);
+                } else {
+                    if (x-joueur.LARGEUR_PERSO-joueur.getX()<=64 && (Math.abs(joueur.getY()-y)<=64 || Math.abs(y-joueur.getY()-joueur.HAUTEUR_PERSO)<=64)) {
+                        terrain.supprimerTuiles(x, y);
                     }
                 }
             }
@@ -144,19 +144,36 @@ public class Controleur implements Initializable {
 
         Rectangle rectangle = new Rectangle(32,32);
         rectangle.setFill(Color.TRANSPARENT);
-        rectangle.setStroke(Color.BLUEVIOLET);
         paneprincipal.getChildren().add(rectangle);
         Border1.addEventFilter(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
             int x, y;
 
             @Override
             public void handle(MouseEvent event) {
-                x = (int) (event.getX()/32) *32;
-                y = (int) (event.getY()/32) *32;
-                rectangle.setX(x);
-                rectangle.setY(y);   
+                x = (int) event.getX();
+                y = (int) event.getY();
+                rectangle.setX(x/32*32);
+                rectangle.setY(y/32*32);
+                
+                if (joueur.getX()>x) {
+                    if (joueur.getX()-x<=64 && (Math.abs(joueur.getY()-y)<=64 || Math.abs(y-joueur.getY()-joueur.HAUTEUR_PERSO)<=64)) {
+                        rectangle.setStroke(Color.BLUEVIOLET);
+                    } else {
+                        rectangle.setStroke(Color.ORANGERED);
+                    }
+                } else {
+                    if (x-joueur.LARGEUR_PERSO-joueur.getX()<=64 && (Math.abs(joueur.getY()-y)<=64 || Math.abs(y-joueur.getY()-joueur.HAUTEUR_PERSO)<=64)) {
+                        rectangle.setStroke(Color.BLUEVIOLET);
+                    } else {
+                        rectangle.setStroke(Color.ORANGERED);
+                    }
+                }
             }
+           
         });
+        
+
+
     }
 
     private void initAnimation() {
