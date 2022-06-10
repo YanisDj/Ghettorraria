@@ -28,8 +28,6 @@ public class Observateur implements ListChangeListener<Bloc> {
             for (Bloc bloc : blocs.getAddedSubList()){
                 Terrainvue.modifierTuileTerrain(blocs.getFrom(), bloc.getId());
             }
-
- 
         }
 
     }

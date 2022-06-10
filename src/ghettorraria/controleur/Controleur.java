@@ -126,13 +126,11 @@ public class Controleur implements Initializable {
                 int x, y;
                 x = (int) event.getX();
                 y = (int) event.getY();
-                if (event.getButton() == MouseButton.PRIMARY){
-                    if(Math.abs((joueur.getX()-x)/32)+Math.abs((joueur.getY()-y)/32)<2){
+                if(Math.abs((joueur.getX()-x)/32)+Math.abs((joueur.getY()-y)/32)<2){
+                    if (event.getButton() == MouseButton.PRIMARY){
                         terrain.supprimerTuiles(x, y);
                     }
-                }
-                if (event.getButton() == MouseButton.SECONDARY){
-                    if(Math.abs((joueur.getX()-x)/32)+Math.abs((joueur.getY()-y)/32)<2){
+                    if (event.getButton() == MouseButton.SECONDARY){
                         terrain.ajouterTuiles(x, y);
                     }
                 }
