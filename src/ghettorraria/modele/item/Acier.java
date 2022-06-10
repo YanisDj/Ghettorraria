@@ -1,6 +1,6 @@
 package ghettorraria.modele.item;
 
-public class Acier extends Matériaux{
+public class Acier extends Materiaux{
 
 	public Acier() {
 		// TODO Auto-generated constructor stub

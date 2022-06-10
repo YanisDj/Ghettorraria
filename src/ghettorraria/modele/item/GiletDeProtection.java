@@ -1,6 +1,6 @@
 package ghettorraria.modele.item;
 
-public class GiletDeProtection extends Avancée implements Construire{
+public class GiletDeProtection extends Avancee implements Construire{
 
 	public GiletDeProtection() {
 		// TODO Auto-generated constructor stub
@@ -8,7 +8,6 @@ public class GiletDeProtection extends Avancée implements Construire{
 
 	@Override
 	public String[] recette() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

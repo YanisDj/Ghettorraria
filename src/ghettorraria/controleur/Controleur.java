@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
@@ -23,7 +24,7 @@ import java.util.ResourceBundle;
 
 import ghettorraria.modele.Inventaire;
 import ghettorraria.modele.Joueur;
-/* import ghettorraria.modele.Mob; */
+
 import ghettorraria.modele.Observateur;
 import ghettorraria.modele.Terrain;
 import ghettorraria.modele.item.Acier;
@@ -40,8 +41,10 @@ import ghettorraria.modele.item.Pierre;
 import ghettorraria.modele.item.Pioche;
 import ghettorraria.modele.item.Pistolet;
 import ghettorraria.modele.item.Terre;
+import ghettorraria.vue.BarreDeVieVue;
 import ghettorraria.vue.InventaireVue;
 import ghettorraria.vue.JoueurVue;
+
 import ghettorraria.vue.TerrainVue;
 
 public class Controleur implements Initializable {
@@ -52,7 +55,8 @@ public class Controleur implements Initializable {
     private Joueur joueur;
     private TerrainVue terrainVue;
     private Inventaire inventaire;
-    /* private Mob singe; */
+    private BarreDeVieVue barreVieVue;
+    // private Mob singe;
 
     @FXML
     private TilePane paneTerrain;
@@ -73,7 +77,7 @@ public class Controleur implements Initializable {
         terrainVue = new TerrainVue(terrain, paneTerrain);
         terrainVue.dessinerTerrain();
 
-        joueur = new Joueur(10, 20, terrain, inventaire, 3);
+        joueur = new Joueur(terrain, inventaire);
         JoueurVue joueurVue = new JoueurVue(paneprincipal, joueur);
         joueurVue.placerJoueur();
 
@@ -97,11 +101,13 @@ public class Controleur implements Initializable {
         inventaireVue.remplirpetitinvenatairevue();
         
 
-        /*
-         * singe = new Mob(5, 19, terrain, joueur, inventaire);
-         * MobVue singeVue = new MobVue(paneprincipal, singe);
-         * singeVue.placerMob();
-         */
+        barreVieVue = new BarreDeVieVue(paneprincipal, joueur);
+        barreVieVue.placerBarreDeVie();
+
+
+        // singe = new Mob(5, 19, terrain, joueur, inventaire);
+        // MobVue singeVue = new MobVue(paneprincipal, singe);
+        // singeVue.placerMob();
 
         this.terrain.getCodesTuiles().addListener(new Observateur(paneTerrain, terrainVue, inventaireVue));
 
@@ -159,11 +165,28 @@ public class Controleur implements Initializable {
                 int x, y;
                 x = (int) event.getX();
                 y = (int) event.getY();
-                if(Math.abs((joueur.getX()-x)/32)+Math.abs((joueur.getY()-y)/32)<2){
-                    joueur.frappeBloc(terrain.getBloc(x, y));
-                    terrain.supprimerTuiles(x, y);
-                }
 
+                if (joueur.getX()>x) {
+                    if (joueur.getX()-x<=64 && (Math.abs(joueur.getY()-y)<=64 || Math.abs(y-joueur.getY()-joueur.HAUTEUR_PERSO)<=64)) {
+                        if (event.getButton() == MouseButton.PRIMARY){
+                            joueur.frappeBloc(terrain.getBloc(x,y));
+                            System.out.println(terrain.getBloc(x,y).getPv());
+                            terrain.supprimerTuiles(x, y);
+                        } else if (event.getButton() == MouseButton.SECONDARY){
+                            terrain.ajouterTuiles(x, y);
+                        }
+                    }
+                } else {
+                    if (x-joueur.LARGEUR_PERSO-joueur.getX()<=64 && (Math.abs(joueur.getY()-y)<=64 || Math.abs(y-joueur.getY()-joueur.HAUTEUR_PERSO)<=64)) {
+                        if (event.getButton() == MouseButton.PRIMARY){
+                            joueur.frappeBloc(terrain.getBloc(x,y));
+                            System.out.println(terrain.getBloc(x,y).getPv());
+                            terrain.supprimerTuiles(x, y);
+                        } else if (event.getButton() == MouseButton.SECONDARY){
+                            terrain.ajouterTuiles(x, y);
+                        }
+                    }
+                }
             }
         }); 
 
@@ -193,19 +216,30 @@ public class Controleur implements Initializable {
 
         Rectangle rectangle = new Rectangle(32,32);
         rectangle.setFill(Color.TRANSPARENT);
-        rectangle.setStroke(Color.BLUEVIOLET);
         paneprincipal.getChildren().add(rectangle);
         Border1.addEventFilter(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
             int x, y;
 
             @Override
             public void handle(MouseEvent event) {
-                x = (int) (event.getX()/32) *32;
-                y = (int) (event.getY()/32) *32;
-                rectangle.setX(x);
-                rectangle.setY(y);
-                inventaireVue.getobjetmain().setX(x);
-                inventaireVue.getobjetmain().setY(y);
+                x = (int) event.getX();
+                y = (int) event.getY();
+                rectangle.setX(x/32*32);
+                rectangle.setY(y/32*32);
+                
+                if (joueur.getX()>x) {
+                    if (joueur.getX()-x<=64 && (Math.abs(joueur.getY()-y)<=64 || Math.abs(y-joueur.getY()-joueur.HAUTEUR_PERSO)<=64)) {
+                        rectangle.setStroke(Color.BLUEVIOLET);
+                    } else {
+                        rectangle.setStroke(Color.ORANGERED);
+                    }
+                } else {
+                    if (x-joueur.LARGEUR_PERSO-joueur.getX()<=64 && (Math.abs(joueur.getY()-y)<=64 || Math.abs(y-joueur.getY()-joueur.HAUTEUR_PERSO)<=64)) {
+                        rectangle.setStroke(Color.BLUEVIOLET);
+                    } else {
+                        rectangle.setStroke(Color.ORANGERED);
+                    }
+                }
             }
            
         });
@@ -217,7 +251,7 @@ public class Controleur implements Initializable {
     private void initAnimation() {
         gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
-
+        
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
                 Duration.seconds(0.017),
@@ -225,6 +259,7 @@ public class Controleur implements Initializable {
                 // c'est un eventHandler d'ou le lambda
                 (ev -> {
                     joueur.deplacer();
+                    barreVieVue.rafraichirBarreDeVie();
                     /* singe.deplacer(); */
                 }));
         gameLoop.getKeyFrames().add(kf);

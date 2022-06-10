@@ -1,6 +1,6 @@
 package ghettorraria.modele.item;
 
-public class Sol extends Avancée implements Construire{
+public class Sol extends Avancee implements Construire{
 
 	public Sol(String nom) {
 		// TODO Auto-generated constructor stub

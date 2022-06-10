@@ -1,8 +1,8 @@
 package ghettorraria.modele.item;
 
-public class Matériaux extends Objet{
+public class Materiaux extends Objet{
     
-    public Matériaux(){
+    public Materiaux(){
         super();
     }
 

@@ -57,13 +57,11 @@ public class Mob extends Acteur{
 
 	@Override
 	public void deplacementgaucheOui() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void deplacementdroiteOui() {
-		// TODO Auto-generated method stub
 		
 	}
 }
