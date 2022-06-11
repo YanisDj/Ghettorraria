@@ -1,16 +1,9 @@
 package ghettorraria.modele.item;
 
-public class GiletDeProtection extends Avancee implements Construire{
+public class GiletDeProtection extends Objet {
 
-	public GiletDeProtection(String nom) {
+	public GiletDeProtection() {
 		super("Gilet de protection");
 	}
-
-	@Override
-	public String[] recette() {
-		return null;
-	}
-
-	
 
 }

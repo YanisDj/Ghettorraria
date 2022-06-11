@@ -2,7 +2,7 @@ package ghettorraria.modele.item;
 
 public class CapriSun extends Nourriture{
 
-	public CapriSun(String nom, int restaure) {
+	public CapriSun() {
 		super("Capri-sun", 10);
 	}
 

@@ -2,7 +2,7 @@ package ghettorraria.modele.item;
 
 public class Kebab extends Nourriture{
 
-	public Kebab(String nom, int restaure) {
+	public Kebab() {
 		super("Kebab", 50);
 	}
 

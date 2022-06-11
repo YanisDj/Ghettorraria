@@ -6,14 +6,11 @@ public class Objet {
 
     private String nom;
     private String id;
-  
 
     public Objet(String nom){
         this.nom = nom;
         this.id = this.setId();
     }
-
-
 
 	public String setId(){
         return UUID.randomUUID().toString();
