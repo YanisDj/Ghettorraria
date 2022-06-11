@@ -6,20 +6,17 @@ public class Arme extends Objet{
 	private int portee;
 
 	public Arme(int attaque,int portee) {
-		super();
 		this.attaque = attaque;
 		this.portee = portee;
 	}
 
 
 	public int getAttaque() {
-		return attaque;
+		return this.attaque;
 	}
 
 	public int getPortee() {
-		return portee;
+		return this.portee;
 	}
-
-
 
 }
