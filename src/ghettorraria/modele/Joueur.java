@@ -14,9 +14,7 @@ public class Joueur extends Acteur {
 	private boolean tombe;
 	private int hauteurSaut, vitesseChute, vitesseSaut;
 	private Arme arme;
-	private Inventaire inventaire;
-	private ObjectProperty objetmain;
-
+	private ObjectProperty<Objet> objetmain;
 	
 	private Bloc blocQuitte;
 
@@ -33,7 +31,7 @@ public class Joueur extends Acteur {
 		monte = false;
 		tombe = false;
 		
-		this.objetmain = new SimpleObjectProperty(null);
+		this.objetmain = new SimpleObjectProperty<Objet>();
 		this.objetmain.addListener((obs,oldO,newO)-> {
 			System.out.println(newO);
 		});
@@ -191,11 +189,11 @@ public class Joueur extends Acteur {
 		return this.arme;
 	}
 
-	public ObjectProperty objetmainObjectProperty() {
+	public ObjectProperty<Objet> objetmainObjectProperty() {
 		return this.objetmain;
 	}
 
-	public void setObjetmain(Object objetmain) {
+	public void setObjetmain(Objet objetmain) {
 		this.objetmain.set(objetmain);
 		
 	}

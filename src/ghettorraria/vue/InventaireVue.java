@@ -15,7 +15,6 @@ import ghettorraria.modele.item.Couteau;
 import ghettorraria.modele.item.Etablis;
 import ghettorraria.modele.item.GiletDeProtection;
 import ghettorraria.modele.item.Kebab;
-import ghettorraria.modele.item.Objet;
 import ghettorraria.modele.item.Pierre;
 import ghettorraria.modele.item.Pioche;
 import ghettorraria.modele.item.Pistolet;
@@ -23,7 +22,7 @@ import ghettorraria.modele.item.Terre;
 
 public class InventaireVue {
 
-    private int[] petitInventaire = { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,  3 };
+    private int[] petitInventaire = { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3 };
     private int[][] grandInventaire = { { 4, 5, 5, 5, 6 }, { 7, 8, 8, 8, 9 }, { 7, 8, 8, 8, 9 }, { 7, 8, 8, 8, 9 },
             { 10, 11, 11, 11, 12 } };
 
@@ -32,7 +31,6 @@ public class InventaireVue {
     private int invAffiche;
     private Joueur joueur;
     ImageView objetmain = new ImageView("ressources/pioche.png");
-
 
     public InventaireVue(Inventaire inventaire, Pane paneCase, Joueur joueur) {
         this.paneCase = paneCase;
@@ -43,52 +41,52 @@ public class InventaireVue {
         this.invAffiche = 1;
 
     }
-    
-        private void extracted(Object newV) {
+
+    private void extracted(Object newV) {
         System.out.println("aaa" + newV);
-        if (((CaseInventaire)newV).getObjet() instanceof Pioche) {
+        if (((CaseInventaire) newV).getObjet() instanceof Pioche) {
             objetmain.setImage(new Image("ressources/pioche.png"));
         }
-        if (((CaseInventaire)newV).getObjet() instanceof Couteau) {
+        if (((CaseInventaire) newV).getObjet() instanceof Couteau) {
             objetmain.setImage(new Image("ressources/couteau.png"));
         }
-        if (((CaseInventaire)newV).getObjet() instanceof Etablis) {
+        if (((CaseInventaire) newV).getObjet() instanceof Etablis) {
             objetmain.setImage(new Image("ressources/etabli.png"));
         }
-        if (((CaseInventaire)newV).getObjet() instanceof Batte) {
+        if (((CaseInventaire) newV).getObjet() instanceof Batte) {
             objetmain.setImage(new Image("ressources/bate-de-baseball.png"));
         }
-        if (((CaseInventaire)newV).getObjet() instanceof Acier) {
+        if (((CaseInventaire) newV).getObjet() instanceof Acier) {
             objetmain.setImage(new Image("ressources/bloc-acier.png"));
         }
-        if (((CaseInventaire)newV).getObjet() instanceof Bâton) {
+        if (((CaseInventaire) newV).getObjet() instanceof Bâton) {
             objetmain.setImage(new Image("ressources/baton.png"));
         }
-        if (((CaseInventaire)newV).getObjet() instanceof Pistolet) {
+        if (((CaseInventaire) newV).getObjet() instanceof Pistolet) {
             objetmain.setImage(new Image("ressources/pistolet.png"));
         }
-        if (((CaseInventaire)newV).getObjet() instanceof GiletDeProtection) {
+        if (((CaseInventaire) newV).getObjet() instanceof GiletDeProtection) {
             objetmain.setImage(new Image("ressources/gilet-de-protection.png"));
         }
-        if (((CaseInventaire)newV).getObjet() instanceof Pierre) {
+        if (((CaseInventaire) newV).getObjet() instanceof Pierre) {
             objetmain.setImage(new Image("ressources/bloc-pierre.png"));
         }
-        if (((CaseInventaire)newV).getObjet() instanceof Terre) {
+        if (((CaseInventaire) newV).getObjet() instanceof Terre) {
             objetmain.setImage(new Image("ressources/bloc-terre.png"));
         }
-        if (((CaseInventaire)newV).getObjet() instanceof Bois) {
+        if (((CaseInventaire) newV).getObjet() instanceof Bois) {
             objetmain.setImage(new Image("ressources/bloc-bois.png"));
         }
-        if (((CaseInventaire)newV).getObjet() instanceof Etablis) {
+        if (((CaseInventaire) newV).getObjet() instanceof Etablis) {
             objetmain.setImage(new Image("ressources/etabli.png"));
         }
-        if (((CaseInventaire)newV).getObjet() instanceof Kebab) {
+        if (((CaseInventaire) newV).getObjet() instanceof Kebab) {
             objetmain.setImage(new Image("ressources/kebab.png"));
         }
-        if (((CaseInventaire)newV).getObjet() instanceof Capri_sun) {
+        if (((CaseInventaire) newV).getObjet() instanceof Capri_sun) {
             objetmain.setImage(new Image("ressources/capri-sun.png"));
         }
-       
+
     }
 
     public void placerInventaire(int inventaire) {
@@ -185,11 +183,13 @@ public class InventaireVue {
 
         }
     }
-    public ImageView getobjetmain(){
+
+    public ImageView getobjetmain() {
         return this.objetmain;
     }
-    public void setobjetmain(ImageView objetmain){
+
+    public void setobjetmain(ImageView objetmain) {
         this.objetmain = objetmain;
-        }
+    }
 
 }
