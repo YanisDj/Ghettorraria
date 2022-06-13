@@ -224,8 +224,8 @@ public class Controleur implements Initializable {
                 y = (int) event.getY();
                 rectangle.setX(x/32*32);
                 rectangle.setY(y/32*32);
-                inventaireVue.getobjetmain().setX(x);
-                inventaireVue.getobjetmain().setY(y);
+                inventaireVue.getobjetmain().setX((x/32)*32);
+                inventaireVue.getobjetmain().setY((y/32)*32);
                 
                 if (joueur.getX()>x) {
                     if (joueur.getX()-x<=64 && (Math.abs(joueur.getY()-y)<=64 || Math.abs(y-joueur.getY()-joueur.HAUTEUR_PERSO)<=64)) {

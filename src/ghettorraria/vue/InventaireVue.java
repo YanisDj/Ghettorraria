@@ -37,13 +37,12 @@ public class InventaireVue {
         this.inventaire = inventaire;
         this.joueur = joueur;
         this.joueur.objetmainObjectProperty().addListener((obs, oldV, newV) -> extracted(newV));
-        paneCase.getChildren().add(objetmain);
+        paneCase.getChildren().add((objetmain));
         this.invAffiche = 1;
 
     }
 
     private void extracted(Object newV) {
-        System.out.println("aaa" + newV);
         if (((CaseInventaire) newV).getObjet() instanceof Pioche) {
             objetmain.setImage(new Image("ressources/pioche.png"));
         }
@@ -193,3 +192,4 @@ public class InventaireVue {
     }
 
 }
+
