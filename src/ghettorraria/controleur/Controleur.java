@@ -30,6 +30,7 @@ import ghettorraria.modele.item.Batte;
 import ghettorraria.modele.item.Bois;
 import ghettorraria.modele.item.Bâton;
 import ghettorraria.modele.item.Capri_sun;
+import ghettorraria.modele.item.CaseInventaire;
 import ghettorraria.modele.item.Couteau;
 import ghettorraria.modele.item.Etablis;
 import ghettorraria.modele.item.GiletDeProtection;
@@ -54,6 +55,7 @@ public class Controleur implements Initializable {
     private TerrainVue terrainVue;
     private Inventaire inventaire;
     private BarreDeVieVue barreVieVue;
+    private CaseInventaire caseInventaire;
     // private Mob singe;
 
     @FXML
@@ -97,7 +99,7 @@ public class Controleur implements Initializable {
         inventaire.ajoutercaseInventaire(new Capri_sun());
         inventaire.ajoutercaseInventaire(new Lit());
         inventaireVue.remplirpetitinvenatairevue();
-        
+        inventaireVue.creeLabel();
 
         barreVieVue = new BarreDeVieVue(paneprincipal, joueur);
         barreVieVue.placerBarreDeVie();
@@ -171,7 +173,7 @@ public class Controleur implements Initializable {
                             System.out.println(terrain.getBloc(x,y).getPv());
                             terrain.supprimerTuiles(x, y);
                         } else if (event.getButton() == MouseButton.SECONDARY){
-                            terrain.ajouterTuiles(x, y);
+                            terrain.ajouterTuiles(x, y); 
                         }
                     }
                 } else {

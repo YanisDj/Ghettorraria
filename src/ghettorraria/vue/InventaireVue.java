@@ -1,8 +1,12 @@
 package ghettorraria.vue;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import ghettorraria.modele.Inventaire;
 import ghettorraria.modele.Joueur;
 import ghettorraria.modele.item.Acier;
@@ -191,5 +195,18 @@ public class InventaireVue {
         this.objetmain = objetmain;
     }
 
+
+    public void creeLabel(){
+        for (int i = 0; i < petitInventaire.length; i++) {
+            Label label = new Label();
+            label.setLayoutX(i * 32 + 40);
+            label.setLayoutY(30);
+            label.setTextFill(Color.MAROON);
+            label.textProperty().bind(inventaire.getInv().get(i).quantiteProperty().asString());
+            paneCase.getChildren().add(label);
+        }
+       
+
+    }
 }
 
