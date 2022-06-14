@@ -41,6 +41,8 @@ public class BarreDeVieVue {
             barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre3.png"));
         } else if (joueur.getPv()  <= 90){
             barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre2.png"));
+        } else if (joueur.getPv() == 100){
+            barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barre1.png"));
         } else if (joueur.getPv() == 0){
             barreVie.setImage(new Image("ressources/barre-de-vie-sprites/barreMort.png"));
         }

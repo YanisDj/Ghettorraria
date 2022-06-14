@@ -2,6 +2,7 @@ package ghettorraria.modele;
 
 import ghettorraria.modele.item.Arme;
 import ghettorraria.modele.item.CaseInventaire;
+import ghettorraria.modele.item.Nourriture;
 import ghettorraria.modele.item.Objet;
 import ghettorraria.modele.item.Pioche;
 import javafx.beans.property.ObjectProperty;
@@ -23,9 +24,10 @@ public class Joueur extends Acteur {
 
 	public final int LARGEUR_PERSO = 32;
 	public final int HAUTEUR_PERSO = 42;
+	public final int PVMAX = 100;
 
 	public Joueur(Terrain terrain, Inventaire inventaire) {
-		super(100, 2, terrain,1);
+		super(40, 2, terrain,1);
 		vitesseChute = this.getVitesse() * 3;
 		vitesseSaut = this.getVitesse() * 3;
 		hauteurSaut = 96 + HAUTEUR_PERSO;
@@ -175,12 +177,18 @@ public class Joueur extends Acteur {
 		return distanceSol < hauteurSaut ? true : false;
 	}
 
-	public void frappeBloc(Bloc bloc){
-		System.out.println(objetmain.getValue());
+	public void utiliser(Bloc bloc){
 		if (objetmain.getValue() instanceof Pioche){
 			bloc.pertPV(((Pioche)objetmain.getValue()).getAttaque());
 		} else {
 			bloc.pertPV(this.getDegatsAttaque());
+		}
+		if (objetmain.getValue() instanceof Nourriture && this.getPv() + (((Nourriture)objetmain.getValue()).getRestaurepv()) <= PVMAX){
+			this.incrementerPv(((Nourriture)objetmain.getValue()).getRestaurepv());
+			System.out.println(this.getPv());
+		} else {
+			this.incrementerPv(PVMAX - this.getPv());
+			System.out.println(this.getPv());
 		}
 	}
 
