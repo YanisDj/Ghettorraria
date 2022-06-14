@@ -1,7 +1,7 @@
 package ghettorraria.modele.item;
 
-public class Nourriture extends Objet{
-	
+public class Nourriture extends Objet {
+
 	private int restaurepv;
 
 	public Nourriture(int restaure) {

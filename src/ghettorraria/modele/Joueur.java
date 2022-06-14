@@ -1,6 +1,7 @@
 package ghettorraria.modele;
 
 import ghettorraria.modele.item.Arme;
+import ghettorraria.modele.item.CaseInventaire;
 import ghettorraria.modele.item.Objet;
 import ghettorraria.modele.item.Pioche;
 import javafx.beans.property.ObjectProperty;
@@ -24,21 +25,19 @@ public class Joueur extends Acteur {
 	public final int HAUTEUR_PERSO = 42;
 
 	public Joueur(Terrain terrain, Inventaire inventaire) {
-		super(100, 2, terrain, inventaire,5);
+		super(100, 2, terrain,1);
 		vitesseChute = this.getVitesse() * 3;
 		vitesseSaut = this.getVitesse() * 3;
-		hauteurSaut = 96+HAUTEUR_PERSO;
+		hauteurSaut = 96 + HAUTEUR_PERSO;
 		droite = false;
 		gauche = false;
 		monte = false;
 		tombe = false;
-		inventaire=inventaire;
+		this.inventaire = inventaire;
 		this.objetmain = new SimpleObjectProperty(null);
-		this.objetmain.addListener((obs,oldO,newO)-> {
-			System.out.println(newO);
-		});
+		this.objetmain.addListener((obs,oldO,newO)-> {});
 		
-		arme = new Pioche();
+		setObjetmain(inventaire.sourisProperty().get());
 	}
 
 	@Override
@@ -89,6 +88,7 @@ public class Joueur extends Acteur {
 	public void deplacementgaucheNon() {
 		this.gauche = false;
 	}
+	
 
 	public boolean blocDroiteSolide() {
 		boolean solide;
@@ -176,10 +176,11 @@ public class Joueur extends Acteur {
 	}
 
 	public void frappeBloc(Bloc bloc){
-		if (arme == null){
-			bloc.pertPV(this.getDegatsAttaque());
+		System.out.println(objetmain.getValue());
+		if (objetmain.getValue() instanceof Pioche){
+			bloc.pertPV(((Pioche)objetmain.getValue()).getAttaque());
 		} else {
-			bloc.pertPV(arme.getAttaque());
+			bloc.pertPV(this.getDegatsAttaque());
 		}
 	}
 
@@ -191,13 +192,16 @@ public class Joueur extends Acteur {
 		return this.arme;
 	}
 
+	public Inventaire getInv(){
+		return this.inventaire;
+	}
+
 	public ObjectProperty objetmainObjectProperty() {
 		return this.objetmain;
 	}
 
-	public void setObjetmain(Object objetmain) {
-		this.objetmain.set(objetmain);
-		
+	public void setObjetmain(int indice) {
+		this.objetmain.set(inventaire.getInv().get(indice).getObjet());
 	}
 
 

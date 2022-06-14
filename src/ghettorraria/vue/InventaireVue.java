@@ -17,8 +17,8 @@ import ghettorraria.modele.item.Capri_sun;
 import ghettorraria.modele.item.CaseInventaire;
 import ghettorraria.modele.item.Couteau;
 import ghettorraria.modele.item.Etablis;
-import ghettorraria.modele.item.GiletDeProtection;
 import ghettorraria.modele.item.Kebab;
+import ghettorraria.modele.item.Objet;
 import ghettorraria.modele.item.Pierre;
 import ghettorraria.modele.item.Pioche;
 import ghettorraria.modele.item.Pistolet;
@@ -26,67 +26,66 @@ import ghettorraria.modele.item.Terre;
 
 public class InventaireVue {
 
-    private int[] petitInventaire = { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3 };
+    private int[] petitInventaire = { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3 };
     private int[][] grandInventaire = { { 4, 5, 5, 5, 6 }, { 7, 8, 8, 8, 9 }, { 7, 8, 8, 8, 9 }, { 7, 8, 8, 8, 9 },
             { 10, 11, 11, 11, 12 } };
 
     private Inventaire inventaire;
     private Pane paneCase;
     private int invAffiche;
-    private Joueur joueur;
     ImageView objetmain = new ImageView("ressources/pioche.png");
 
-    public InventaireVue(Inventaire inventaire, Pane paneCase, Joueur joueur) {
+    public InventaireVue(Inventaire inventaire, Pane paneCase ) {
         this.paneCase = paneCase;
         this.inventaire = inventaire;
-        this.joueur = joueur;
-        this.joueur.objetmainObjectProperty().addListener((obs, oldV, newV) -> extracted(newV));
+        
+        inventaire.sourisProperty().addListener((obs, oldV, newV) -> extracted((int)newV));
         paneCase.getChildren().add((objetmain));
         this.invAffiche = 1;
 
     }
 
-    private void extracted(Object newV) {
-        if (((CaseInventaire) newV).getObjet() instanceof Pioche) {
+    
+    private void extracted(int indice) {
+        Objet selectionne = this.inventaire.getInv().get(indice).getObjet();
+
+        if (selectionne instanceof Pioche) {
             objetmain.setImage(new Image("ressources/pioche.png"));
         }
-        if (((CaseInventaire) newV).getObjet() instanceof Couteau) {
+        if (selectionne instanceof Couteau) {
             objetmain.setImage(new Image("ressources/couteau.png"));
         }
-        if (((CaseInventaire) newV).getObjet() instanceof Etablis) {
+        if (selectionne instanceof Etablis) {
             objetmain.setImage(new Image("ressources/etabli.png"));
         }
-        if (((CaseInventaire) newV).getObjet() instanceof Batte) {
+        if (selectionne instanceof Batte) {
             objetmain.setImage(new Image("ressources/bate-de-baseball.png"));
         }
-        if (((CaseInventaire) newV).getObjet() instanceof Acier) {
+        if (selectionne instanceof Acier) {
             objetmain.setImage(new Image("ressources/bloc-acier.png"));
         }
-        if (((CaseInventaire) newV).getObjet() instanceof Bâton) {
+        if (selectionne instanceof Bâton) {
             objetmain.setImage(new Image("ressources/baton.png"));
         }
-        if (((CaseInventaire) newV).getObjet() instanceof Pistolet) {
+        if (selectionne instanceof Pistolet) {
             objetmain.setImage(new Image("ressources/pistolet.png"));
         }
-        if (((CaseInventaire) newV).getObjet() instanceof GiletDeProtection) {
-            objetmain.setImage(new Image("ressources/gilet-de-protection.png"));
-        }
-        if (((CaseInventaire) newV).getObjet() instanceof Pierre) {
+        if (selectionne instanceof Pierre) {
             objetmain.setImage(new Image("ressources/bloc-pierre.png"));
         }
-        if (((CaseInventaire) newV).getObjet() instanceof Terre) {
+        if (selectionne instanceof Terre) {
             objetmain.setImage(new Image("ressources/bloc-terre.png"));
         }
-        if (((CaseInventaire) newV).getObjet() instanceof Bois) {
+        if (selectionne instanceof Bois) {
             objetmain.setImage(new Image("ressources/bloc-bois.png"));
         }
-        if (((CaseInventaire) newV).getObjet() instanceof Etablis) {
+        if (selectionne instanceof Etablis) {
             objetmain.setImage(new Image("ressources/etabli.png"));
         }
-        if (((CaseInventaire) newV).getObjet() instanceof Kebab) {
+        if (selectionne instanceof Kebab) {
             objetmain.setImage(new Image("ressources/kebab.png"));
         }
-        if (((CaseInventaire) newV).getObjet() instanceof Capri_sun) {
+        if (selectionne instanceof Capri_sun) {
             objetmain.setImage(new Image("ressources/capri-sun.png"));
         }
 
@@ -157,9 +156,6 @@ public class InventaireVue {
                 }
                 if (this.inventaire.getInv().get(i).getObjet() instanceof Pistolet) {
                     objetinv = new ImageView("ressources/inventaire/pistolet.png");
-                }
-                if (this.inventaire.getInv().get(i).getObjet() instanceof GiletDeProtection) {
-                    objetinv = new ImageView("ressources/inventaire/gilet-de-protection.png");
                 }
                 if (this.inventaire.getInv().get(i).getObjet() instanceof Pierre) {
                     objetinv = new ImageView("ressources/inventaire/bloc-pierre.png");

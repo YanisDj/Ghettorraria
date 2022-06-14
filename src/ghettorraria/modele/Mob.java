@@ -5,8 +5,8 @@ public class Mob extends Acteur{
     private Joueur joueur;
     private BFS bfs;
 
-    public Mob(int pv, int vitesse, Terrain terrain, Joueur joueur,Inventaire inventaire, int degatsAttaque) {
-        super(pv, vitesse, terrain, inventaire, degatsAttaque);
+    public Mob(int pv, int vitesse, Terrain terrain, Joueur joueur, int degatsAttaque) {
+        super(pv, vitesse, terrain, degatsAttaque);
         this.joueur = joueur;
         this.bfs = new BFS(joueur, terrain, 10);
     }

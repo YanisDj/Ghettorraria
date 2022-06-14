@@ -33,7 +33,6 @@ import ghettorraria.modele.item.Capri_sun;
 import ghettorraria.modele.item.CaseInventaire;
 import ghettorraria.modele.item.Couteau;
 import ghettorraria.modele.item.Etablis;
-import ghettorraria.modele.item.GiletDeProtection;
 import ghettorraria.modele.item.Kebab;
 import ghettorraria.modele.item.Lit;
 import ghettorraria.modele.item.Pierre;
@@ -70,19 +69,12 @@ public class Controleur implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        initAnimation();
-        gameLoop.play();
-
         terrain = new Terrain();
         terrainVue = new TerrainVue(terrain, paneTerrain);
         terrainVue.dessinerTerrain();
 
-        joueur = new Joueur(terrain, inventaire);
-        JoueurVue joueurVue = new JoueurVue(paneprincipal, joueur);
-        joueurVue.placerJoueur();
-
-        inventaire = new Inventaire(joueur);
-        InventaireVue inventaireVue = new InventaireVue(inventaire, paneprincipal,joueur);
+        inventaire = new Inventaire();
+        InventaireVue inventaireVue = new InventaireVue(inventaire, paneprincipal);
         inventaireVue.placerInventaire(1);
         inventaire.ajoutercaseInventaire(new Pioche());
         inventaire.ajoutercaseInventaire(new Batte());
@@ -94,12 +86,15 @@ public class Controleur implements Initializable {
         inventaire.ajoutercaseInventaire(new Acier());
         inventaire.ajoutercaseInventaire(new Bâton());
         inventaire.ajoutercaseInventaire(new Etablis());
-        inventaire.ajoutercaseInventaire(new GiletDeProtection());
         inventaire.ajoutercaseInventaire(new Kebab());
         inventaire.ajoutercaseInventaire(new Capri_sun());
         inventaire.ajoutercaseInventaire(new Lit());
         inventaireVue.remplirpetitinvenatairevue();
         inventaireVue.creeLabel();
+
+        joueur = new Joueur(terrain, inventaire);
+        JoueurVue joueurVue = new JoueurVue(paneprincipal, joueur);
+        joueurVue.placerJoueur();
 
         barreVieVue = new BarreDeVieVue(paneprincipal, joueur);
         barreVieVue.placerBarreDeVie();
@@ -170,7 +165,6 @@ public class Controleur implements Initializable {
                     if (joueur.getX()-x<=64 && (Math.abs(joueur.getY()-y)<=64 || Math.abs(y-joueur.getY()-joueur.HAUTEUR_PERSO)<=64)) {
                         if (event.getButton() == MouseButton.PRIMARY){
                             joueur.frappeBloc(terrain.getBloc(x,y));
-                            System.out.println(terrain.getBloc(x,y).getPv());
                             terrain.supprimerTuiles(x, y);
                         } else if (event.getButton() == MouseButton.SECONDARY){
                             terrain.ajouterTuiles(x, y); 
@@ -180,7 +174,6 @@ public class Controleur implements Initializable {
                     if (x-joueur.LARGEUR_PERSO-joueur.getX()<=64 && (Math.abs(joueur.getY()-y)<=64 || Math.abs(y-joueur.getY()-joueur.HAUTEUR_PERSO)<=64)) {
                         if (event.getButton() == MouseButton.PRIMARY){
                             joueur.frappeBloc(terrain.getBloc(x,y));
-                            System.out.println(terrain.getBloc(x,y).getPv());
                             terrain.supprimerTuiles(x, y);
                         } else if (event.getButton() == MouseButton.SECONDARY){
                             terrain.ajouterTuiles(x, y);
@@ -206,8 +199,8 @@ public class Controleur implements Initializable {
                 if (event.getDeltaY() < 0)
                     inventaire.setSouris(inventaire.sourisProperty().get() - 1);
                 
-                rectangleinv.setLayoutX(32*inventaire.sourisProperty().get()+16);
-               
+                rectangleinv.setLayoutX(32 * inventaire.sourisProperty().get() + 16);
+                joueur.setObjetmain(inventaire.sourisProperty().get());
             }
             
         }); 
@@ -246,7 +239,8 @@ public class Controleur implements Initializable {
            
         });
         
-
+        initAnimation();
+        gameLoop.play();
 
     }
 

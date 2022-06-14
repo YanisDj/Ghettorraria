@@ -23,9 +23,9 @@ public class Bloc {
         return this.id;
     }
 
-    public final int getX() {
-        return xProperty.getValue();
-    }
+    // public final int getX() {
+    //     return xProperty.getValue();
+    // }
 
     public final void setX(int n) {
         xProperty.setValue(n);
