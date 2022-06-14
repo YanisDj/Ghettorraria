@@ -51,42 +51,55 @@ public class InventaireVue {
 
         if (selectionne instanceof Pioche) {
             objetmain.setImage(new Image("ressources/pioche.png"));
+            objetmain.setOpacity(1);
         }
         if (selectionne instanceof Couteau) {
             objetmain.setImage(new Image("ressources/couteau.png"));
+            objetmain.setOpacity(1);
         }
         if (selectionne instanceof Etablis) {
             objetmain.setImage(new Image("ressources/etabli.png"));
+            objetmain.setOpacity(1);
         }
         if (selectionne instanceof Batte) {
             objetmain.setImage(new Image("ressources/bate-de-baseball.png"));
+            objetmain.setOpacity(1);
         }
         if (selectionne instanceof Acier) {
             objetmain.setImage(new Image("ressources/bloc-acier.png"));
+            objetmain.setOpacity(0.2);
         }
         if (selectionne instanceof Bâton) {
             objetmain.setImage(new Image("ressources/baton.png"));
+            objetmain.setOpacity(1);
         }
         if (selectionne instanceof Pistolet) {
             objetmain.setImage(new Image("ressources/pistolet.png"));
+            objetmain.setOpacity(1);
         }
         if (selectionne instanceof Pierre) {
             objetmain.setImage(new Image("ressources/bloc-pierre.png"));
+            objetmain.setOpacity(0.2);
         }
         if (selectionne instanceof Terre) {
             objetmain.setImage(new Image("ressources/bloc-terre.png"));
+            objetmain.setOpacity(0.2);
         }
         if (selectionne instanceof Bois) {
             objetmain.setImage(new Image("ressources/bloc-bois.png"));
+            objetmain.setOpacity(0.2);
         }
         if (selectionne instanceof Etablis) {
             objetmain.setImage(new Image("ressources/etabli.png"));
+            objetmain.setOpacity(1);
         }
         if (selectionne instanceof Kebab) {
             objetmain.setImage(new Image("ressources/kebab.png"));
+            objetmain.setOpacity(1);
         }
         if (selectionne instanceof Capri_sun) {
             objetmain.setImage(new Image("ressources/capri-sun.png"));
+            objetmain.setOpacity(1);
         }
 
     }

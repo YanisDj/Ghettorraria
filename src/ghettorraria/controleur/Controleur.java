@@ -167,7 +167,7 @@ public class Controleur implements Initializable {
                             joueur.utiliser(terrain.getBloc(x,y));
                             terrain.supprimerTuiles(x, y);
                         } else if (event.getButton() == MouseButton.SECONDARY){
-                            terrain.ajouterTuiles(x, y); 
+                            joueur.ajouterTuiles(x, y, terrain);
                         }
                     }
                 } else {
@@ -176,7 +176,7 @@ public class Controleur implements Initializable {
                             joueur.utiliser(terrain.getBloc(x,y));
                             terrain.supprimerTuiles(x, y);
                         } else if (event.getButton() == MouseButton.SECONDARY){
-                            terrain.ajouterTuiles(x, y);
+                            joueur.ajouterTuiles(x, y, terrain);
                         }
                     }
                 }

@@ -64,9 +64,9 @@ public class Terrain {
         }
     }
 
-    public void ajouterTuiles(int x, int y){
+    public void ajouterTuiles(int x, int y, Bloc bloc){
         if (getBloc(x, y).getId() == -1 ) {
-            codesTuiles.set(x / 32 + (y / 32 * getLargeur()), new Bloc(1, x, y));
+            codesTuiles.set(x / 32 + (y / 32 * getLargeur()), new Bloc(bloc.getId(), x, y));
         }
     }
 

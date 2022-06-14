@@ -10,10 +10,7 @@ import javafx.beans.property.SimpleObjectProperty;
 
 public class Joueur extends Acteur {
 
-	private boolean gauche;
-	private boolean droite;
-	private boolean monte;
-	private boolean tombe;
+	private boolean gauche, droite, monte, tombe;
 	private int hauteurSaut, vitesseChute, vitesseSaut;
 	private Arme arme;
 	private Inventaire inventaire;
@@ -180,15 +177,22 @@ public class Joueur extends Acteur {
 	public void utiliser(Bloc bloc){
 		if (objetmain.getValue() instanceof Pioche){
 			bloc.pertPV(((Pioche)objetmain.getValue()).getAttaque());
-		} else {
-			bloc.pertPV(this.getDegatsAttaque());
 		}
-		if (objetmain.getValue() instanceof Nourriture && this.getPv() + (((Nourriture)objetmain.getValue()).getRestaurepv()) <= PVMAX){
-			this.incrementerPv(((Nourriture)objetmain.getValue()).getRestaurepv());
-			System.out.println(this.getPv());
-		} else {
-			this.incrementerPv(PVMAX - this.getPv());
-			System.out.println(this.getPv());
+		if (this.getPv() < PVMAX && objetmain.getValue() instanceof Nourriture){
+			if (this.getPv() + (((Nourriture)objetmain.getValue()).getRestaurepv()) <= PVMAX){
+				this.incrementerPv(((Nourriture)objetmain.getValue()).getRestaurepv());
+				System.out.println(this.getPv());
+			} else {
+				this.incrementerPv(PVMAX - this.getPv());
+				System.out.println(this.getPv());
+			}
+		}
+	}
+
+	public void ajouterTuiles(int x, int y, Terrain terrain){
+		System.out.println(objetmain.getValue() instanceof Bloc);
+		if (objetmain.getValue() instanceof Bloc){
+			terrain.ajouterTuiles(x, y, ((Bloc)objetmain.getValue()));
 		}
 	}
 
