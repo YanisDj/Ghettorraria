@@ -2,6 +2,7 @@ package ghettorraria.modele;
 
 import java.io.*;
 
+import ghettorraria.modele.item.Materiaux;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -64,9 +65,9 @@ public class Terrain {
         }
     }
 
-    public void ajouterTuiles(int x, int y, Bloc bloc){
-        if (getBloc(x, y).getId() == -1 ) {
-            codesTuiles.set(x / 32 + (y / 32 * getLargeur()), new Bloc(bloc.getId(), x, y));
+    public void ajouterTuiles(int x, int y, Materiaux m){
+        if (getBloc(x, y).getId() == -1) {
+            codesTuiles.set(x / 32 + (y / 32 * getLargeur()), new Bloc(m.getIdBloc(), x, y));
         }
     }
 

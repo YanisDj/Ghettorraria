@@ -20,6 +20,7 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import ghettorraria.modele.Bloc;
 import ghettorraria.modele.Inventaire;
 import ghettorraria.modele.Joueur;
 

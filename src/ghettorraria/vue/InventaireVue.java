@@ -50,56 +50,57 @@ public class InventaireVue {
         Objet selectionne = this.inventaire.getInv().get(indice).getObjet();
 
         if (selectionne instanceof Pioche) {
-            objetmain.setImage(new Image("ressources/pioche.png"));
             objetmain.setOpacity(1);
+            objetmain.setImage(new Image("ressources/pioche.png"));
         }
         if (selectionne instanceof Couteau) {
-            objetmain.setImage(new Image("ressources/couteau.png"));
             objetmain.setOpacity(1);
+            objetmain.setImage(new Image("ressources/couteau.png"));
         }
         if (selectionne instanceof Etablis) {
-            objetmain.setImage(new Image("ressources/etabli.png"));
             objetmain.setOpacity(1);
+            objetmain.setImage(new Image("ressources/etabli.png"));
         }
         if (selectionne instanceof Batte) {
-            objetmain.setImage(new Image("ressources/bate-de-baseball.png"));
             objetmain.setOpacity(1);
+            objetmain.setImage(new Image("ressources/bate-de-baseball.png"));
         }
         if (selectionne instanceof Acier) {
+            objetmain.setOpacity(0);
             objetmain.setImage(new Image("ressources/bloc-acier.png"));
-            objetmain.setOpacity(0.2);
         }
         if (selectionne instanceof Bâton) {
-            objetmain.setImage(new Image("ressources/baton.png"));
             objetmain.setOpacity(1);
+            objetmain.setImage(new Image("ressources/baton.png"));
         }
         if (selectionne instanceof Pistolet) {
-            objetmain.setImage(new Image("ressources/pistolet.png"));
             objetmain.setOpacity(1);
+            objetmain.setImage(new Image("ressources/pistolet.png"));
         }
         if (selectionne instanceof Pierre) {
+            objetmain.setOpacity(0);
             objetmain.setImage(new Image("ressources/bloc-pierre.png"));
-            objetmain.setOpacity(0.2);
         }
         if (selectionne instanceof Terre) {
+            objetmain.setOpacity(0);
             objetmain.setImage(new Image("ressources/bloc-terre.png"));
-            objetmain.setOpacity(0.2);
         }
         if (selectionne instanceof Bois) {
+            objetmain.setOpacity(0);
             objetmain.setImage(new Image("ressources/bloc-bois.png"));
-            objetmain.setOpacity(0.2);
         }
         if (selectionne instanceof Etablis) {
-            objetmain.setImage(new Image("ressources/etabli.png"));
             objetmain.setOpacity(1);
+            objetmain.setImage(new Image("ressources/etabli.png"));
         }
         if (selectionne instanceof Kebab) {
-            objetmain.setImage(new Image("ressources/kebab.png"));
             objetmain.setOpacity(1);
+            objetmain.setImage(new Image("ressources/kebab.png"));
         }
         if (selectionne instanceof Capri_sun) {
-            objetmain.setImage(new Image("ressources/capri-sun.png"));
             objetmain.setOpacity(1);
+            objetmain.setImage(new Image("ressources/capri-sun.png"));
+            
         }
 
     }

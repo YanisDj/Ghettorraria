@@ -2,7 +2,6 @@ package ghettorraria.modele.item;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleListProperty;
 
 public class CaseInventaire {
 	

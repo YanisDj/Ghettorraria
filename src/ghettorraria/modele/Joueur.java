@@ -2,6 +2,7 @@ package ghettorraria.modele;
 
 import ghettorraria.modele.item.Arme;
 import ghettorraria.modele.item.CaseInventaire;
+import ghettorraria.modele.item.Materiaux;
 import ghettorraria.modele.item.Nourriture;
 import ghettorraria.modele.item.Objet;
 import ghettorraria.modele.item.Pioche;
@@ -190,9 +191,8 @@ public class Joueur extends Acteur {
 	}
 
 	public void ajouterTuiles(int x, int y, Terrain terrain){
-		System.out.println(objetmain.getValue() instanceof Bloc);
-		if (objetmain.getValue() instanceof Bloc){
-			terrain.ajouterTuiles(x, y, ((Bloc)objetmain.getValue()));
+		if (((Materiaux)objetmain.getValue()) instanceof Materiaux){
+			terrain.ajouterTuiles(x, y, ((Materiaux)objetmain.getValue()));
 		}
 	}
 
