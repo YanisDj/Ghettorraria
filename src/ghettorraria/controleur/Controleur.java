@@ -226,6 +226,7 @@ public class Controleur implements Initializable {
             public void handle(MouseEvent event) {
                 x = (int) event.getX();
                 y = (int) event.getY();
+<<<<<<< HEAD
                 rectangle.setX(x / 32 * 32);
                 rectangle.setY(y / 32 * 32);
                 inventaireVue.getobjetmain().setX(x);
@@ -234,6 +235,15 @@ public class Controleur implements Initializable {
                 if (joueur.getX() > x) {
                     if (joueur.getX() - x <= 64 && (Math.abs(joueur.getY() - y) <= 64
                             || Math.abs(y - joueur.getY() - joueur.HAUTEUR_PERSO) <= 64)) {
+=======
+                rectangle.setX(x/32*32);
+                rectangle.setY(y/32*32);
+                inventaireVue.getobjetmain().setX((x/32)*32);
+                inventaireVue.getobjetmain().setY((y/32)*32);
+                
+                if (joueur.getX()>x) {
+                    if (joueur.getX()-x<=64 && (Math.abs(joueur.getY()-y)<=64 || Math.abs(y-joueur.getY()-joueur.HAUTEUR_PERSO)<=64)) {
+>>>>>>> 4c2a5509f142dd0c56cda88804e02704a40178d1
                         rectangle.setStroke(Color.BLUEVIOLET);
                     } else {
                         rectangle.setStroke(Color.ORANGERED);
