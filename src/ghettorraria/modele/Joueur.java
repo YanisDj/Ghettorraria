@@ -14,13 +14,9 @@ public class Joueur extends Acteur {
 	private boolean tombe;
 	private int hauteurSaut, vitesseChute, vitesseSaut;
 	private Arme arme;
-<<<<<<< HEAD
-	private ObjectProperty<Objet> objetmain;
-=======
 	private Inventaire inventaire;
 	private ObjectProperty objetmain;
 
->>>>>>> 4c2a5509f142dd0c56cda88804e02704a40178d1
 
 	private Bloc blocQuitte;
 
@@ -36,15 +32,10 @@ public class Joueur extends Acteur {
 		gauche = false;
 		monte = false;
 		tombe = false;
-<<<<<<< HEAD
 
-		this.objetmain = new SimpleObjectProperty<Objet>();
-		this.objetmain.addListener((obs, oldO, newO) -> {
-=======
 		inventaire=inventaire;
 		this.objetmain = new SimpleObjectProperty(null);
 		this.objetmain.addListener((obs,oldO,newO)-> {
->>>>>>> 4c2a5509f142dd0c56cda88804e02704a40178d1
 			System.out.println(newO);
 		});
 
