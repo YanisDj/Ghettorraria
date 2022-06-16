@@ -67,7 +67,6 @@ public class InventaireVue {
         }
         if (selectionne instanceof Acier) {
             objetmain.setOpacity(0);
-            objetmain.setImage(new Image("ressources/bloc-acier.png"));
         }
         if (selectionne instanceof Bâton) {
             objetmain.setOpacity(1);
@@ -79,15 +78,12 @@ public class InventaireVue {
         }
         if (selectionne instanceof Pierre) {
             objetmain.setOpacity(0);
-            objetmain.setImage(new Image("ressources/bloc-pierre.png"));
         }
         if (selectionne instanceof Terre) {
             objetmain.setOpacity(0);
-            objetmain.setImage(new Image("ressources/bloc-terre.png"));
         }
         if (selectionne instanceof Bois) {
             objetmain.setOpacity(0);
-            objetmain.setImage(new Image("ressources/bloc-bois.png"));
         }
         if (selectionne instanceof Etablis) {
             objetmain.setOpacity(1);
