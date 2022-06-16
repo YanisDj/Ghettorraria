@@ -15,27 +15,27 @@ public class Joueur extends Acteur {
 	private int hauteurSaut, vitesseChute, vitesseSaut;
 	private Arme arme;
 	private ObjectProperty<Objet> objetmain;
-	
+
 	private Bloc blocQuitte;
 
 	public final int LARGEUR_PERSO = 32;
 	public final int HAUTEUR_PERSO = 42;
 
 	public Joueur(Terrain terrain, Inventaire inventaire) {
-		super(100, 2, terrain, inventaire,5);
+		super(100, 2, terrain, inventaire, 5);
 		vitesseChute = this.getVitesse() * 3;
 		vitesseSaut = this.getVitesse() * 3;
-		hauteurSaut = 96+HAUTEUR_PERSO;
+		hauteurSaut = 96 + HAUTEUR_PERSO;
 		droite = false;
 		gauche = false;
 		monte = false;
 		tombe = false;
-		
+
 		this.objetmain = new SimpleObjectProperty<Objet>();
-		this.objetmain.addListener((obs,oldO,newO)-> {
+		this.objetmain.addListener((obs, oldO, newO) -> {
 			System.out.println(newO);
 		});
-		
+
 		arme = new Pioche();
 	}
 
@@ -64,7 +64,7 @@ public class Joueur extends Acteur {
 		}
 		if (this.monte) {
 			if (!blocHautSolide()) {
-				if (this.blocQuitte.getY()-this.getY() <= this.hauteurSaut) {
+				if (this.blocQuitte.getY() - this.getY() <= this.hauteurSaut) {
 					this.setY(this.getY() - vitesseSaut);
 				} else {
 					finsaut();
@@ -173,19 +173,25 @@ public class Joueur extends Acteur {
 		return distanceSol < hauteurSaut ? true : false;
 	}
 
-	public void frappeBloc(Bloc bloc){
-		if (arme == null){
-			bloc.pertPV(this.getDegatsAttaque());
-		} else {
-			bloc.pertPV(arme.getAttaque());
+	public void frappeBloc(int x, int y) {
+		Bloc bloc = this.getTerrain().getBloc(x, y);
+		if (this.getX() > x) {
+			if (this.getX() - x <= 64 && (Math.abs(this.getY() - y) <= 64 || Math.abs(y - this.getY() - this.HAUTEUR_PERSO) <= 64)) {
+				if (arme == null) {
+					bloc.pertPV(this.getDegatsAttaque());
+				} else {
+					bloc.pertPV(arme.getAttaque());
+				}
+			}
 		}
+
 	}
 
-	public void frappeActeur(Acteur a){
+	public void frappeActeur(Acteur a) {
 		a.decrementerPv(this.getDegatsAttaque());
 	}
 
-	public Arme getArme(){
+	public Arme getArme() {
 		return this.arme;
 	}
 
@@ -195,8 +201,7 @@ public class Joueur extends Acteur {
 
 	public void setObjetmain(Objet objetmain) {
 		this.objetmain.set(objetmain);
-		
-	}
 
+	}
 
 }

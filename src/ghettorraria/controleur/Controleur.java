@@ -28,8 +28,8 @@ import ghettorraria.modele.Terrain;
 import ghettorraria.modele.item.Acier;
 import ghettorraria.modele.item.Batte;
 import ghettorraria.modele.item.Bois;
-import ghettorraria.modele.item.Bâton;
-import ghettorraria.modele.item.Capri_sun;
+import ghettorraria.modele.item.Baton;
+import ghettorraria.modele.item.CapriSun;
 import ghettorraria.modele.item.Couteau;
 import ghettorraria.modele.item.Etablis;
 import ghettorraria.modele.item.GiletDeProtection;
@@ -80,7 +80,7 @@ public class Controleur implements Initializable {
         joueurVue.placerJoueur();
 
         inventaire = new Inventaire(joueur);
-        InventaireVue inventaireVue = new InventaireVue(inventaire, paneprincipal,joueur);
+        InventaireVue inventaireVue = new InventaireVue(inventaire, paneprincipal, joueur);
         inventaireVue.placerInventaire(1);
         inventaire.ajoutercaseInventaire(new Pioche());
         inventaire.ajoutercaseInventaire(new Batte());
@@ -90,18 +90,16 @@ public class Controleur implements Initializable {
         inventaire.ajoutercaseInventaire(new Terre());
         inventaire.ajoutercaseInventaire(new Bois());
         inventaire.ajoutercaseInventaire(new Acier());
-        inventaire.ajoutercaseInventaire(new Bâton());
+        inventaire.ajoutercaseInventaire(new Baton());
         inventaire.ajoutercaseInventaire(new Etablis());
         inventaire.ajoutercaseInventaire(new GiletDeProtection());
         inventaire.ajoutercaseInventaire(new Kebab());
-        inventaire.ajoutercaseInventaire(new Capri_sun());
+        inventaire.ajoutercaseInventaire(new CapriSun());
         inventaire.ajoutercaseInventaire(new Lit());
         inventaireVue.remplirpetitinvenatairevue();
-        
 
         barreVieVue = new BarreDeVieVue(paneprincipal, joueur);
         barreVieVue.placerBarreDeVie();
-
 
         // singe = new Mob(5, 19, terrain, joueur, inventaire);
         // MobVue singeVue = new MobVue(paneprincipal, singe);
@@ -128,7 +126,7 @@ public class Controleur implements Initializable {
                 if (key.getCode() == KeyCode.E) {
                     if (inventaireVue.getInvAffiche() == 1) {
                         inventaireVue.placerInventaire(2);
-                        
+
                     } else {
                         inventaireVue.placerInventaire(1);
                         inventaireVue.remplirpetitinvenatairevue();
@@ -164,38 +162,46 @@ public class Controleur implements Initializable {
                 x = (int) event.getX();
                 y = (int) event.getY();
 
-                if (joueur.getX()>x) {
-                    if (joueur.getX()-x<=64 && (Math.abs(joueur.getY()-y)<=64 || Math.abs(y-joueur.getY()-joueur.HAUTEUR_PERSO)<=64)) {
-                        if (event.getButton() == MouseButton.PRIMARY){
-                            joueur.frappeBloc(terrain.getBloc(x,y));
-                            System.out.println(terrain.getBloc(x,y).getPv());
+                if (event.getButton() == MouseButton.PRIMARY) {
+                    joueur.frappeBloc(x,y);
+                } else if (event.getButton() == MouseButton.SECONDARY) {
+                    joueur.poseBloc(x,y);
+                }
+
+                /* if (joueur.getX() > x) {
+                    if (joueur.getX() - x <= 64 && (Math.abs(joueur.getY() - y) <= 64
+                            || Math.abs(y - joueur.getY() - joueur.HAUTEUR_PERSO) <= 64)) {
+                        if (event.getButton() == MouseButton.PRIMARY) {
+                            joueur.frappeBloc(terrain.getBloc(x, y));
+                            System.out.println(terrain.getBloc(x, y).getPv());
                             terrain.supprimerTuiles(x, y);
-                        } else if (event.getButton() == MouseButton.SECONDARY){
+                        } else if (event.getButton() == MouseButton.SECONDARY) {
                             terrain.ajouterTuiles(x, y);
                         }
                     }
                 } else {
-                    if (x-joueur.LARGEUR_PERSO-joueur.getX()<=64 && (Math.abs(joueur.getY()-y)<=64 || Math.abs(y-joueur.getY()-joueur.HAUTEUR_PERSO)<=64)) {
-                        if (event.getButton() == MouseButton.PRIMARY){
-                            joueur.frappeBloc(terrain.getBloc(x,y));
-                            System.out.println(terrain.getBloc(x,y).getPv());
+                    if (x - joueur.LARGEUR_PERSO - joueur.getX() <= 64 && (Math.abs(joueur.getY() - y) <= 64
+                            || Math.abs(y - joueur.getY() - joueur.HAUTEUR_PERSO) <= 64)) {
+                        if (event.getButton() == MouseButton.PRIMARY) {
+                            joueur.frappeBloc(terrain.getBloc(x, y));
+                            System.out.println(terrain.getBloc(x, y).getPv());
                             terrain.supprimerTuiles(x, y);
-                        } else if (event.getButton() == MouseButton.SECONDARY){
+                        } else if (event.getButton() == MouseButton.SECONDARY) {
                             terrain.ajouterTuiles(x, y);
                         }
                     }
-                }
+                } */
             }
-        }); 
+        });
 
-        Rectangle rectangleinv = new Rectangle(32,32);
+        Rectangle rectangleinv = new Rectangle(32, 32);
         rectangleinv.setFill(Color.TRANSPARENT);
         rectangleinv.setStroke(Color.RED);
         rectangleinv.setStrokeWidth(3);
         paneprincipal.getChildren().add(rectangleinv);
-        rectangleinv.setLayoutX(32*inventaire.sourisProperty().get()+16);
+        rectangleinv.setLayoutX(32 * inventaire.sourisProperty().get() + 16);
 
-        Border1.addEventFilter(ScrollEvent.SCROLL,new EventHandler<ScrollEvent>() {
+        Border1.addEventFilter(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {
 
             @Override
             public void handle(ScrollEvent event) {
@@ -203,16 +209,14 @@ public class Controleur implements Initializable {
                     inventaire.setSouris(inventaire.sourisProperty().get() + 1);
                 if (event.getDeltaY() < 0)
                     inventaire.setSouris(inventaire.sourisProperty().get() - 1);
-                
-                rectangleinv.setLayoutX(32*inventaire.sourisProperty().get()+16);
-               
+
+                rectangleinv.setLayoutX(32 * inventaire.sourisProperty().get() + 16);
+
             }
-            
-        }); 
 
-    
+        });
 
-        Rectangle rectangle = new Rectangle(32,32);
+        Rectangle rectangle = new Rectangle(32, 32);
         rectangle.setFill(Color.TRANSPARENT);
         paneprincipal.getChildren().add(rectangle);
         Border1.addEventFilter(MouseEvent.MOUSE_MOVED, new EventHandler<MouseEvent>() {
@@ -222,36 +226,36 @@ public class Controleur implements Initializable {
             public void handle(MouseEvent event) {
                 x = (int) event.getX();
                 y = (int) event.getY();
-                rectangle.setX(x/32*32);
-                rectangle.setY(y/32*32);
+                rectangle.setX(x / 32 * 32);
+                rectangle.setY(y / 32 * 32);
                 inventaireVue.getobjetmain().setX(x);
                 inventaireVue.getobjetmain().setY(y);
-                
-                if (joueur.getX()>x) {
-                    if (joueur.getX()-x<=64 && (Math.abs(joueur.getY()-y)<=64 || Math.abs(y-joueur.getY()-joueur.HAUTEUR_PERSO)<=64)) {
+
+                if (joueur.getX() > x) {
+                    if (joueur.getX() - x <= 64 && (Math.abs(joueur.getY() - y) <= 64
+                            || Math.abs(y - joueur.getY() - joueur.HAUTEUR_PERSO) <= 64)) {
                         rectangle.setStroke(Color.BLUEVIOLET);
                     } else {
                         rectangle.setStroke(Color.ORANGERED);
                     }
                 } else {
-                    if (x-joueur.LARGEUR_PERSO-joueur.getX()<=64 && (Math.abs(joueur.getY()-y)<=64 || Math.abs(y-joueur.getY()-joueur.HAUTEUR_PERSO)<=64)) {
+                    if (x - joueur.LARGEUR_PERSO - joueur.getX() <= 64 && (Math.abs(joueur.getY() - y) <= 64
+                            || Math.abs(y - joueur.getY() - joueur.HAUTEUR_PERSO) <= 64)) {
                         rectangle.setStroke(Color.BLUEVIOLET);
                     } else {
                         rectangle.setStroke(Color.ORANGERED);
                     }
                 }
             }
-           
-        });
-        
 
+        });
 
     }
 
     private void initAnimation() {
         gameLoop = new Timeline();
         gameLoop.setCycleCount(Timeline.INDEFINITE);
-        
+
         KeyFrame kf = new KeyFrame(
                 // on définit le FPS (nbre de frame par seconde)
                 Duration.seconds(0.017),

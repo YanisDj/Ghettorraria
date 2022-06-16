@@ -8,8 +8,8 @@ import ghettorraria.modele.Joueur;
 import ghettorraria.modele.item.Acier;
 import ghettorraria.modele.item.Batte;
 import ghettorraria.modele.item.Bois;
-import ghettorraria.modele.item.Bâton;
-import ghettorraria.modele.item.Capri_sun;
+import ghettorraria.modele.item.Baton;
+import ghettorraria.modele.item.CapriSun;
 import ghettorraria.modele.item.CaseInventaire;
 import ghettorraria.modele.item.Couteau;
 import ghettorraria.modele.item.Etablis;
@@ -59,7 +59,7 @@ public class InventaireVue {
         if (((CaseInventaire) newV).getObjet() instanceof Acier) {
             objetmain.setImage(new Image("ressources/bloc-acier.png"));
         }
-        if (((CaseInventaire) newV).getObjet() instanceof Bâton) {
+        if (((CaseInventaire) newV).getObjet() instanceof Baton) {
             objetmain.setImage(new Image("ressources/baton.png"));
         }
         if (((CaseInventaire) newV).getObjet() instanceof Pistolet) {
@@ -83,7 +83,7 @@ public class InventaireVue {
         if (((CaseInventaire) newV).getObjet() instanceof Kebab) {
             objetmain.setImage(new Image("ressources/kebab.png"));
         }
-        if (((CaseInventaire) newV).getObjet() instanceof Capri_sun) {
+        if (((CaseInventaire) newV).getObjet() instanceof CapriSun) {
             objetmain.setImage(new Image("ressources/capri-sun.png"));
         }
 
@@ -149,7 +149,7 @@ public class InventaireVue {
                 if (this.inventaire.getInv().get(i).getObjet() instanceof Acier) {
                     objetinv = new ImageView("ressources/inventaire/bloc-acier.png");
                 }
-                if (this.inventaire.getInv().get(i).getObjet() instanceof Bâton) {
+                if (this.inventaire.getInv().get(i).getObjet() instanceof Baton) {
                     objetinv = new ImageView("ressources/inventaire/baton.png");
                 }
                 if (this.inventaire.getInv().get(i).getObjet() instanceof Pistolet) {
@@ -173,7 +173,7 @@ public class InventaireVue {
                 if (this.inventaire.getInv().get(i).getObjet() instanceof Kebab) {
                     objetinv = new ImageView("ressources/inventaire/kebab.png");
                 }
-                if (this.inventaire.getInv().get(i).getObjet() instanceof Capri_sun) {
+                if (this.inventaire.getInv().get(i).getObjet() instanceof CapriSun) {
                     objetinv = new ImageView("ressources/inventaire/capri-sun.png");
                 }
                 objetinv.setLayoutX(i * 32 + 22);
