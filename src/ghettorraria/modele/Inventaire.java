@@ -24,9 +24,9 @@ public class Inventaire {
 
     }
 
-    public Objet getObjet(String id) {
+    public Objet getObjet(int id) {
         for (int i = 0; i < this.inventaire.size(); i++)
-            if (inventaire.get(i).getObjet().getId().equalsIgnoreCase(id))
+            if (inventaire.get(i).getObjet().getId()== id )
                 return inventaire.get(i).getObjet();
         return null;
     }
@@ -53,10 +53,23 @@ public class Inventaire {
 
     public int ajouterQuantite(int bloc) {
         for (int i=0; i<inventaire.size();i++){
+            if(inventaire.get(i).getObjet().getId()==bloc ){
+                inventaire.get(i).ajouterQuantite();
+            }
+        }
+        return 0;
+        
+    }
 
+    public int enleverQuantite(int bloc) {
+        for (int i=0; i<inventaire.size();i++){
+            if(inventaire.get(i).getObjet().getId()==bloc ){
+                inventaire.get(i).enleverQuantite();
+            }
         }
         return 0;
     }
+
     
 
 

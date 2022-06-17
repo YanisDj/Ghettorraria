@@ -4,7 +4,8 @@ public class Nourriture extends Objet {
 
 	private int restaurepv;
 
-	public Nourriture(int restaure) {
+	public Nourriture(int id,int restaure) {
+		super(id);
 		this.restaurepv = restaure;
 	}
 

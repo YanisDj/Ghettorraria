@@ -2,8 +2,8 @@ package ghettorraria.modele.item;
 
 public class Mur extends Avancée implements Construire{
 
-	public Mur(String nom) {
-		// TODO Auto-generated constructor stub
+	public Mur() {
+		super(28);
 	}
 
 	@Override

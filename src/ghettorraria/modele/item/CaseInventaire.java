@@ -32,8 +32,15 @@ public class CaseInventaire {
 		return quantiteProperty.getValue();
 	}
 
+	
 	public void ajouterQuantite(){
 		quantiteProperty.set(getQuantite()+1);
+		
 	}
+
+
+    public void enleverQuantite() {
+		quantiteProperty.set(getQuantite()-1);
+    }
 
 }

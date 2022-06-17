@@ -4,25 +4,16 @@ import java.util.UUID;
 
 public class Objet {
 
-    private String nom;
-    private String id;
+    private int id;
   
 
-    public Objet(){
+    public Objet(int id){
+        this.id=id;
     }
 
 
-
-	public String setId(){
-        return UUID.randomUUID().toString();
-    }
-
-    public String getId(){
+    public int getId(){
         return this.id;
     }
 
-    public String getNom(){
-        return this.nom;
-    }
-    
 }

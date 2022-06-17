@@ -3,7 +3,7 @@ package ghettorraria.modele.item;
 public class Etablis extends Avancée implements Construire{
 
 	public Etablis() {
-		// TODO Auto-generated constructor stub
+		super(25);
 	}
 
 	@Override

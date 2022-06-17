@@ -2,8 +2,8 @@ package ghettorraria.modele.item;
 
 public class Avancée extends Objet{
     
-    public Avancée(){
-        
+    public Avancée(int id){
+        super(id);
     }
 
 }

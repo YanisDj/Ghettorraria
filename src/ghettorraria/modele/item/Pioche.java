@@ -3,7 +3,7 @@ package ghettorraria.modele.item;
 public class Pioche extends Arme implements Construire{
 
 	public Pioche() {
-		super(5, 1);
+		super(29,5, 1);
 		// TODO Auto-generated constructor stub
 	}
 

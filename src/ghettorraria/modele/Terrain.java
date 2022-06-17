@@ -3,6 +3,7 @@ package ghettorraria.modele;
 import java.io.*;
 
 import ghettorraria.modele.item.Materiaux;
+import ghettorraria.modele.item.Objet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -57,20 +58,23 @@ public class Terrain {
         return this.codesTuiles.get(colonne);
     }
 
-    public int supprimerTuiles(int x, int y) {
+    public int supprimerTuiles(int x, int y,Inventaire inventaire) {
         int bloc = getBloc(x, y).getId();
         if (getBloc(x, y).getId() != -1 ) {
             if (getBloc(x, y).getPv() <= 0){
                 codesTuiles.set(x / 32 + (y / 32 * getLargeur()), new Bloc(-1, x, y));
+                inventaire.getInv().get(inventaire.ajouterQuantite(bloc));
             }
         }
         return bloc;
     }
 
-    public void ajouterTuiles(int x, int y, Materiaux m){
+    public void ajouterTuiles(int x, int y, Objet m,Inventaire inventaire){
+        int bloc = getBloc(x, y).getId();
         if (getBloc(x, y).getId() == -1 ) {
-            codesTuiles.set(x / 32 + (y / 32 * getLargeur()), new Bloc(m.getIdBloc(), x, y));
+            codesTuiles.set(x / 32 + (y / 32 * getLargeur()), new Bloc(m.getId(), x, y));
         }
+        inventaire.getInv().get(inventaire.enleverQuantite(bloc));
     }
 
     public int getIndiceHauteur(int x){

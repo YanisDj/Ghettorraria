@@ -3,7 +3,7 @@ package ghettorraria.modele.item;
 public class Lit extends Avancée implements Construire{
 
 	public Lit() {
-		// TODO Auto-generated constructor stub
+		super(27);
 	}
 
 	@Override

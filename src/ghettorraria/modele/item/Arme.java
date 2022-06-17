@@ -5,8 +5,8 @@ public class Arme extends Objet{
 	private int attaque;
 	private int porter;
 
-	public Arme(int attaque,int porter) {
-		super();
+	public Arme(int id,int attaque,int porter) {
+		super(id);
 		this.attaque = attaque;
 		this.porter = porter;
 	}
