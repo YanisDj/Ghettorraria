@@ -36,7 +36,7 @@ public class Inventaire {
     }
 
     public void ajoutercaseInventaire(Objet objet) {
-        this.inventaire.add(new CaseInventaire(1, objet));
+        this.inventaire.add(new CaseInventaire(0, objet));
     }
 
     public IntegerProperty sourisProperty() {
@@ -46,6 +46,18 @@ public class Inventaire {
     public void setSouris(int souris) {
         this.souris.set(souris);
     }
+    
+    public int getSouris(){
+        return souris.getValue();
+    }
+
+    public int ajouterQuantite(int bloc) {
+        for (int i=0; i<inventaire.size();i++){
+
+        }
+        return 0;
+    }
+    
 
 
 }

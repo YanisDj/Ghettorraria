@@ -166,7 +166,8 @@ public class Controleur implements Initializable {
                     if (joueur.getX()-x<=64 && (Math.abs(joueur.getY()-y)<=64 || Math.abs(y-joueur.getY()-joueur.HAUTEUR_PERSO)<=64)) {
                         if (event.getButton() == MouseButton.PRIMARY){
                             joueur.utiliser(terrain.getBloc(x,y));
-                            terrain.supprimerTuiles(x, y);
+                            int bloc = terrain.supprimerTuiles(x, y);
+                            inventaire.getInv().get(inventaire.ajouterQuantite(bloc));
                         } else if (event.getButton() == MouseButton.SECONDARY){
                             joueur.ajouterTuiles(x, y, terrain);
                         }
@@ -176,6 +177,7 @@ public class Controleur implements Initializable {
                         if (event.getButton() == MouseButton.PRIMARY){
                             joueur.utiliser(terrain.getBloc(x,y));
                             terrain.supprimerTuiles(x, y);
+                            inventaire.getInv().get(inventaire.getSouris()).ajouterQuantite();
                         } else if (event.getButton() == MouseButton.SECONDARY){
                             joueur.ajouterTuiles(x, y, terrain);
                         }

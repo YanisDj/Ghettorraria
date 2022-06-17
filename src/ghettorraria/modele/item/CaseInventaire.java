@@ -10,8 +10,7 @@ public class CaseInventaire {
 
 	public CaseInventaire(int quantite,Objet objet) {
 		this.objet = objet;
-		
-		this.quantiteProperty=new SimpleIntegerProperty(quantite);
+		this.quantiteProperty=new SimpleIntegerProperty();
 	}
 
 	
@@ -29,6 +28,12 @@ public class CaseInventaire {
 	public void setQuantiteProperty(int quantite){
 		this.quantiteProperty.set(quantite);
 	}
+	public int getQuantite(){
+		return quantiteProperty.getValue();
+	}
 
+	public void ajouterQuantite(){
+		quantiteProperty.set(getQuantite()+1);
+	}
 
 }

@@ -9,7 +9,6 @@ public class Objet {
   
 
     public Objet(){
-        this.id = this.setId();
     }
 
 
@@ -25,4 +24,5 @@ public class Objet {
     public String getNom(){
         return this.nom;
     }
+    
 }

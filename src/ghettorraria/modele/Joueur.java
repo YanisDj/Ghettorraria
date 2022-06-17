@@ -191,7 +191,7 @@ public class Joueur extends Acteur {
 	}
 
 	public void ajouterTuiles(int x, int y, Terrain terrain){
-		if (((Materiaux)objetmain.getValue()) instanceof Materiaux){
+		if ((objetmain.getValue()) instanceof Materiaux && inventaire.getInv().get(inventaire.getSouris()).getQuantite()>0){
 			terrain.ajouterTuiles(x, y, ((Materiaux)objetmain.getValue()));
 		}
 	}

@@ -57,16 +57,18 @@ public class Terrain {
         return this.codesTuiles.get(colonne);
     }
 
-    public void supprimerTuiles(int x, int y) {
+    public int supprimerTuiles(int x, int y) {
+        int bloc = getBloc(x, y).getId();
         if (getBloc(x, y).getId() != -1 ) {
             if (getBloc(x, y).getPv() <= 0){
                 codesTuiles.set(x / 32 + (y / 32 * getLargeur()), new Bloc(-1, x, y));
             }
         }
+        return bloc;
     }
 
     public void ajouterTuiles(int x, int y, Materiaux m){
-        if (getBloc(x, y).getId() == -1) {
+        if (getBloc(x, y).getId() == -1 ) {
             codesTuiles.set(x / 32 + (y / 32 * getLargeur()), new Bloc(m.getIdBloc(), x, y));
         }
     }
