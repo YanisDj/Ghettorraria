@@ -1,7 +1,7 @@
 package ghettorraria.test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+
 
 import org.junit.*;
 
@@ -16,8 +16,8 @@ public class JoueurTest {
 
     //initialisation des variables
     Terrain terrain = new Terrain();
-    Joueur joueur = new Joueur(terrain);
-    Bloc bloc = new Bloc(1, 0, 0);
+    Joueur joueur = new Joueur(terrain, null);
+    Bloc bloc = new Bloc(1,0);
     Pioche pioche = new Pioche();
     CapriSun caprisun = new CapriSun();
     Kebab kebab = new Kebab();

@@ -1,5 +1,6 @@
-package ghettorraria.modele;
+package ghettorraria.controleur;
 
+import ghettorraria.modele.Bloc;
 import ghettorraria.vue.InventaireVue;
 import ghettorraria.vue.TerrainVue;
 import javafx.collections.ListChangeListener;
@@ -17,13 +18,6 @@ public class Observateur implements ListChangeListener<Bloc> {
 
     @Override
     public void onChanged(Change<? extends Bloc> blocs) {
-
-        // while (bloc.next()) {
-        //     if (bloc.wasAdded()) {
-        //         int indice = bloc.getFrom();
-        //         Terrainvue.ajouterTuileTerrain(indice, bloc.);
-        //     }
-        // }
         while (blocs.next()) {
             for (Bloc bloc : blocs.getAddedSubList()){
                 Terrainvue.modifierTuileTerrain(blocs.getFrom(), bloc.getId());

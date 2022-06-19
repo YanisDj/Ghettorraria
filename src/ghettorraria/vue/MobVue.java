@@ -16,11 +16,16 @@ public class MobVue {
     }
 
     public void placerMob(){
-        Image imageMob = new Image("ressources/singe.png");
+        Image imageMob = new Image("ressources/"+mob.getNom()+".png");
         ImageView mobMap = new ImageView(imageMob);
         mobMap.translateXProperty().bind(mob.xProperty());
         mobMap.translateYProperty().bind(mob.yProperty());
-        mob.xProperty().setValue(320);
+        if (mob.getNom().equals("singe")) {
+            mob.xProperty().setValue(320);
+        } else {
+            mob.xProperty().setValue(Math.random()*1800);
+        }
+       
         
         border.getChildren().add(mobMap);
     }
