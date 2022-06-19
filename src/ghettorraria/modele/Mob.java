@@ -1,67 +1,121 @@
 package ghettorraria.modele;
 
-public class Mob extends Acteur{
+import ghettorraria.modele.item.Arme;
+
+public class Mob extends Acteur {
 
     private Joueur joueur;
-    private BFS bfs;
+    private boolean droite;
+    private boolean gauche;
+    private boolean monte;
+    private boolean tombe;
+    private Bloc blocQuitte;
+    private int hauteurSaut;
+    private String nom;
 
-    public Mob(int pv, int vitesse, Terrain terrain, Joueur joueur,Inventaire inventaire, int degatsAttaque) {
-        super(pv, vitesse, terrain, inventaire, degatsAttaque);
+    public Mob(String nom,int pv, int vitesse, Terrain terrain, Joueur joueur, Inventaire inventaire, int degatsAttaque,
+            Arme arme, int hauteurMob) {
+        super(pv, vitesse, terrain, inventaire, degatsAttaque, arme, 32, hauteurMob);
         this.joueur = joueur;
-        this.bfs = new BFS(joueur, terrain, 10);
+        this.nom = nom;
+        this.hauteurSaut = 96 + getHauteurPerso();
+        droite = false;
+        gauche = false;
+        monte = false;
+        tombe = false;
     }
 
-    public void deplacer(){
-        int xDest;
-        bfs.algoBfs();
-        //bfs.afficherBFS();
-        if (bfs.estProche(joueur, 8)){
-            if (bfs.droite(convert(this.getX()), convert(this.getY()))){
-                System.out.println("droite");
-                if (!blocDroiteSolide()) {
-                    System.out.println("je passe");
-                    this.setX(this.getX() + this.getVitesse());
+    public void deplacementgaucheOui() {
+        this.gauche = true;
+        this.droite = false;
+    }
+
+    public void deplacementdroiteOui() {
+        this.droite = true;
+        this.gauche = false;
+    }
+
+    public void deplacementdroiteNon() {
+        this.droite = false;
+    }
+
+    public void deplacementgaucheNon() {
+        this.gauche = false;
+    }
+
+    public void saut() {
+        if (blocBasSolide()) {
+            Bloc bloc1 = this.getTerrain().getBloc(this.getX(), this.getY() + this.getHauteurPerso() + 5);
+            Bloc bloc2 = this.getTerrain().getBloc(this.getX() + this.getLargeurPerso(),
+                    this.getY() + this.getHauteurPerso() + 5);
+            this.blocQuitte = bloc1.estSolide() ? bloc1 : bloc2;
+            this.monte = true;
+            this.tombe = false;
+        }
+    }
+
+    public void finsaut() {
+        this.monte = false;
+        this.tombe = true;
+    }
+
+    public void sensDeplacements() {
+        if (Math.abs(this.getX() - joueur.getX()) <= (5 * 32) && Math.abs(this.getX() - joueur.getX()) >= 35
+                && Math.abs(this.getY() - joueur.getY()) <= (5 * 32)) {
+            if (this.getX() < joueur.getX()) {
+                deplacementdroiteOui();
+                deplacementgaucheNon();
+                if (blocDroiteSolide()) {
+                    saut();
+                }
+            } else if (this.getX() > joueur.getX()) {
+                deplacementdroiteNon();
+                deplacementgaucheOui();
+                if (blocGaucheSolide()) {
+                    saut();
                 }
             }
-            else if (bfs.gauche(convert(this.getX()), convert(this.getY()))){
-                xDest = this.getX() - getVitesse();
-                if (!blocGaucheSolide()) {
-                    this.setX(xDest);
-                }
+
+        } else {
+            deplacementdroiteNon();
+            deplacementgaucheNon();
+            finsaut();
+        }
+
+    }
+
+    public void deplacer() {
+        sensDeplacements();
+        if (this.gauche) {
+            if (!blocGaucheSolide()) {
+                this.setX(this.getX() - this.getVitesse());
             }
-            else if (bfs.saute(convert(this.getX()), convert(this.getY()))){
-                
+        }
+        if (this.droite) {
+            if (!blocDroiteSolide()) {
+                this.setX(this.getX() + this.getVitesse());
+            }
+        }
+        if (this.monte) {
+            if (!blocHautSolide()) {
+                if (this.blocQuitte.getY() - this.getY() <= this.hauteurSaut) {
+                    this.setY(this.getY() - this.getVitesseSaut());
+                } else {
+                    finsaut();
+                }
+            } else {
+                finsaut();
+            }
+        }
+        if (this.tombe) {
+            if (!blocBasSolide()) {
+                this.setY(this.getY() + this.getVitesseChute());
             }
         }
     }
 
-    public boolean blocDroiteSolide() {
-		return this.getTerrain().getBloc(this.getX() + 32, this.getY()).estSolide();
-	}
-
-	public boolean blocGaucheSolide() {
-		return this.getTerrain().getBloc(this.getX(), this.getY()).estSolide();
-	}
-
-	public boolean blocBasSolide() {
-		return this.getTerrain().getBloc(this.getX(), this.getY() + 42).estSolide();
-	}
-
-	public boolean blocHautSolide() {
-		return this.getTerrain().getBloc(this.getX(), this.getY()).estSolide();
-	}
-
-    public int convert(int a){
-        return a/32;
+    public String getNom() {
+        return nom;
     }
 
-	@Override
-	public void deplacementgaucheOui() {
-		
-	}
-
-	@Override
-	public void deplacementdroiteOui() {
-		
-	}
 }

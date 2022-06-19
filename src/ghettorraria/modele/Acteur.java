@@ -1,5 +1,6 @@
 package ghettorraria.modele;
 
+import ghettorraria.modele.item.Arme;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -11,15 +12,25 @@ public abstract class  Acteur {
 	private Terrain terrain;
 	private Inventaire inventaire;
 	private int degatsAttaque;
+	private Arme arme;
+	private int LARGEUR_PERSO;
+	private int HAUTEUR_PERSO;
+	private int vitesseChute;
+	private int vitesseSaut;
     
-    public Acteur(int pv,int vitesse, Terrain terrain, Inventaire inventaire, int degatsAttaque) {
+    public Acteur(int pv,int vitesse, Terrain terrain, Inventaire inventaire, int degatsAttaque, Arme arme, int largeurActeur, int hauteurActeur) {
         this.pv = pv;
         this.x = new SimpleIntegerProperty();
 		this.y = new SimpleIntegerProperty();
 		this.vitesse = vitesse;
+		this.vitesseSaut = getVitesse()*3;
+		this.vitesseChute = getVitesse()*3;
 		this.terrain = terrain;
 		this.inventaire = inventaire;
 		this.degatsAttaque = degatsAttaque;
+		this.arme = arme;
+		this.LARGEUR_PERSO = largeurActeur;
+		this.HAUTEUR_PERSO = hauteurActeur;
     }
 
     public final int getX() {
@@ -66,10 +77,87 @@ public abstract class  Acteur {
 		return this.inventaire;
 	}
 
+	public Arme getArme() {
+		return this.arme;
+	}
+
 	public int getDegatsAttaque(){
 		return this.degatsAttaque;
 	}
+
+	public int getHauteurPerso(){
+		return this.HAUTEUR_PERSO;
+	}
+
+	public int getLargeurPerso(){
+		return this.LARGEUR_PERSO;
+	}
+
+	public int getVitesseSaut(){
+		return this.vitesseSaut;
+	}
+
+	public int getVitesseChute(){
+		return this.vitesseChute;
+	}
 	
-	public abstract void deplacementgaucheOui();
-	public abstract void deplacementdroiteOui();
+	public boolean blocDroiteSolide() {
+		boolean solide;
+		if (this.getTerrain().getBloc(this.getX() + LARGEUR_PERSO, this.getY() + 1).estSolide()) {
+			solide = true;
+		} else if (this.getX() + LARGEUR_PERSO == this.getTerrain().getLargeur() * 32) {
+			solide = true;
+		} else if (this.getTerrain().getBloc(this.getX() + LARGEUR_PERSO, this.getY() + HAUTEUR_PERSO - 1)
+				.estSolide()) {
+			solide = true;
+		} else {
+			solide = false;
+		}
+		return solide;
+	}
+
+	public boolean blocGaucheSolide() {
+		boolean solide;
+		if (this.getTerrain().getBloc(this.getX() - 1, this.getY() + 1).estSolide()) {
+			solide = true;
+		} else if (this.getX() == 0) {
+			solide = true;
+		} else if (this.getTerrain().getBloc(this.getX() - 1, this.getY() + HAUTEUR_PERSO - 1).estSolide()) {
+			solide = true;
+		} else {
+			solide = false;
+		}
+		return solide;
+	}
+
+	public boolean blocBasSolide() {
+		boolean solide;
+		if (this.getTerrain().getBloc(this.getX() + 1, this.getY() + HAUTEUR_PERSO + vitesseChute).estSolide()) {
+			solide = true;
+		} else if (this.getY() == this.getTerrain().getHauteur() * 32) {
+			solide = true;
+		} else if (this.getTerrain()
+				.getBloc(this.getX() + LARGEUR_PERSO - 1, this.getY() + HAUTEUR_PERSO + vitesseChute)
+				.estSolide()) {
+			solide = true;
+		} else {
+			solide = false;
+		}
+		return solide;
+	}
+
+	public boolean blocHautSolide() {
+		boolean solide;
+		if (this.getTerrain().getBloc(this.getX() + 1, this.getY() - vitesseSaut).estSolide()) {
+			solide = true;
+		} else if (this.getY() == 0) {
+			solide = true;
+		} else if (this.getTerrain().getBloc(this.getX() + LARGEUR_PERSO - 1, this.getY() - vitesseSaut).estSolide()) {
+			solide = true;
+		} else {
+			solide = false;
+		}
+		return solide;
+	}
+
 }

@@ -36,7 +36,7 @@ public class InventaireVue {
         this.paneCase = paneCase;
         this.inventaire = inventaire;
         this.joueur = joueur;
-        this.joueur.objetmainObjectProperty().addListener((obs, oldV, newV) -> extracted(newV));
+        this.joueur.getObjetmainProperty().addListener((obs, oldV, newV) -> extracted(newV));
         paneCase.getChildren().add((objetmain));
         this.invAffiche = 1;
 

@@ -10,11 +10,11 @@ public class Coord {
         this.y = y;
     }
 
-    public int getCoordX(){
+    public int getX(){
         return x;
     }
 
-    public int getCoordY(){
+    public int getY(){
         return y;
     }
 }

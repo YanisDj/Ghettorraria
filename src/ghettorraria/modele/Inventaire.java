@@ -11,12 +11,10 @@ public class Inventaire {
 
     private ObservableList<CaseInventaire> inventaire;
     private IntegerProperty souris;
-    private Joueur joueur;
-
+    
     public Inventaire(Joueur joueur) {
         this.inventaire = FXCollections.observableArrayList();
         this.souris = new SimpleIntegerProperty(0);
-        this.joueur = joueur;
         this.souris.addListener((obs, oldV, newV) -> {
             if (newV.intValue() > 12)
                 this.souris.set(0);
