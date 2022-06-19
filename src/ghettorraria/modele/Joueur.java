@@ -14,6 +14,7 @@ public class Joueur extends Acteur {
 	private boolean gauche, droite, monte, tombe;
 	private int hauteurSaut, vitesseChute, vitesseSaut;
 	private Arme arme;
+	private Mob mob;
 	private Inventaire inventaire;
 	private ObjectProperty objetmain;
 
@@ -33,6 +34,7 @@ public class Joueur extends Acteur {
 		gauche = false;
 		monte = false;
 		tombe = false;
+		this.mob = null;
 		this.inventaire = inventaire;
 		this.objetmain = new SimpleObjectProperty(null);
 		this.objetmain.addListener((obs,oldO,newO)-> {});
@@ -192,6 +194,9 @@ public class Joueur extends Acteur {
 				this.incrementerPv(PVMAX - this.getPv());
 				System.out.println(this.getPv());
 			}
+		}
+		if (objetmain.getValue() instanceof Arme){
+			mob.decrementerPv(((Arme)objetmain.getValue()).getAttaque());
 		}
 	}
 
