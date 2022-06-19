@@ -148,10 +148,10 @@ public class Controleur implements Initializable {
                     }
                 }
                 if (key.getCode() == KeyCode.SHIFT) {
-                    if (Math.abs(chien.getX()-joueur.getX())<=joueur.getArme().getPortee() && Math.abs(chien.getY()-joueur.getY())<=joueur.getArme().getPortee()) {
+                    if (Math.abs(chien.getX()-joueur.getX())<=joueur.getArme().getPortee() && Math.abs(chien.getY()-joueur.getY()) <= 64) {
                         joueur.frappeActeur(chien);
                     }
-                    if (Math.abs(voyou.getX()-joueur.getX())<=joueur.getArme().getPortee() && Math.abs(voyou.getY()-joueur.getY())<=joueur.getArme().getPortee()) {
+                    if (Math.abs(voyou.getX()-joueur.getX())<=joueur.getArme().getPortee() && Math.abs(voyou.getY()-joueur.getY()) <= 64) {
                         joueur.frappeActeur(voyou);
                     }
                 }
