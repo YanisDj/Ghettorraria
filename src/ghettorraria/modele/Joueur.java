@@ -159,16 +159,13 @@ public class Joueur extends Acteur {
 	public void utiliser(Bloc bloc){
 		if (objetmain.getValue() instanceof Pioche ){
 			bloc.pertPV(((Pioche)objetmain.getValue()).getAttaque());
-			System.out.println(bloc.getPv());
 		
 		}
 		if (this.getPv() < PVMAX && objetmain.getValue() instanceof Nourriture && inventaire.getInv().get(inventaire.getSouris()).getQuantite()>0){
 			if (this.getPv() + (((Nourriture)objetmain.getValue()).getRestaurepv()) <= PVMAX){
 				this.incrementerPv(((Nourriture)objetmain.getValue()).getRestaurepv());
-				System.out.println(this.getPv());
 			} else {
 				this.incrementerPv(PVMAX - this.getPv());
-				System.out.println(this.getPv());
 			}
 		}
 	}
@@ -202,7 +199,9 @@ public class Joueur extends Acteur {
 	}
 
 	public void frappeActeur(Acteur a) {
-		a.decrementerPv(this.getDegatsAttaque());
+		if (objetmain.getValue() instanceof Arme){
+			a.decrementerPv(((Arme)objetmain.getValue()).getAttaque());
+		}
 	}
 
 

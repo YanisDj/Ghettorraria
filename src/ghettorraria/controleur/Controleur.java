@@ -128,6 +128,13 @@ public class Controleur implements Initializable {
             }
         });
 
+        this.chien.getPvProperty().addListener((obs, oldV, newV) -> {
+            if (newV.intValue() <= 0){
+                
+            }
+        });
+
+
         Border1.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
 
             @Override
@@ -143,11 +150,13 @@ public class Controleur implements Initializable {
                     joueur.saut();
                 }
                 if (key.getCode() == KeyCode.SHIFT) {
-                    if (Math.abs(chien.getX()-joueur.getX())<=joueur.getArme().getPortee() && Math.abs(chien.getY()-joueur.getY())<=joueur.getArme().getPortee()) {
+                    if (Math.abs(chien.getX()-joueur.getX()) <= 64 && Math.abs(chien.getY()-joueur.getY()) <= 64) {
                         joueur.frappeActeur(chien);
+                        System.out.println(chien.getPv());
                     }
-                    if (Math.abs(voyou.getX()-joueur.getX())<=joueur.getArme().getPortee() && Math.abs(voyou.getY()-joueur.getY())<=joueur.getArme().getPortee()) {
+                    if (Math.abs(voyou.getX()-joueur.getX()) <= 64 && Math.abs(voyou.getY()-joueur.getY()) <= 64) {
                         joueur.frappeActeur(voyou);
+                        System.out.println(chien.getPv());
                     }
                 }
 
