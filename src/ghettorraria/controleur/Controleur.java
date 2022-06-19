@@ -23,7 +23,6 @@ import java.util.ResourceBundle;
 import ghettorraria.modele.Inventaire;
 import ghettorraria.modele.Joueur;
 import ghettorraria.modele.Mob;
-import ghettorraria.modele.Observateur;
 import ghettorraria.modele.Terrain;
 import ghettorraria.modele.item.Acier;
 import ghettorraria.modele.item.Batte;
@@ -99,15 +98,15 @@ public class Controleur implements Initializable {
         barreVieVue = new BarreDeVieVue(paneprincipal, joueur);
         barreVieVue.placerBarreDeVie();
 
-        singe = new Mob("singe",25, 3, terrain, joueur, null, 0, null, 32);
+        singe = new Mob("singe", 25, 3, terrain, joueur, null, 0, null, 32);
         MobVue singeVue = new MobVue(paneprincipal, singe);
         singeVue.placerMob();
 
-        voyou = new Mob("voyou",70, 1, terrain, joueur, null, 5, null, 32);
+        voyou = new Mob("voyou", 70, 1, terrain, joueur, null, 5, null, 32);
         MobVue voyouVue = new MobVue(paneprincipal, voyou);
         voyouVue.placerMob();
 
-        chien = new Mob("chien",20, 1, terrain, joueur, null, 2, null, 32);
+        chien = new Mob("chien", 20, 1, terrain, joueur, null, 2, null, 32);
         MobVue chienVue = new MobVue(paneprincipal, chien);
         chienVue.placerMob();
 
@@ -117,6 +116,13 @@ public class Controleur implements Initializable {
         singe.finsaut();
         voyou.finsaut();
         chien.finsaut();
+
+        this.joueur.getPvProperty().addListener((obs, oldV, newV) -> {
+            if (newV.intValue() <= 0) {
+                gameLoop.stop();
+                joueurVue.mortJoueur();
+            }
+        });
 
         Border1.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
 
@@ -139,6 +145,14 @@ public class Controleur implements Initializable {
                     } else {
                         inventaireVue.placerInventaire(1);
                         inventaireVue.remplirpetitinvenatairevue();
+                    }
+                }
+                if (key.getCode() == KeyCode.SHIFT) {
+                    if (Math.abs(chien.getX()-joueur.getX())<=joueur.getArme().getPortee() && Math.abs(chien.getY()-joueur.getY())<=joueur.getArme().getPortee()) {
+                        joueur.frappeActeur(chien);
+                    }
+                    if (Math.abs(voyou.getX()-joueur.getX())<=joueur.getArme().getPortee() && Math.abs(voyou.getY()-joueur.getY())<=joueur.getArme().getPortee()) {
+                        joueur.frappeActeur(voyou);
                     }
                 }
 
@@ -171,9 +185,9 @@ public class Controleur implements Initializable {
                 y = (int) event.getY();
 
                 if (event.getButton() == MouseButton.PRIMARY) {
-                    joueur.frappeBloc(x,y);
+                    joueur.frappeBloc(x, y);
                 } else if (event.getButton() == MouseButton.SECONDARY) {
-                    joueur.poseBloc(x,y);
+                    joueur.poseBloc(x, y);
                 }
             }
         });
@@ -210,13 +224,14 @@ public class Controleur implements Initializable {
             public void handle(MouseEvent event) {
                 x = (int) event.getX();
                 y = (int) event.getY();
-                rectangle.setX(x/32*32);
-                rectangle.setY(y/32*32);
-                inventaireVue.getobjetmain().setX((x/32)*32);
-                inventaireVue.getobjetmain().setY((y/32)*32);
-                
-                if (joueur.getX()>x) {
-                    if (joueur.getX()-x<=64 && (Math.abs(joueur.getY()-y)<=64 || Math.abs(y-joueur.getY()-joueur.getHauteurPerso())<=64)) {
+                rectangle.setX(x / 32 * 32);
+                rectangle.setY(y / 32 * 32);
+                inventaireVue.getobjetmain().setX((x / 32) * 32);
+                inventaireVue.getobjetmain().setY((y / 32) * 32);
+
+                if (joueur.getX() > x) {
+                    if (joueur.getX() - x <= 64 && (Math.abs(joueur.getY() - y) <= 64
+                            || Math.abs(y - joueur.getY() - joueur.getHauteurPerso()) <= 64)) {
                         rectangle.setStroke(Color.BLUEVIOLET);
                     } else {
                         rectangle.setStroke(Color.ORANGERED);
@@ -248,8 +263,8 @@ public class Controleur implements Initializable {
                     joueur.deplacer();
                     barreVieVue.rafraichirBarreDeVie();
                     singe.deplacer();
-                    voyou.deplacer();
-                    chien.deplacer();
+                    voyou.agir();
+                    chien.agir();
                 }));
         gameLoop.getKeyFrames().add(kf);
     }

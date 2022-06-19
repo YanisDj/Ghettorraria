@@ -23,14 +23,6 @@ public class Bloc {
         return yProperty.getValue();
     }
 
-    public final void setY(int n) {
-        yProperty.setValue(n);
-    }
-
-    public final IntegerProperty yProperty() {
-        return this.yProperty;
-    }
-
     public boolean estSolide() {
         return this.id!=-1;
     }

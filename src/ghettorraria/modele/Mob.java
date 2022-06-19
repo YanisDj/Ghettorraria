@@ -13,7 +13,8 @@ public class Mob extends Acteur {
     private int hauteurSaut;
     private String nom;
 
-    public Mob(String nom,int pv, int vitesse, Terrain terrain, Joueur joueur, Inventaire inventaire, int degatsAttaque,
+    public Mob(String nom, int pv, int vitesse, Terrain terrain, Joueur joueur, Inventaire inventaire,
+            int degatsAttaque,
             Arme arme, int hauteurMob) {
         super(pv, vitesse, terrain, inventaire, degatsAttaque, arme, 32, hauteurMob);
         this.joueur = joueur;
@@ -60,7 +61,7 @@ public class Mob extends Acteur {
     }
 
     public void sensDeplacements() {
-        if (Math.abs(this.getX() - joueur.getX()) <= (5 * 32) && Math.abs(this.getX() - joueur.getX()) >= 35
+        if (Math.abs(this.getX() - joueur.getX()) <= (5 * 32) && Math.abs(this.getX() - joueur.getX()) >= 30
                 && Math.abs(this.getY() - joueur.getY()) <= (5 * 32)) {
             if (this.getX() < joueur.getX()) {
                 deplacementdroiteOui();
@@ -118,4 +119,16 @@ public class Mob extends Acteur {
         return nom;
     }
 
+    public void attaquer() {
+        int direction = (this.getX() - this.joueur.getX() < 0) ? 1 : -1;
+        this.joueur.decrementerPv(this.getDegatsAttaque());
+        this.joueur.setX(this.joueur.getX() + (10 * direction));
+    }
+
+    public void agir() {
+        deplacer();
+        if (Math.abs(this.getX() - joueur.getX()) <= 32 && Math.abs(this.getY() - joueur.getY()) <= 32) {
+            attaquer();
+        }
+    }
 }
