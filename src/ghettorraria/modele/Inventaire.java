@@ -58,7 +58,6 @@ public class Inventaire {
             }
         }
         return 0;
-        
     }
 
     public int enleverQuantite(int bloc) {
@@ -69,8 +68,4 @@ public class Inventaire {
         }
         return 0;
     }
-
-    
-
-
 }

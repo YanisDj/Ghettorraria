@@ -40,6 +40,11 @@ public class Joueur extends Acteur {
 		setObjetmain(inventaire.sourisProperty().get());
 	}
 
+	public Joueur(Terrain terrain){
+		super(40, 2, terrain,1);
+		this.objetmain = new SimpleObjectProperty(null);
+	}
+
 	@Override
 	public void deplacementgaucheOui() {
 		this.gauche = true;
@@ -217,6 +222,10 @@ public class Joueur extends Acteur {
 
 	public void setObjetmain(int indice) {
 		this.objetmain.set(inventaire.getInv().get(indice).getObjet());
+	}
+
+	public void setObjetMainPourTest(Objet objet){
+		this.objetmain.set(objet);
 	}
 
 

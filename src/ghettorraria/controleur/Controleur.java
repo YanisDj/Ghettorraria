@@ -169,7 +169,6 @@ public class Controleur implements Initializable {
                             terrain.supprimerTuiles(x, y,inventaire);
                         } else if (event.getButton() == MouseButton.SECONDARY){
                             joueur.ajouterTuiles(x, y, terrain);
-                           
                         }
                     }
                 } else {
