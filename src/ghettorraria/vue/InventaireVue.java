@@ -12,7 +12,6 @@ import ghettorraria.modele.item.Baton;
 import ghettorraria.modele.item.CapriSun;
 import ghettorraria.modele.item.CaseInventaire;
 import ghettorraria.modele.item.Couteau;
-import ghettorraria.modele.item.Etablis;
 import ghettorraria.modele.item.GiletDeProtection;
 import ghettorraria.modele.item.Kebab;
 import ghettorraria.modele.item.Pierre;
@@ -49,9 +48,6 @@ public class InventaireVue {
         if (((CaseInventaire) newV).getObjet() instanceof Couteau) {
             objetmain.setImage(new Image("ressources/couteau.png"));
         }
-        if (((CaseInventaire) newV).getObjet() instanceof Etablis) {
-            objetmain.setImage(new Image("ressources/etabli.png"));
-        }
         if (((CaseInventaire) newV).getObjet() instanceof Batte) {
             objetmain.setImage(new Image("ressources/bate-de-baseball.png"));
         }
@@ -75,9 +71,6 @@ public class InventaireVue {
         }
         if (((CaseInventaire) newV).getObjet() instanceof Bois) {
             objetmain.setImage(new Image("ressources/bloc-bois.png"));
-        }
-        if (((CaseInventaire) newV).getObjet() instanceof Etablis) {
-            objetmain.setImage(new Image("ressources/etabli.png"));
         }
         if (((CaseInventaire) newV).getObjet() instanceof Kebab) {
             objetmain.setImage(new Image("ressources/kebab.png"));
@@ -139,9 +132,6 @@ public class InventaireVue {
                 if (this.inventaire.getInv().get(i).getObjet() instanceof Couteau) {
                     objetinv = new ImageView("ressources/inventaire/couteau.png");
                 }
-                if (this.inventaire.getInv().get(i).getObjet() instanceof Etablis) {
-                    objetinv = new ImageView("ressources/inventaire/etabli.png");
-                }
                 if (this.inventaire.getInv().get(i).getObjet() instanceof Batte) {
                     objetinv = new ImageView("ressources/inventaire/bate-de-baseball.png");
                 }
@@ -165,9 +155,6 @@ public class InventaireVue {
                 }
                 if (this.inventaire.getInv().get(i).getObjet() instanceof Bois) {
                     objetinv = new ImageView("ressources/inventaire/bloc-bois.png");
-                }
-                if (this.inventaire.getInv().get(i).getObjet() instanceof Etablis) {
-                    objetinv = new ImageView("ressources/inventaire/etabli.png");
                 }
                 if (this.inventaire.getInv().get(i).getObjet() instanceof Kebab) {
                     objetinv = new ImageView("ressources/inventaire/kebab.png");

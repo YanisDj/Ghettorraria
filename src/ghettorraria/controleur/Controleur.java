@@ -31,7 +31,6 @@ import ghettorraria.modele.item.Bois;
 import ghettorraria.modele.item.Baton;
 import ghettorraria.modele.item.CapriSun;
 import ghettorraria.modele.item.Couteau;
-import ghettorraria.modele.item.Etablis;
 import ghettorraria.modele.item.GiletDeProtection;
 import ghettorraria.modele.item.Kebab;
 import ghettorraria.modele.item.Lit;
@@ -91,7 +90,6 @@ public class Controleur implements Initializable {
         inventaire.ajoutercaseInventaire(new Bois());
         inventaire.ajoutercaseInventaire(new Acier());
         inventaire.ajoutercaseInventaire(new Baton());
-        inventaire.ajoutercaseInventaire(new Etablis());
         inventaire.ajoutercaseInventaire(new GiletDeProtection());
         inventaire.ajoutercaseInventaire(new Kebab());
         inventaire.ajoutercaseInventaire(new CapriSun());

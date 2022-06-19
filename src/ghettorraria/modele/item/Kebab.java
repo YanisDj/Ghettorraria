@@ -4,7 +4,6 @@ public class Kebab extends Nourriture{
 
 	public Kebab() {
 		super(50);
-		// TODO Auto-generated constructor stub
 	}
 
 }

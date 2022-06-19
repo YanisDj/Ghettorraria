@@ -3,12 +3,12 @@ package ghettorraria.modele.item;
 public class Arme extends Objet{
 
 	private int attaque;
-	private int porter;
+	private int portee;
 
-	public Arme(int attaque,int porter) {
+	public Arme(int attaque,int portee) {
 		super();
 		this.attaque = attaque;
-		this.porter = porter;
+		this.portee = portee;
 	}
 
 
@@ -16,8 +16,8 @@ public class Arme extends Objet{
 		return attaque;
 	}
 
-	public int getPorter() {
-		return porter;
+	public int getPortee() {
+		return portee;
 	}
 
 
