@@ -60,12 +60,8 @@ public class Inventaire {
         return 0;
     }
 
-    public int enleverQuantite(int bloc) {
-        for (int i=0; i<inventaire.size();i++){
-            if(inventaire.get(i).getObjet().getId()==bloc ){
-                inventaire.get(i).enleverQuantite();
-            }
-        }
-        return 0;
-    }
+   
+        
+        
+    
 }

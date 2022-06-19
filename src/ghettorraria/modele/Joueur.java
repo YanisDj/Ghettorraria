@@ -181,10 +181,10 @@ public class Joueur extends Acteur {
 	}
 
 	public void utiliser(Bloc bloc){
-		if (objetmain.getValue() instanceof Pioche){
+		if (objetmain.getValue() instanceof Pioche && inventaire.getInv().get(inventaire.getSouris()).getQuantite()>0){
 			bloc.pertPV(((Pioche)objetmain.getValue()).getAttaque());
 		}
-		if (this.getPv() < PVMAX && objetmain.getValue() instanceof Nourriture){
+		if (this.getPv() < PVMAX && objetmain.getValue() instanceof Nourriture && inventaire.getInv().get(inventaire.getSouris()).getQuantite()>0){
 			if (this.getPv() + (((Nourriture)objetmain.getValue()).getRestaurepv()) <= PVMAX){
 				this.incrementerPv(((Nourriture)objetmain.getValue()).getRestaurepv());
 				System.out.println(this.getPv());
@@ -198,6 +198,7 @@ public class Joueur extends Acteur {
 	public void ajouterTuiles(int x, int y, Terrain terrain){
 		if ((objetmain.getValue()) instanceof Materiaux && inventaire.getInv().get(inventaire.getSouris()).getQuantite()>0){
 			terrain.ajouterTuiles(x, y, ((Materiaux)objetmain.getValue()),inventaire);
+			inventaire.getInv().get(inventaire.getSouris()).enleverQuantite();
 		}
 		
 	}
