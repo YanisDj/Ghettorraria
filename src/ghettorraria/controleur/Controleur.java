@@ -27,7 +27,6 @@ import ghettorraria.modele.Mob;
 import ghettorraria.modele.Terrain;
 import ghettorraria.modele.item.Acier;
 import ghettorraria.modele.item.Batte;
-import ghettorraria.modele.item.Bois;
 import ghettorraria.modele.item.Baton;
 import ghettorraria.modele.item.CapriSun;
 import ghettorraria.modele.item.CaseInventaire;
@@ -75,22 +74,29 @@ public class Controleur implements Initializable {
         InventaireVue inventaireVue = new InventaireVue(inventaire, paneprincipal);
         inventaireVue.placerInventaire();
         inventaire.ajoutercaseInventaire(new Pioche());
+        inventaire.getInv().get(inventaire.getInv().size()-1).ajouterQuantite();
         inventaire.ajoutercaseInventaire(new Batte());
+        inventaire.getInv().get(inventaire.getInv().size()-1).ajouterQuantite();
         inventaire.ajoutercaseInventaire(new Couteau());
+        inventaire.getInv().get(inventaire.getInv().size()-1).ajouterQuantite();
         inventaire.ajoutercaseInventaire(new Pistolet());
+        inventaire.getInv().get(inventaire.getInv().size()-1).ajouterQuantite();
         inventaire.ajoutercaseInventaire(new Pierre());
         inventaire.ajoutercaseInventaire(new Terre());
-        inventaire.ajoutercaseInventaire(new Bois());
         inventaire.ajoutercaseInventaire(new Acier());
         inventaire.ajoutercaseInventaire(new Baton());
         inventaire.ajoutercaseInventaire(new Kebab());
+        inventaire.getInv().get(inventaire.getInv().size()-1).ajouterQuantite();
         inventaire.ajoutercaseInventaire(new CapriSun());
+        inventaire.getInv().get(inventaire.getInv().size()-1).ajouterQuantite();
         inventaireVue.remplirpetitinvenatairevue();
+        
         inventaireVue.creeLabel();
 
         joueur = new Joueur(terrain, inventaire);
         JoueurVue joueurVue = new JoueurVue(paneprincipal, joueur);
         joueurVue.placerJoueur();
+        
 
 
         barreVieVue = new BarreDeVieVue(paneprincipal, joueur);

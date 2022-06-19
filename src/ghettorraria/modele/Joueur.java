@@ -126,16 +126,16 @@ public class Joueur extends Acteur {
 		if (this.getX() > x) {
 			if (this.getX() - x <= 64
 					&& (Math.abs(this.getY() - y) <= 64 || Math.abs(y - this.getY() - this.getHauteurPerso()) <= 64)) {
-				///this.getTerrain().ajouterTuiles(x, y,inventaire.getSouris());
+				
 			}
 		} else if (this.getX() + this.getLargeurPerso() < x) {
 			if (x - this.getLargeurPerso() - this.getX() <= 64 && (Math.abs(this.getY() - y) <= 64
 					|| Math.abs(y - this.getY() - this.getHauteurPerso()) <= 64)) {
-				///this.getTerrain().ajouterTuiles(x, y, inventaire.getSouris());
+				
 			}
 		} else {
 			if (y < this.getY() - 64 + this.getHauteurPerso() || y > this.getY() + this.getHauteurPerso()) {
-				///this.getTerrain().ajouterTuiles(x, y, inventaire.getSouris());
+				
 			}
 		}
 	}
@@ -157,7 +157,7 @@ public class Joueur extends Acteur {
 	}
 
 	public void utiliser(Bloc bloc){
-		if (objetmain.getValue() instanceof Pioche){
+		if (objetmain.getValue() instanceof Pioche ){
 			bloc.pertPV(((Pioche)objetmain.getValue()).getAttaque());
 			System.out.println(bloc.getPv());
 		

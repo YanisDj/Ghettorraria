@@ -23,7 +23,9 @@ public class CaseInventaire {
 	}
 
 	public IntegerProperty quantiteProperty(){
+		
 		return this.quantiteProperty;
+		
 	}
 	public void setQuantiteProperty(int quantite){
 		this.quantiteProperty.set(quantite);
@@ -37,8 +39,6 @@ public class CaseInventaire {
 		quantiteProperty.set(getQuantite()+1);
 		
 	}
-
-
     public void enleverQuantite() {
 		quantiteProperty.set(getQuantite()-1);
     }

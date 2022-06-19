@@ -8,7 +8,6 @@ import javafx.scene.paint.Color;
 import ghettorraria.modele.Inventaire;
 import ghettorraria.modele.item.Acier;
 import ghettorraria.modele.item.Batte;
-import ghettorraria.modele.item.Bois;
 import ghettorraria.modele.item.Baton;
 import ghettorraria.modele.item.CapriSun;
 import ghettorraria.modele.item.Couteau;
@@ -21,7 +20,7 @@ import ghettorraria.modele.item.Terre;
 
 public class InventaireVue {
 
-    private int[] petitInventaire = { 1, 2, 2, 2, 2, 2, 2, 2, 2, 2,3 };
+    private int[] petitInventaire = { 1, 2, 2, 2, 2, 2, 2, 2, 2,3 };
 
     private Inventaire inventaire;
     private Pane paneCase;
@@ -68,9 +67,7 @@ public class InventaireVue {
         if (selectionne instanceof Terre) {
             objetmain.setOpacity(0);
         }
-        if (selectionne instanceof Bois) {
-            objetmain.setOpacity(0);
-        }
+
         if (selectionne instanceof Kebab) {
             objetmain.setOpacity(1);
             objetmain.setImage(new Image("ressources/kebab.png"));
@@ -119,9 +116,6 @@ public class InventaireVue {
                 }
                 if (this.inventaire.getInv().get(i).getObjet() instanceof Terre) {
                     objetinv = new ImageView("ressources/inventaire/bloc-terre.png");
-                }
-                if (this.inventaire.getInv().get(i).getObjet() instanceof Bois) {
-                    objetinv = new ImageView("ressources/inventaire/bloc-bois.png");
                 }
                 if (this.inventaire.getInv().get(i).getObjet() instanceof Kebab) {
                     objetinv = new ImageView("ressources/inventaire/kebab.png");

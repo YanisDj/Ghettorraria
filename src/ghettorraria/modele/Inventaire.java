@@ -1,7 +1,10 @@
 package ghettorraria.modele;
 
+import ghettorraria.modele.item.Batte;
 import ghettorraria.modele.item.CaseInventaire;
+import ghettorraria.modele.item.Materiaux;
 import ghettorraria.modele.item.Objet;
+import ghettorraria.modele.item.Pioche;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
@@ -16,10 +19,10 @@ public class Inventaire {
         this.inventaire = FXCollections.observableArrayList();
         this.souris = new SimpleIntegerProperty(0);
         this.souris.addListener((obs, oldV, newV) -> {
-            if (newV.intValue() > 10)
+            if (newV.intValue() > 9)
                 this.souris.set(0);
             else if (newV.intValue() < 0)
-                this.souris.set(10);
+                this.souris.set(9);
         });
 
     }
@@ -36,8 +39,13 @@ public class Inventaire {
     }
 
     public void ajoutercaseInventaire(Objet objet) {
-        this.inventaire.add(new CaseInventaire(0, objet));
-    }
+           this.inventaire.add(new CaseInventaire(0, objet));
+    
+        }
+        
+    
+    
+
 
     public IntegerProperty sourisProperty() {
         return this.souris;
