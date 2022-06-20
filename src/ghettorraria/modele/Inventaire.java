@@ -1,10 +1,7 @@
 package ghettorraria.modele;
 
-import ghettorraria.modele.item.Batte;
 import ghettorraria.modele.item.CaseInventaire;
-import ghettorraria.modele.item.Materiaux;
 import ghettorraria.modele.item.Objet;
-import ghettorraria.modele.item.Pioche;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;

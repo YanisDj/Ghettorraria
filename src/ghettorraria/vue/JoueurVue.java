@@ -1,9 +1,7 @@
 package ghettorraria.vue;
 
-import java.util.concurrent.TimeUnit;
 
 import ghettorraria.modele.Joueur;
-import javafx.application.Platform;
 import javafx.scene.control.Label;
 import javafx.scene.effect.InnerShadow;
 import javafx.scene.image.Image;

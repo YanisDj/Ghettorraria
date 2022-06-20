@@ -2,7 +2,6 @@ package ghettorraria.modele;
 
 import java.io.*;
 
-import ghettorraria.modele.item.Materiaux;
 import ghettorraria.modele.item.Objet;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

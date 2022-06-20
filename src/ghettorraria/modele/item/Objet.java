@@ -1,7 +1,5 @@
 package ghettorraria.modele.item;
 
-import java.util.UUID;
-
 public class Objet {
 
     private int id;

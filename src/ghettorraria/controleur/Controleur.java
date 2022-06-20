@@ -20,16 +20,15 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import ghettorraria.modele.Bloc;
+
 import ghettorraria.modele.Inventaire;
 import ghettorraria.modele.Joueur;
 import ghettorraria.modele.Mob;
 import ghettorraria.modele.Terrain;
 import ghettorraria.modele.item.Acier;
 import ghettorraria.modele.item.Batte;
-import ghettorraria.modele.item.Baton;
+import ghettorraria.modele.item.Bois;
 import ghettorraria.modele.item.CapriSun;
-import ghettorraria.modele.item.CaseInventaire;
 import ghettorraria.modele.item.Couteau;
 import ghettorraria.modele.item.Kebab;
 import ghettorraria.modele.item.Pierre;
@@ -51,7 +50,6 @@ public class Controleur implements Initializable {
     private TerrainVue terrainVue;
     private Inventaire inventaire;
     private BarreDeVieVue barreVieVue;
-    private CaseInventaire caseInventaire;
     private Mob singe, voyou, chien;
 
     @FXML
@@ -84,10 +82,12 @@ public class Controleur implements Initializable {
         inventaire.ajoutercaseInventaire(new Pierre());
         inventaire.ajoutercaseInventaire(new Terre());
         inventaire.ajoutercaseInventaire(new Acier());
-        inventaire.ajoutercaseInventaire(new Baton());
+        inventaire.ajoutercaseInventaire(new Bois());
         inventaire.ajoutercaseInventaire(new Kebab());
         inventaire.getInv().get(inventaire.getInv().size()-1).ajouterQuantite();
         inventaire.ajoutercaseInventaire(new CapriSun());
+        inventaire.getInv().get(inventaire.getInv().size()-1).ajouterQuantite();
+        inventaire.getInv().get(inventaire.getInv().size()-1).ajouterQuantite();
         inventaire.getInv().get(inventaire.getInv().size()-1).ajouterQuantite();
         inventaireVue.remplirpetitinvenatairevue();
         
@@ -122,6 +122,12 @@ public class Controleur implements Initializable {
         chien.finsaut();
 
         this.joueur.getPvProperty().addListener((obs, oldV, newV) -> {
+            if (newV.intValue() > oldV.intValue()){
+                barreVieVue.rafraichirBarreDeVieGagne();
+            }else {
+                barreVieVue.rafraichirBarreDeViePert();
+            }
+
             if (newV.intValue() <= 0) {
                 gameLoop.stop();
                 joueurVue.mortJoueur();
@@ -133,6 +139,13 @@ public class Controleur implements Initializable {
                 
             }
         });
+
+        this.voyou.getPvProperty().addListener((obs, oldV, newV) -> {
+            if (newV.intValue() <= 0){
+                
+            }
+        });
+
 
 
         Border1.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
@@ -264,13 +277,9 @@ public class Controleur implements Initializable {
         gameLoop.setCycleCount(Timeline.INDEFINITE);
 
         KeyFrame kf = new KeyFrame(
-                // on définit le FPS (nbre de frame par seconde)
                 Duration.seconds(0.017),
-                // on définit ce qui se passe à chaque frame
-                // c'est un eventHandler d'ou le lambda
                 (ev -> {
                     joueur.deplacer();
-                    barreVieVue.rafraichirBarreDeVie();
                     singe.deplacer();
                     voyou.agir();
                     chien.agir();

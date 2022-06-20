@@ -1,7 +1,6 @@
 package ghettorraria.modele;
 
 import ghettorraria.modele.item.Arme;
-import ghettorraria.modele.item.CaseInventaire;
 import ghettorraria.modele.item.Materiaux;
 import ghettorraria.modele.item.Nourriture;
 import ghettorraria.modele.item.Objet;
@@ -13,7 +12,7 @@ public class Joueur extends Acteur {
 
 	private static final int PVMAX = 100;
 	private boolean gauche, droite, monte, tombe;
-	private int hauteurSaut, vitesseChute, vitesseSaut;
+	private int hauteurSaut;
 	private Arme arme;
 	private Inventaire inventaire;
 	private ObjectProperty objetmain;
@@ -164,8 +163,10 @@ public class Joueur extends Acteur {
 		if (this.getPv() < PVMAX && objetmain.getValue() instanceof Nourriture && inventaire.getInv().get(inventaire.getSouris()).getQuantite()>0){
 			if (this.getPv() + (((Nourriture)objetmain.getValue()).getRestaurepv()) <= PVMAX){
 				this.incrementerPv(((Nourriture)objetmain.getValue()).getRestaurepv());
+				inventaire.getInv().get(inventaire.getSouris()).enleverQuantite();
 			} else {
 				this.incrementerPv(PVMAX - this.getPv());
+				inventaire.getInv().get(inventaire.getSouris()).enleverQuantite();
 			}
 		}
 	}

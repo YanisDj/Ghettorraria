@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 import ghettorraria.modele.Inventaire;
 import ghettorraria.modele.item.Acier;
 import ghettorraria.modele.item.Batte;
-import ghettorraria.modele.item.Baton;
+import ghettorraria.modele.item.Bois;
 import ghettorraria.modele.item.CapriSun;
 import ghettorraria.modele.item.Couteau;
 import ghettorraria.modele.item.Kebab;
@@ -53,10 +53,7 @@ public class InventaireVue {
         if (selectionne instanceof Acier) {
             objetmain.setOpacity(0);
         }
-        if (selectionne instanceof Baton) {
-            objetmain.setOpacity(1);
-            objetmain.setImage(new Image("ressources/baton.png"));
-        }
+       
         if (selectionne instanceof Pistolet) {
             objetmain.setOpacity(1);
             objetmain.setImage(new Image("ressources/pistolet.png"));
@@ -105,8 +102,8 @@ public class InventaireVue {
                 if (this.inventaire.getInv().get(i).getObjet() instanceof Acier) {
                     objetinv = new ImageView("ressources/inventaire/bloc-acier.png");
                 }
-                if (this.inventaire.getInv().get(i).getObjet() instanceof Baton) {
-                    objetinv = new ImageView("ressources/inventaire/baton.png");
+                if (this.inventaire.getInv().get(i).getObjet() instanceof Bois) {
+                    objetinv = new ImageView("ressources/inventaire/bloc-bois.png");
                 }
                 if (this.inventaire.getInv().get(i).getObjet() instanceof Pistolet) {
                     objetinv = new ImageView("ressources/inventaire/pistolet.png");
