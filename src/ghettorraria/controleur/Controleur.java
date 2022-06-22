@@ -136,13 +136,13 @@ public class Controleur implements Initializable {
 
         this.chien.getPvProperty().addListener((obs, oldV, newV) -> {
             if (newV.intValue() <= 0){
-                
+                chienVue.meurt();
             }
         });
 
         this.voyou.getPvProperty().addListener((obs, oldV, newV) -> {
             if (newV.intValue() <= 0){
-                
+                voyouVue.meurt();
             }
         });
 
@@ -169,7 +169,7 @@ public class Controleur implements Initializable {
                     }
                     if (Math.abs(voyou.getX()-joueur.getX()) <= 64 && Math.abs(voyou.getY()-joueur.getY()) <= 64) {
                         joueur.frappeActeur(voyou);
-                        System.out.println(chien.getPv());
+                        System.out.println(voyou.getPv());
                     }
                 }
 
@@ -202,11 +202,15 @@ public class Controleur implements Initializable {
                 y = (int) event.getY();
 
                 if (event.getButton() == MouseButton.PRIMARY) {
-                    joueur.utiliser(terrain.getBloc(x,y));
-                    terrain.supprimerTuiles(x, y, inventaire);
+                    if (joueur.getX() - x <= 64 && (Math.abs(joueur.getY() - y) <= 64 || Math.abs(y - joueur.getY() - joueur.getHauteurPerso()) <= 64)) {
+                        joueur.utiliser(terrain.getBloc(x,y));
+                        terrain.supprimerTuiles(x, y, inventaire);
+                    }
                 } else if (event.getButton() == MouseButton.SECONDARY) {
-                    joueur.poseBloc(x, y);
-                    joueur.ajouterTuiles(x, y,terrain);
+                    if (x - joueur.getLargeurPerso() - joueur.getX() <= 64 && (Math.abs(joueur.getY() - y) <= 64 || Math.abs(y - joueur.getY() - joueur.getHauteurPerso()) <= 64)) {
+                        joueur.poseBloc(x, y);
+                        joueur.ajouterTuiles(x, y,terrain);
+                    }
                 }
             }
         });
@@ -249,15 +253,13 @@ public class Controleur implements Initializable {
                 inventaireVue.getobjetmain().setY((y / 32) * 32);
 
                 if (joueur.getX() > x) {
-                    if (joueur.getX() - x <= 64 && (Math.abs(joueur.getY() - y) <= 64
-                            || Math.abs(y - joueur.getY() - joueur.getHauteurPerso()) <= 64)) {
+                    if (joueur.getX() - x <= 64 && (Math.abs(joueur.getY() - y) <= 64 || Math.abs(y - joueur.getY() - joueur.getHauteurPerso()) <= 64)) {
                         rectangle.setStroke(Color.BLUEVIOLET);
                     } else {
                         rectangle.setStroke(Color.ORANGERED);
                     }
                 } else {
-                    if (x - joueur.getLargeurPerso() - joueur.getX() <= 64 && (Math.abs(joueur.getY() - y) <= 64
-                            || Math.abs(y - joueur.getY() - joueur.getHauteurPerso()) <= 64)) {
+                    if (x - joueur.getLargeurPerso() - joueur.getX() <= 64 && (Math.abs(joueur.getY() - y) <= 64 || Math.abs(y - joueur.getY() - joueur.getHauteurPerso()) <= 64)) {
                         rectangle.setStroke(Color.BLUEVIOLET);
                     } else {
                         rectangle.setStroke(Color.ORANGERED);

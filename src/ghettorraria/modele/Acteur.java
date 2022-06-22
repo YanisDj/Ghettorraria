@@ -17,8 +17,7 @@ public abstract class Acteur {
 	private int vitesseSaut;
 
 
-	public Acteur(int pv, int vitesse, Terrain terrain, int degatsAttaque, Arme arme,
-			int largeurActeur, int hauteurActeur) {
+	public Acteur(int pv, int vitesse, Terrain terrain, int degatsAttaque, Arme arme, int largeurActeur, int hauteurActeur) {
 		this.pv = new SimpleIntegerProperty(pv);
 		this.x = new SimpleIntegerProperty();
 		this.y = new SimpleIntegerProperty();

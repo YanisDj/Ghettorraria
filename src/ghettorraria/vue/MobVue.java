@@ -16,7 +16,7 @@ public class MobVue {
     }
 
     public void placerMob(){
-        Image imageMob = new Image("ressources/"+mob.getNom()+".png");
+        Image imageMob = new Image("ressources/" + mob.getNom() + ".png");
         ImageView mobMap = new ImageView(imageMob);
         mobMap.translateXProperty().bind(mob.xProperty());
         mobMap.translateYProperty().bind(mob.yProperty());
@@ -25,8 +25,11 @@ public class MobVue {
         } else {
             mob.xProperty().setValue(Math.random()*1800);
         }
-       
-        
         border.getChildren().add(mobMap);
     }
+
+    public void meurt(){
+        
+    }
+
 }

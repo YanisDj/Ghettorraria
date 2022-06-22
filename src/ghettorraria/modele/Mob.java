@@ -13,9 +13,7 @@ public class Mob extends Acteur {
     private int hauteurSaut;
     private String nom;
 
-    public Mob(String nom, int pv, int vitesse, Terrain terrain, Joueur joueur,
-            int degatsAttaque,
-            Arme arme, int hauteurMob) {
+    public Mob(String nom, int pv, int vitesse, Terrain terrain, Joueur joueur, int degatsAttaque, Arme arme, int hauteurMob) {
         super(pv, vitesse, terrain,degatsAttaque, arme, 32, hauteurMob);
         this.joueur = joueur;
         this.nom = nom;

@@ -158,7 +158,6 @@ public class Joueur extends Acteur {
 	public void utiliser(Bloc bloc){
 		if (objetmain.getValue() instanceof Pioche ){
 			bloc.pertPV(((Pioche)objetmain.getValue()).getAttaque());
-		
 		}
 		if (this.getPv() < PVMAX && objetmain.getValue() instanceof Nourriture && inventaire.getInv().get(inventaire.getSouris()).getQuantite()>0){
 			if (this.getPv() + (((Nourriture)objetmain.getValue()).getRestaurepv()) <= PVMAX){
