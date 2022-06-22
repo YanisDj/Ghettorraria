@@ -7,17 +7,19 @@ import javafx.scene.layout.Pane;
 
 public class MobVue {
     
-    private Pane border;
+    private Pane pane;
     private Mob mob;
+    private ImageView mobMap;
 
-    public MobVue(Pane border, Mob mob){
-        this.border = border;
+    public MobVue(Pane pane, Mob mob){
+        this.pane = pane;
         this.mob = mob;
     }
 
     public void placerMob(){
         Image imageMob = new Image("ressources/" + mob.getNom() + ".png");
-        ImageView mobMap = new ImageView(imageMob);
+        mobMap = new ImageView(imageMob);
+        mobMap.setId(mob.getNom());
         mobMap.translateXProperty().bind(mob.xProperty());
         mobMap.translateYProperty().bind(mob.yProperty());
         if (mob.getNom().equals("singe")) {
@@ -25,11 +27,14 @@ public class MobVue {
         } else {
             mob.xProperty().setValue(Math.random()*1800);
         }
-        border.getChildren().add(mobMap);
+        pane.getChildren().add(mobMap);
     }
 
-    public void meurt(){
+    public void enleverMob(){
+        if (mob.meurt()) {
+            pane.getChildren().remove(pane.lookup("#"+mob.getNom()));
+        }
         
-    }
-
+}
+   
 }

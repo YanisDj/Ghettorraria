@@ -102,11 +102,11 @@ public class Controleur implements Initializable {
         barreVieVue = new BarreDeVieVue(paneprincipal, joueur);
         barreVieVue.placerBarreDeVie();
 
-        singe = new Mob("singe", 25, 3, terrain, joueur, 0, null, 32);
+        singe = new Mob("singe", 50, 3, terrain, joueur, 0, null, 32);
         MobVue singeVue = new MobVue(paneprincipal, singe);
         singeVue.placerMob();
 
-        voyou = new Mob("voyou", 70, 1, terrain, joueur, 5, null, 32);
+        voyou = new Mob("voyou", 90, 1, terrain, joueur, 5, null, 32);
         MobVue voyouVue = new MobVue(paneprincipal, voyou);
         voyouVue.placerMob();
 
@@ -136,13 +136,13 @@ public class Controleur implements Initializable {
 
         this.chien.getPvProperty().addListener((obs, oldV, newV) -> {
             if (newV.intValue() <= 0){
-                chienVue.meurt();
+                chienVue.enleverMob();
             }
         });
 
         this.voyou.getPvProperty().addListener((obs, oldV, newV) -> {
             if (newV.intValue() <= 0){
-                voyouVue.meurt();
+               voyouVue.enleverMob();
             }
         });
 

@@ -64,7 +64,7 @@ public abstract class Acteur {
 	}
 
 	public int getPv() {
-		return pv.get();
+		return pv.getValue();
 	}
 
 	public void decrementerPv(int n) {

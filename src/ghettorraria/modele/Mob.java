@@ -117,15 +117,20 @@ public class Mob extends Acteur {
         return nom;
     }
 
+
     public void attaquer() {
         int direction = (this.getX() - this.joueur.getX() < 0) ? 1 : -1;
         this.joueur.decrementerPv(this.getDegatsAttaque());
         this.joueur.setX(this.joueur.getX() + (10 * direction));
     }
 
+    public boolean meurt(){
+        return getPv()<=0;
+    }
+
     public void agir() {
         deplacer();
-        if (Math.abs(this.getX() - joueur.getX()) <= 32 && Math.abs(this.getY() - joueur.getY()) <= 32) {
+        if (Math.abs(this.getX() - joueur.getX()) <= 32 && Math.abs(this.getY() - joueur.getY()) <= 32 && !meurt()) {
             attaquer();
         }
     }
