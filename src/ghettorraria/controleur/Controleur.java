@@ -165,11 +165,9 @@ public class Controleur implements Initializable {
                 if (key.getCode() == KeyCode.SHIFT) {
                     if (Math.abs(chien.getX()-joueur.getX()) <= 64 && Math.abs(chien.getY()-joueur.getY()) <= 64) {
                         joueur.frappeActeur(chien);
-                        System.out.println(chien.getPv());
                     }
                     if (Math.abs(voyou.getX()-joueur.getX()) <= 64 && Math.abs(voyou.getY()-joueur.getY()) <= 64) {
                         joueur.frappeActeur(voyou);
-                        System.out.println(voyou.getPv());
                     }
                 }
 
