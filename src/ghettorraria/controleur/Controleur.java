@@ -20,7 +20,6 @@ import javafx.util.Duration;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-
 import ghettorraria.modele.Inventaire;
 import ghettorraria.modele.Joueur;
 import ghettorraria.modele.Mob;
@@ -72,32 +71,30 @@ public class Controleur implements Initializable {
         InventaireVue inventaireVue = new InventaireVue(inventaire, paneprincipal);
         inventaireVue.placerInventaire();
         inventaire.ajoutercaseInventaire(new Pioche());
-        inventaire.getInv().get(inventaire.getInv().size()-1).ajouterQuantite();
+        inventaire.getInv().get(inventaire.getInv().size() - 1).ajouterQuantite();
         inventaire.ajoutercaseInventaire(new Batte());
-        inventaire.getInv().get(inventaire.getInv().size()-1).ajouterQuantite();
+        inventaire.getInv().get(inventaire.getInv().size() - 1).ajouterQuantite();
         inventaire.ajoutercaseInventaire(new Couteau());
-        inventaire.getInv().get(inventaire.getInv().size()-1).ajouterQuantite();
+        inventaire.getInv().get(inventaire.getInv().size() - 1).ajouterQuantite();
         inventaire.ajoutercaseInventaire(new Pistolet());
-        inventaire.getInv().get(inventaire.getInv().size()-1).ajouterQuantite();
+        inventaire.getInv().get(inventaire.getInv().size() - 1).ajouterQuantite();
         inventaire.ajoutercaseInventaire(new Pierre());
         inventaire.ajoutercaseInventaire(new Terre());
         inventaire.ajoutercaseInventaire(new Acier());
         inventaire.ajoutercaseInventaire(new Bois());
         inventaire.ajoutercaseInventaire(new Kebab());
-        inventaire.getInv().get(inventaire.getInv().size()-1).ajouterQuantite();
+        inventaire.getInv().get(inventaire.getInv().size() - 1).ajouterQuantite();
         inventaire.ajoutercaseInventaire(new CapriSun());
-        inventaire.getInv().get(inventaire.getInv().size()-1).ajouterQuantite();
-        inventaire.getInv().get(inventaire.getInv().size()-1).ajouterQuantite();
-        inventaire.getInv().get(inventaire.getInv().size()-1).ajouterQuantite();
+        inventaire.getInv().get(inventaire.getInv().size() - 1).ajouterQuantite();
+        inventaire.getInv().get(inventaire.getInv().size() - 1).ajouterQuantite();
+        inventaire.getInv().get(inventaire.getInv().size() - 1).ajouterQuantite();
         inventaireVue.remplirpetitinvenatairevue();
-        
+
         inventaireVue.creeLabel();
 
         joueur = new Joueur(terrain, inventaire);
         JoueurVue joueurVue = new JoueurVue(paneprincipal, joueur);
         joueurVue.placerJoueur();
-        
-
 
         barreVieVue = new BarreDeVieVue(paneprincipal, joueur);
         barreVieVue.placerBarreDeVie();
@@ -122,9 +119,9 @@ public class Controleur implements Initializable {
         chien.finsaut();
 
         this.joueur.getPvProperty().addListener((obs, oldV, newV) -> {
-            if (newV.intValue() > oldV.intValue()){
+            if (newV.intValue() > oldV.intValue()) {
                 barreVieVue.rafraichirBarreDeVieGagne();
-            }else {
+            } else {
                 barreVieVue.rafraichirBarreDeViePert();
             }
 
@@ -135,18 +132,16 @@ public class Controleur implements Initializable {
         });
 
         this.chien.getPvProperty().addListener((obs, oldV, newV) -> {
-            if (newV.intValue() <= 0){
+            if (newV.intValue() <= 0) {
                 chienVue.enleverMob();
             }
         });
 
         this.voyou.getPvProperty().addListener((obs, oldV, newV) -> {
-            if (newV.intValue() <= 0){
-               voyouVue.enleverMob();
+            if (newV.intValue() <= 0) {
+                voyouVue.enleverMob();
             }
         });
-
-
 
         Border1.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
 
@@ -163,10 +158,10 @@ public class Controleur implements Initializable {
                     joueur.saut();
                 }
                 if (key.getCode() == KeyCode.SHIFT) {
-                    if (Math.abs(chien.getX()-joueur.getX()) <= 64 && Math.abs(chien.getY()-joueur.getY()) <= 64) {
+                    if (Math.abs(chien.getX() - joueur.getX()) <= 64 && Math.abs(chien.getY() - joueur.getY()) <= 64) {
                         joueur.frappeActeur(chien);
                     }
-                    if (Math.abs(voyou.getX()-joueur.getX()) <= 64 && Math.abs(voyou.getY()-joueur.getY()) <= 64) {
+                    if (Math.abs(voyou.getX() - joueur.getX()) <= 64 && Math.abs(voyou.getY() - joueur.getY()) <= 64) {
                         joueur.frappeActeur(voyou);
                     }
                 }
@@ -200,15 +195,9 @@ public class Controleur implements Initializable {
                 y = (int) event.getY();
 
                 if (event.getButton() == MouseButton.PRIMARY) {
-                    if (joueur.getX() - x <= 64 && (Math.abs(joueur.getY() - y) <= 64 || Math.abs(y - joueur.getY() - joueur.getHauteurPerso()) <= 64)) {
-                        joueur.utiliser(terrain.getBloc(x,y));
-                        terrain.supprimerTuiles(x, y, inventaire);
-                    }
+                    joueur.utiliser(x, y);
                 } else if (event.getButton() == MouseButton.SECONDARY) {
-                    if (x - joueur.getLargeurPerso() - joueur.getX() <= 64 && (Math.abs(joueur.getY() - y) <= 64 || Math.abs(y - joueur.getY() - joueur.getHauteurPerso()) <= 64)) {
-                        joueur.poseBloc(x, y);
-                        joueur.ajouterTuiles(x, y,terrain);
-                    }
+                    joueur.poseBloc(x, y);
                 }
             }
         });
@@ -228,7 +217,7 @@ public class Controleur implements Initializable {
                     inventaire.setSouris(inventaire.sourisProperty().get() + 1);
                 if (event.getDeltaY() < 0)
                     inventaire.setSouris(inventaire.sourisProperty().get() - 1);
-                
+
                 rectangleinv.setLayoutX(32 * inventaire.sourisProperty().get() + 16);
                 joueur.setObjetmain(inventaire.sourisProperty().get());
             }
@@ -251,22 +240,24 @@ public class Controleur implements Initializable {
                 inventaireVue.getobjetmain().setY((y / 32) * 32);
 
                 if (joueur.getX() > x) {
-                    if (joueur.getX() - x <= 64 && (Math.abs(joueur.getY() - y) <= 64 || Math.abs(y - joueur.getY() - joueur.getHauteurPerso()) <= 64)) {
+                    if (joueur.getX() - x <= 64 && (Math.abs(joueur.getY() - y) <= 64
+                            || Math.abs(y - joueur.getY() - joueur.getHauteurPerso()) <= 64)) {
                         rectangle.setStroke(Color.BLUEVIOLET);
                     } else {
                         rectangle.setStroke(Color.ORANGERED);
                     }
                 } else {
-                    if (x - joueur.getLargeurPerso() - joueur.getX() <= 64 && (Math.abs(joueur.getY() - y) <= 64 || Math.abs(y - joueur.getY() - joueur.getHauteurPerso()) <= 64)) {
+                    if (x - joueur.getLargeurPerso() - joueur.getX() <= 64 && (Math.abs(joueur.getY() - y) <= 64
+                            || Math.abs(y - joueur.getY() - joueur.getHauteurPerso()) <= 64)) {
                         rectangle.setStroke(Color.BLUEVIOLET);
                     } else {
                         rectangle.setStroke(Color.ORANGERED);
                     }
                 }
             }
-           
+
         });
-        
+
         initAnimation();
         gameLoop.play();
 

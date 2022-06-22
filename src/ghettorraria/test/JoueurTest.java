@@ -24,27 +24,31 @@ public class JoueurTest {
     
     @Test
     public void utiliserPiocheEnMainTest(){
+        terrain.getCodesTuiles().set(5, bloc);
+        
         joueur.setObjetMainPourTest(pioche);
-        joueur.utiliser(bloc);
+        joueur.utiliser(160,0);
         assertEquals(5, bloc.getPv());
     }
 
     @Test
     public void utiliserNourritureEnMainTest(){
+        terrain.getCodesTuiles().set(5, bloc);
+
         joueur.setObjetMainPourTest(caprisun);
-        joueur.utiliser(bloc);
+        joueur.utiliser(160,0);
         assertEquals(50, joueur.getPv());
 
         joueur.setObjetMainPourTest(kebab);
-        joueur.utiliser(bloc);
+        joueur.utiliser(160,0);
         assertEquals(100, joueur.getPv());
 
         //test si le joueur a deja les pv au max
         joueur.setObjetMainPourTest(caprisun);
-        joueur.utiliser(bloc);
+        joueur.utiliser(160,0);
         assertEquals(100, joueur.getPv());
         joueur.setObjetMainPourTest(kebab);
-        joueur.utiliser(bloc);
+        joueur.utiliser(160,0);
         assertEquals(100, joueur.getPv());
     }
 }

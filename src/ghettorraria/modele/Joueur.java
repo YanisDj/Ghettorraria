@@ -20,22 +20,19 @@ public class Joueur extends Acteur {
 	private Bloc blocQuitte;
 
 	public Joueur(Terrain terrain, Inventaire inventaire) {
-		super(100, 2, terrain,5, new Pioche(), 32, 42);
+		super(100, 2, terrain, 5, new Pioche(), 32, 42);
 		hauteurSaut = 138;
 		droite = false;
 		gauche = false;
 		monte = false;
 		tombe = false;
-		this.inventaire=inventaire;
+		this.inventaire = inventaire;
 		this.objetmain = new SimpleObjectProperty(null);
-		this.objetmain.addListener((obs,oldO,newO)-> {
+		this.objetmain.addListener((obs, oldO, newO) -> {
 		});
 		setObjetmain(inventaire.sourisProperty().get());
-		
-		
-		
-	}
 
+	}
 
 	public void deplacementgaucheOui() {
 		this.gauche = true;
@@ -64,6 +61,11 @@ public class Joueur extends Acteur {
 			this.monte = true;
 			this.tombe = false;
 		}
+	}
+
+	public void finsaut() {
+		this.monte = false;
+		this.tombe = true;
 	}
 
 	public void deplacer() {
@@ -95,73 +97,51 @@ public class Joueur extends Acteur {
 		}
 	}
 
-	public void frappeBloc(int x, int y) {
-		Bloc bloc = this.getTerrain().getBloc(x, y);
-		if (this.getX() > x) {
-			if (this.getX() - x <= 64
-					&& (Math.abs(this.getY() - y) <= 64 || Math.abs(y - this.getY() - this.getHauteurPerso()) <= 64)) {
-				if (this.getArme() == null) {
-					bloc.pertPV(this.getDegatsAttaque());
-				} else {
-					bloc.pertPV(this.getArme().getAttaque());
-				}
-			}
-		} else {
-			if (x - this.getLargeurPerso() - this.getX() <= 64 && (Math.abs(this.getY() - y) <= 64
-					|| Math.abs(y - this.getY() - this.getHauteurPerso()) <= 64)) {
-				if (this.getArme() == null) {
-					bloc.pertPV(this.getDegatsAttaque());
-				} else {
-					bloc.pertPV(this.getArme().getAttaque());
-				}
-			}
-		}
-		if (bloc.getPv() <= 0) {
-			this.getTerrain().supprimerTuiles(x, y, inventaire);
-		}
-	}
-
 	public void poseBloc(int x, int y) {
-		if (this.getX() > x) {
-			if (this.getX() - x <= 64
-					&& (Math.abs(this.getY() - y) <= 64 || Math.abs(y - this.getY() - this.getHauteurPerso()) <= 64)) {
-				
-			}
-		} else if (this.getX() + this.getLargeurPerso() < x) {
-			if (x - this.getLargeurPerso() - this.getX() <= 64 && (Math.abs(this.getY() - y) <= 64
-					|| Math.abs(y - this.getY() - this.getHauteurPerso()) <= 64)) {
-				
-			}
-		} else {
-			if (y < this.getY() - 64 + this.getHauteurPerso() || y > this.getY() + this.getHauteurPerso()) {
-				
+		if ((objetmain.getValue()) instanceof Materiaux
+				&& inventaire.getInv().get(inventaire.getSouris()).getQuantite() > 0) {
+			if (this.getX() > x) {
+				if (this.getX() - x <= 64
+						&& (Math.abs(this.getY() - y) <= 64
+								|| Math.abs(y - this.getY() - this.getHauteurPerso()) <= 64)) {
+					this.getTerrain().ajouterTuiles(x, y, ((Materiaux) objetmain.getValue()), inventaire);
+					inventaire.getInv().get(inventaire.getSouris()).enleverQuantite();
+				}
+			} else {
+				if (x - this.getLargeurPerso() - this.getX() <= 64 && (Math.abs(this.getY() - y) <= 64
+						|| Math.abs(y - this.getY() - this.getHauteurPerso()) <= 64)
+						&& (y < this.getY() - 64 + this.getHauteurPerso()
+								|| y > this.getY() + this.getHauteurPerso())) {
+					this.getTerrain().ajouterTuiles(x, y, ((Materiaux) objetmain.getValue()), inventaire);
+					inventaire.getInv().get(inventaire.getSouris()).enleverQuantite();
+				}
 			}
 		}
 	}
 
-	public void finsaut() {
-		this.monte = false;
-		this.tombe = true;
-	}
-
-	public boolean peutSauter() {
-		Bloc plusProcheBasGauche, plusProcheBasDroite;
-		int distanceSol = 0;
-		do {
-			plusProcheBasGauche = this.getTerrain().getBloc(this.getX() + 1, this.getY() + distanceSol);
-			plusProcheBasDroite = this.getTerrain().getBloc(this.getX() + this.getLargeurPerso() - 1, this.getY() + distanceSol);
-			distanceSol++;
-		} while (distanceSol <= hauteurSaut && (!plusProcheBasGauche.estSolide() && !plusProcheBasDroite.estSolide()));
-		return distanceSol < hauteurSaut ? true : false;
-	}
-
-	public void utiliser(Bloc bloc){
-		if (objetmain.getValue() instanceof Pioche ){
-			bloc.pertPV(((Pioche)objetmain.getValue()).getAttaque());
+	public void utiliser(int x, int y) {
+		Bloc bloc = this.getTerrain().getBloc(x, y);
+		if (objetmain.getValue() instanceof Pioche) {
+			if (this.getX() > x) {
+				if (this.getX() - x <= 64
+						&& (Math.abs(this.getY() - y) <= 64
+								|| Math.abs(y - this.getY() - this.getHauteurPerso()) <= 64)) {
+					bloc.pertPV(((Pioche) objetmain.getValue()).getAttaque());
+				}
+			} else {
+				if (x - this.getLargeurPerso() - this.getX() <= 64 && (Math.abs(this.getY() - y) <= 64
+						|| Math.abs(y - this.getY() - this.getHauteurPerso()) <= 64)) {
+					bloc.pertPV(((Pioche) objetmain.getValue()).getAttaque());
+				}
+			}
+			if (bloc.getPv() <= 0) {
+				this.getTerrain().supprimerTuiles(x, y, inventaire);
+			}
 		}
-		if (this.getPv() < PVMAX && objetmain.getValue() instanceof Nourriture && inventaire.getInv().get(inventaire.getSouris()).getQuantite()>0){
-			if (this.getPv() + (((Nourriture)objetmain.getValue()).getRestaurepv()) <= PVMAX){
-				this.incrementerPv(((Nourriture)objetmain.getValue()).getRestaurepv());
+		if (this.getPv() < PVMAX && objetmain.getValue() instanceof Nourriture
+				&& inventaire.getInv().get(inventaire.getSouris()).getQuantite() > 0) {
+			if (this.getPv() + (((Nourriture) objetmain.getValue()).getRestaurepv()) <= PVMAX) {
+				this.incrementerPv(((Nourriture) objetmain.getValue()).getRestaurepv());
 				inventaire.getInv().get(inventaire.getSouris()).enleverQuantite();
 			} else {
 				this.incrementerPv(PVMAX - this.getPv());
@@ -170,19 +150,11 @@ public class Joueur extends Acteur {
 		}
 	}
 
-	public void ajouterTuiles(int x, int y, Terrain terrain){
-		if ((objetmain.getValue()) instanceof Materiaux && inventaire.getInv().get(inventaire.getSouris()).getQuantite()>0){
-			terrain.ajouterTuiles(x, y,((Materiaux)objetmain.getValue()),inventaire);
-			inventaire.getInv().get(inventaire.getSouris()).enleverQuantite();
-		}
-		
-	}
-
-	public Arme getArme(){
+	public Arme getArme() {
 		return this.arme;
 	}
 
-	public Inventaire getInv(){
+	public Inventaire getInv() {
 		return this.inventaire;
 	}
 
@@ -194,15 +166,14 @@ public class Joueur extends Acteur {
 		this.objetmain.set(inventaire.getInv().get(indice).getObjet());
 	}
 
-	public void setObjetMainPourTest(Objet objet){
+	public void setObjetMainPourTest(Objet objet) {
 		this.objetmain.set(objet);
 	}
 
 	public void frappeActeur(Acteur a) {
-		if (objetmain.getValue() instanceof Arme){
-			a.decrementerPv(((Arme)objetmain.getValue()).getAttaque());
+		if (objetmain.getValue() instanceof Arme) {
+			a.decrementerPv(((Arme) objetmain.getValue()).getAttaque());
 		}
 	}
-
 
 }
