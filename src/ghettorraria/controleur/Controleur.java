@@ -102,7 +102,7 @@ public class Controleur implements Initializable {
         barreVieVue = new BarreDeVieVue(paneprincipal, joueur);
         barreVieVue.placerBarreDeVie();
 
-        singe = new Mob("singe", 50, 3, terrain, joueur, 0, null, 32);
+        singe = new Mob("singe", 40, 3, terrain, joueur, 0, null, 32);
         MobVue singeVue = new MobVue(paneprincipal, singe);
         singeVue.placerMob();
 
@@ -110,7 +110,7 @@ public class Controleur implements Initializable {
         MobVue voyouVue = new MobVue(paneprincipal, voyou);
         voyouVue.placerMob();
 
-        chien = new Mob("chien", 20, 1, terrain, joueur, 2, null, 32);
+        chien = new Mob("chien", 50, 2, terrain, joueur, 2, null, 32);
         MobVue chienVue = new MobVue(paneprincipal, chien);
         chienVue.placerMob();
 
